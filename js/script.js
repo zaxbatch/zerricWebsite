@@ -1,4 +1,5 @@
 // ---- Toggle between services (Buy, Sell, Lease, Contact) ----
+// Only run on pages where these elements exist (homepage)
 const buyBtn = document.getElementById('buy-btn');
 const sellBtn = document.getElementById('sell-btn');
 const leaseBtn = document.getElementById('lease-btn');
@@ -37,42 +38,50 @@ function scrollToContent() {
     }
 }
 
-// ---- Service button click handlers ----
-buyBtn.addEventListener('click', () => {
-    deactivateAllButtons();
-    buyBtn.classList.add('active');
-    hideAllSections();
-    hideAllForms();
-    buySection.classList.add('active');
-    scrollToContent();
-});
+// ---- Service button click handlers (only if elements exist) ----
+if (buyBtn && buySection) {
+    buyBtn.addEventListener('click', () => {
+        deactivateAllButtons();
+        buyBtn.classList.add('active');
+        hideAllSections();
+        hideAllForms();
+        buySection.classList.add('active');
+        scrollToContent();
+    });
+}
 
-sellBtn.addEventListener('click', () => {
-    deactivateAllButtons();
-    sellBtn.classList.add('active');
-    hideAllSections();
-    hideAllForms();
-    sellSection.classList.add('active');
-    scrollToContent();
-});
+if (sellBtn && sellSection) {
+    sellBtn.addEventListener('click', () => {
+        deactivateAllButtons();
+        sellBtn.classList.add('active');
+        hideAllSections();
+        hideAllForms();
+        sellSection.classList.add('active');
+        scrollToContent();
+    });
+}
 
-leaseBtn.addEventListener('click', () => {
-    deactivateAllButtons();
-    leaseBtn.classList.add('active');
-    hideAllSections();
-    hideAllForms();
-    leaseSection.classList.add('active');
-    scrollToContent();
-});
+if (leaseBtn && leaseSection) {
+    leaseBtn.addEventListener('click', () => {
+        deactivateAllButtons();
+        leaseBtn.classList.add('active');
+        hideAllSections();
+        hideAllForms();
+        leaseSection.classList.add('active');
+        scrollToContent();
+    });
+}
 
-contactBtn.addEventListener('click', () => {
-    deactivateAllButtons();
-    contactBtn.classList.add('active');
-    hideAllSections();
-    hideAllForms();
-    contactFormGeneric.style.display = 'block';
-    scrollToContent();
-});
+if (contactBtn && contactFormGeneric) {
+    contactBtn.addEventListener('click', () => {
+        deactivateAllButtons();
+        contactBtn.classList.add('active');
+        hideAllSections();
+        hideAllForms();
+        contactFormGeneric.style.display = 'block';
+        scrollToContent();
+    });
+}
 
 // ---- Switch between services (Buy, Sell, Lease) from form nav buttons ----
 function switchService(service) {
@@ -81,13 +90,13 @@ function switchService(service) {
     hideAllSections();
     deactivateAllButtons();
 
-    if (service === 'buy') {
+    if (service === 'buy' && buyBtn && buySection) {
         buyBtn.classList.add('active');
         buySection.classList.add('active');
-    } else if (service === 'sell') {
+    } else if (service === 'sell' && sellBtn && sellSection) {
         sellBtn.classList.add('active');
         sellSection.classList.add('active');
-    } else if (service === 'lease') {
+    } else if (service === 'lease' && leaseBtn && leaseSection) {
         leaseBtn.classList.add('active');
         leaseSection.classList.add('active');
     }
@@ -99,36 +108,42 @@ function switchService(service) {
 // ---- Show contact form with specific service selected ----
 function showForm(service) {
     deactivateAllButtons();
-    contactBtn.classList.add('active');
+    if (contactBtn) contactBtn.classList.add('active');
     hideAllSections();
     hideAllForms();
 
     let formToShow;
-    if (service === 'buy') {
+    if (service === 'buy' && contactFormBuy) {
         formToShow = contactFormBuy;
-    } else if (service === 'sell') {
+    } else if (service === 'sell' && contactFormSell) {
         formToShow = contactFormSell;
-    } else if (service === 'lease') {
+    } else if (service === 'lease' && contactFormLease) {
         formToShow = contactFormLease;
     } else {
         formToShow = contactFormGeneric;
     }
-    formToShow.style.display = 'block';
-    
-    // Slow scroll to center the content box
-    scrollToContent();
+    if (formToShow) {
+        formToShow.style.display = 'block';
+        scrollToContent();
+    }
 }
+
+// ========================================================
+//   MENU BEHAVIOR – SAME ON ALL PAGES
+// ========================================================
 
 // ---- Glowing Menu toggle ----
 function toggleMenu() {
     const overlay = document.querySelector('.menu-overlay');
-    overlay.classList.toggle('active');
+    if (overlay) {
+        overlay.classList.toggle('active');
+    }
 }
 
 // ---- Close menu helper (used by outside click & Escape key) ----
 function closeMenu() {
     const overlay = document.querySelector('.menu-overlay');
-    if (overlay.classList.contains('active')) {
+    if (overlay && overlay.classList.contains('active')) {
         overlay.classList.remove('active');
         // Return focus to the menu icon for accessibility
         const icon = document.querySelector('.menu-icon');
@@ -141,7 +156,8 @@ document.addEventListener('click', (event) => {
     const overlay = document.querySelector('.menu-overlay');
     const content = document.querySelector('.menu-content');
     const icon = document.querySelector('.menu-icon');
-    if (overlay.classList.contains('active') && !content.contains(event.target) && !icon.contains(event.target)) {
+    if (overlay && overlay.classList.contains('active') && content && icon &&
+        !content.contains(event.target) && !icon.contains(event.target)) {
         closeMenu();
     }
 });
@@ -153,8 +169,13 @@ document.addEventListener('keydown', (event) => {
     }
 });
 
-// Expose functions to global scope for inline onclick attributes
+// ========================================================
+//   MAKE FUNCTIONS GLOBALLY ACCESSIBLE
+// ========================================================
 window.switchService = switchService;
 window.showForm = showForm;
 window.toggleMenu = toggleMenu;
 window.closeMenu = closeMenu;
+
+// ---- Console log to confirm script loaded (helpful for debugging) ----
+console.log('✅ script.js loaded successfully');
