@@ -52,170 +52,44 @@
             transform: translateX(4px);
         }
 
-        .feature-section {
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 2px solid var(--gray-light);
+        /* ---- Coming Soon Content ---- */
+        .coming-soon-content {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: var(--light);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-light);
+            margin: 2rem 0;
         }
-        .feature-section h2 {
+        .coming-soon-content .icon {
+            font-size: 4rem;
+            color: var(--gold-dark);
+            margin-bottom: 1rem;
+        }
+        .coming-soon-content h2 {
             font-size: 1.8rem;
             color: var(--charcoal);
             margin-bottom: 0.5rem;
         }
-        .feature-section .section-desc {
+        .coming-soon-content p {
             color: #666;
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-        }
-
-        .feature-form {
-            display: flex;
-            gap: 0.8rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-        .feature-form input {
-            flex: 1;
-            min-width: 200px;
-            padding: 0.8rem 1.2rem;
-            border: 2px solid var(--gray-medium);
-            border-radius: var(--border-radius);
-            font-size: 1rem;
-            background: var(--cream);
-            transition: var(--transition);
-            font-family: inherit;
-        }
-        .feature-form input:focus {
-            outline: none;
-            border-color: var(--gold);
-            box-shadow: 0 0 0 4px rgba(250, 204, 15, 0.1);
-        }
-        .feature-form button {
-            padding: 0.8rem 2rem;
-            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-            color: var(--charcoal);
-            border: none;
-            border-radius: var(--border-radius);
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 1rem;
-            white-space: nowrap;
-        }
-        .feature-form button:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-gold);
-        }
-        .feature-form button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .feature-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
-        }
-        .feature-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 0.8rem 1.2rem;
-            background: var(--cream);
-            border-radius: var(--border-radius);
-            border: 1px solid var(--gray-light);
-            transition: var(--transition);
-        }
-        .feature-item:hover {
-            border-color: var(--gold);
-        }
-        .feature-item .rank {
-            font-weight: 700;
-            color: var(--gold-dark);
-            min-width: 2rem;
-            font-size: 0.9rem;
-            text-align: center;
-        }
-        .feature-item .title {
-            flex: 1;
-            font-weight: 500;
-            color: var(--charcoal);
-        }
-        .feature-item .score {
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            font-weight: 600;
-            color: var(--gold-dark);
-            min-width: 3.5rem;
-            justify-content: flex-end;
-        }
-        .feature-item .vote-btn {
-            background: none;
-            border: 2px solid var(--gray-medium);
-            border-radius: 30px;
-            padding: 0.2rem 0.8rem;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--charcoal);
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: inherit;
-            white-space: nowrap;
-        }
-        .feature-item .vote-btn:hover {
-            background: var(--gold);
-            border-color: var(--gold);
-            transform: scale(1.05);
-        }
-        .feature-item .vote-btn:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-            transform: none;
-        }
-        .feature-item .vote-btn.voted {
-            background: var(--gold);
-            border-color: var(--gold);
-            cursor: default;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 2rem;
-            color: #888;
-            font-style: italic;
-        }
-        .loading-spinner {
-            text-align: center;
-            padding: 1.5rem;
-            color: #888;
-        }
-        .loading-spinner i {
-            font-size: 1.5rem;
-            margin-right: 0.5rem;
-        }
-
-        .mode-badge {
-            font-size: 0.8rem;
-            color: #999;
-            margin-top: 0.5rem;
+            font-size: 1.05rem;
+            max-width: 500px;
+            margin: 0 auto 1.5rem;
+            line-height: 1.7;
         }
 
         @media (max-width: 600px) {
             .blog-header h1 { font-size: 2rem; }
-            .feature-form { flex-direction: column; }
-            .feature-form input { min-width: auto; }
-            .feature-item { flex-wrap: wrap; gap: 0.4rem; }
-            .feature-item .title { flex-basis: 100%; order: 1; }
-            .feature-item .rank { order: 2; }
-            .feature-item .score { order: 3; }
-            .feature-item .vote-btn { order: 4; }
+            .coming-soon-content .icon { font-size: 3rem; }
+            .coming-soon-content h2 { font-size: 1.4rem; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Header Banner -->
     <header class="header-banner">
         <div class="social-links">
             <img src="../images/logo/logo02.svg" alt="LPT Logo" class="footer-logo" />
@@ -224,6 +98,7 @@
         </div>
     </header>
 
+    <!-- Main Content -->
     <div class="container">
         <div class="blog-header">
             <div class="coming-soon-badge">📝 Coming Soon</div>
@@ -237,38 +112,30 @@
             </a>
         </div>
 
-        <div class="feature-section">
-            <h2>💡 What do you want to see?</h2>
-            <p class="section-desc">
-                Suggest a blog topic or feature you'd like me to cover. The most popular ideas
-                will rise to the top – just like Reddit!
+        <!-- Coming Soon Content -->
+        <div class="coming-soon-content">
+            <div class="icon">
+                <i class="fas fa-pen-fancy"></i>
+            </div>
+            <h2>Fresh Content Is on the Way</h2>
+            <p>
+                I'm working on something new – expect articles about Louisville
+                neighborhoods, home buying tips, market updates, and more.
             </p>
-
-            <form class="feature-form" id="featureForm">
-                <input type="text" id="featureInput" placeholder="e.g. 'First-time homebuyer guide for Louisville'" required />
-                <button type="submit" id="submitBtn">Suggest Idea</button>
-            </form>
-
-            <div class="mode-badge" id="modeBadge">🌐 Using cloud storage</div>
-
-            <div id="loadingState" class="loading-spinner">
-                <i class="fas fa-spinner fa-spin"></i> Loading ideas...
-            </div>
-
-            <div id="featureList" class="feature-list" style="display: none;"></div>
-            <div id="emptyState" class="empty-state" style="display: none;">
-                <i class="fas fa-lightbulb" style="font-size: 2rem; color: var(--gold-dark);"></i>
-                <p>No ideas yet – be the first to suggest something!</p>
-            </div>
+            <a href="https://zerric.lpthomesearch.com/blog" target="_blank" class="cta" style="text-decoration: none; display: inline-flex; align-items: center; gap: 0.6rem;">
+                Read my current blog <i class="fas fa-arrow-right"></i>
+            </a>
         </div>
 
-        <div style="text-align: center; margin-top: 2.5rem;">
+        <!-- Back to Home -->
+        <div style="text-align: center; margin-top: 2rem;">
             <a href="../index.html" class="cta" style="text-decoration: none;">
                 <i class="fas fa-arrow-left"></i> Back to Home
             </a>
         </div>
     </div>
 
+    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <img src="../images/logo/logo02.svg" alt="LPT Logo" class="footer-logo" />
@@ -282,6 +149,7 @@
         </div>
     </footer>
 
+    <!-- Interactive Glowing Menu -->
     <div class="glow-menu">
         <div class="menu-icon" onclick="toggleMenu()" tabindex="0" role="button" aria-label="Toggle menu">
             <i class="fas fa-bars"></i>
@@ -297,177 +165,7 @@
         </div>
     </div>
 
-    <!-- No external script.js – blog handles its own logic -->
-
     <script>
-        // ====================================================
-        //   FEATURE VOTING – uses Netlify Blobs (cloud storage)
-        // ====================================================
-
-        const API_URL = '/.netlify/functions/features'; // ✅ Default path (no custom config)
-
-        // Helper: get or create a voter ID
-        function getVoterId() {
-            let voterId = localStorage.getItem('voterId');
-            if (!voterId) {
-                voterId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6);
-                localStorage.setItem('voterId', voterId);
-            }
-            return voterId;
-        }
-
-        // Track which features this user has voted for
-        function getVotedFeatures() {
-            const raw = localStorage.getItem('votedFeatures');
-            return raw ? JSON.parse(raw) : [];
-        }
-
-        function addVotedFeature(featureId) {
-            const voted = getVotedFeatures();
-            if (!voted.includes(featureId)) {
-                voted.push(featureId);
-                localStorage.setItem('votedFeatures', JSON.stringify(voted));
-            }
-        }
-
-        function hasVoted(featureId) {
-            return getVotedFeatures().includes(featureId);
-        }
-
-        // ---- Fetch and render features ----
-        async function fetchFeatures() {
-            try {
-                const res = await fetch(API_URL);
-                if (!res.ok) throw new Error('Failed to fetch');
-                const data = await res.json();
-                document.getElementById('modeBadge').textContent = '🌐 Using cloud storage (shared)';
-                return data;
-            } catch (err) {
-                console.warn('Cloud storage unavailable, using localStorage fallback', err);
-                document.getElementById('modeBadge').textContent = '📁 Using local storage (your device only)';
-                // Fallback to localStorage
-                const raw = localStorage.getItem('blogFeatures');
-                return raw ? JSON.parse(raw) : [];
-            }
-        }
-
-        function renderFeatures(features) {
-            const list = document.getElementById('featureList');
-            const empty = document.getElementById('emptyState');
-            const loading = document.getElementById('loadingState');
-
-            loading.style.display = 'none';
-
-            if (!features || features.length === 0) {
-                list.style.display = 'none';
-                empty.style.display = 'block';
-                return;
-            }
-
-            list.style.display = 'flex';
-            empty.style.display = 'none';
-
-            const sorted = [...features].sort((a, b) => {
-                if (b.score !== a.score) return b.score - a.score;
-                return new Date(b.created) - new Date(a.created);
-            });
-
-            list.innerHTML = sorted.map((item, index) => {
-                const voted = hasVoted(item.id);
-                return `
-                    <div class="feature-item" data-id="${item.id}">
-                        <span class="rank">#${index + 1}</span>
-                        <span class="title">${escapeHtml(item.title)}</span>
-                        <span class="score"><i class="fas fa-arrow-up"></i> ${item.score}</span>
-                        <button class="vote-btn ${voted ? 'voted' : ''}" 
-                                data-id="${item.id}" 
-                                ${voted ? 'disabled' : ''}>
-                            ${voted ? '✓ Voted' : 'Upvote'}
-                        </button>
-                    </div>
-                `;
-            }).join('');
-
-            list.querySelectorAll('.vote-btn:not([disabled])').forEach(btn => {
-                btn.addEventListener('click', () => handleVote(btn.dataset.id));
-            });
-        }
-
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-
-        // ---- Handle voting ----
-        async function handleVote(featureId) {
-            if (hasVoted(featureId)) return;
-
-            const btn = document.querySelector(`.vote-btn[data-id="${featureId}"]`);
-            if (btn) { btn.disabled = true; btn.textContent = '...'; }
-
-            try {
-                const res = await fetch(API_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ action: 'vote', id: featureId }),
-                });
-                if (!res.ok) throw new Error('Vote failed');
-                const updated = await res.json();
-                addVotedFeature(featureId);
-                const features = await fetchFeatures();
-                renderFeatures(features);
-            } catch (err) {
-                console.error('Error voting:', err);
-                alert('Something went wrong. Please try again.');
-                if (btn) {
-                    btn.disabled = false;
-                    btn.textContent = 'Upvote';
-                }
-            }
-        }
-
-        // ---- Handle new feature submission ----
-        async function handleSubmit(event) {
-            event.preventDefault();
-            const input = document.getElementById('featureInput');
-            const title = input.value.trim();
-            if (!title) return;
-
-            const submitBtn = document.getElementById('submitBtn');
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Submitting...';
-
-            try {
-                const res = await fetch(API_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ action: 'submit', title }),
-                });
-                if (!res.ok) throw new Error('Submission failed');
-                const newFeature = await res.json();
-                addVotedFeature(newFeature.id);
-                input.value = '';
-                const features = await fetchFeatures();
-                renderFeatures(features);
-            } catch (err) {
-                console.error('Error submitting:', err);
-                alert('Something went wrong. Please try again.');
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Suggest Idea';
-            }
-        }
-
-        // ---- Init ----
-        async function init() {
-            const form = document.getElementById('featureForm');
-            form.addEventListener('submit', handleSubmit);
-
-            const features = await fetchFeatures();
-            renderFeatures(features);
-        }
-
         // ---- Menu toggle (self-contained) ----
         function toggleMenu() {
             const overlay = document.querySelector('.menu-overlay');
@@ -494,8 +192,6 @@
         });
 
         window.toggleMenu = toggleMenu;
-
-        document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
