@@ -1,2 +1,2 @@
 [functions]
-  node_bundler = "default"
+  node_bundler = "esbuild"
