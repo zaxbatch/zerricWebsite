@@ -80,7 +80,5 @@ export default async (req, context) => {
   }
 };
 
-// REMOVE the config block entirely
-// export const config = {
-//   path: '/api/features',
-// };
+// ✅ No custom path – function is only available at the default URL:
+// /.netlify/functions/features

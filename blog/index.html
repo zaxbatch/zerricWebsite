@@ -52,7 +52,6 @@
             transform: translateX(4px);
         }
 
-        /* ---- Feature Request Voting Section ---- */
         .feature-section {
             margin-top: 3rem;
             padding-top: 2rem;
@@ -187,7 +186,6 @@
             color: #888;
             font-style: italic;
         }
-
         .loading-spinner {
             text-align: center;
             padding: 1.5rem;
@@ -198,7 +196,12 @@
             margin-right: 0.5rem;
         }
 
-        /* ---- Responsive ---- */
+        .mode-badge {
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 0.5rem;
+        }
+
         @media (max-width: 600px) {
             .blog-header h1 { font-size: 2rem; }
             .feature-form { flex-direction: column; }
@@ -213,7 +216,6 @@
 </head>
 <body>
 
-    <!-- Header Banner -->
     <header class="header-banner">
         <div class="social-links">
             <img src="../images/logo/logo02.svg" alt="LPT Logo" class="footer-logo" />
@@ -222,9 +224,7 @@
         </div>
     </header>
 
-    <!-- Main Content -->
     <div class="container">
-        <!-- Blog Header -->
         <div class="blog-header">
             <div class="coming-soon-badge">📝 Coming Soon</div>
             <h1>Zerric's Blog</h1>
@@ -237,7 +237,6 @@
             </a>
         </div>
 
-        <!-- Feature Request Voting Section -->
         <div class="feature-section">
             <h2>💡 What do you want to see?</h2>
             <p class="section-desc">
@@ -245,23 +244,17 @@
                 will rise to the top – just like Reddit!
             </p>
 
-            <!-- Submit Form -->
             <form class="feature-form" id="featureForm">
-                <input
-                    type="text"
-                    id="featureInput"
-                    placeholder="e.g. 'First-time homebuyer guide for Louisville'"
-                    required
-                />
+                <input type="text" id="featureInput" placeholder="e.g. 'First-time homebuyer guide for Louisville'" required />
                 <button type="submit" id="submitBtn">Suggest Idea</button>
             </form>
 
-            <!-- Loading / Empty State -->
+            <div class="mode-badge" id="modeBadge">🌐 Using cloud storage</div>
+
             <div id="loadingState" class="loading-spinner">
                 <i class="fas fa-spinner fa-spin"></i> Loading ideas...
             </div>
 
-            <!-- Feature List -->
             <div id="featureList" class="feature-list" style="display: none;"></div>
             <div id="emptyState" class="empty-state" style="display: none;">
                 <i class="fas fa-lightbulb" style="font-size: 2rem; color: var(--gold-dark);"></i>
@@ -269,7 +262,6 @@
             </div>
         </div>
 
-        <!-- Back to Home -->
         <div style="text-align: center; margin-top: 2.5rem;">
             <a href="../index.html" class="cta" style="text-decoration: none;">
                 <i class="fas fa-arrow-left"></i> Back to Home
@@ -277,7 +269,6 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <img src="../images/logo/logo02.svg" alt="LPT Logo" class="footer-logo" />
@@ -291,7 +282,6 @@
         </div>
     </footer>
 
-    <!-- Interactive Glowing Menu -->
     <div class="glow-menu">
         <div class="menu-icon" onclick="toggleMenu()" tabindex="0" role="button" aria-label="Toggle menu">
             <i class="fas fa-bars"></i>
@@ -307,13 +297,16 @@
         </div>
     </div>
 
-    <script src="../js/script.js"></script>
+    <!-- No external script.js – blog handles its own logic -->
 
     <script>
-        // ---- Feature Voting Logic ----
-        const API_URL = '/api/features';
+        // ====================================================
+        //   FEATURE VOTING – uses Netlify Blobs (cloud storage)
+        // ====================================================
 
-        // Helper to get or set a voter ID (simple session-based tracking)
+        const API_URL = '/.netlify/functions/features'; // ✅ Default path (no custom config)
+
+        // Helper: get or create a voter ID
         function getVoterId() {
             let voterId = localStorage.getItem('voterId');
             if (!voterId) {
@@ -347,10 +340,14 @@
                 const res = await fetch(API_URL);
                 if (!res.ok) throw new Error('Failed to fetch');
                 const data = await res.json();
+                document.getElementById('modeBadge').textContent = '🌐 Using cloud storage (shared)';
                 return data;
             } catch (err) {
-                console.error('Error fetching features:', err);
-                return [];
+                console.warn('Cloud storage unavailable, using localStorage fallback', err);
+                document.getElementById('modeBadge').textContent = '📁 Using local storage (your device only)';
+                // Fallback to localStorage
+                const raw = localStorage.getItem('blogFeatures');
+                return raw ? JSON.parse(raw) : [];
             }
         }
 
@@ -370,7 +367,6 @@
             list.style.display = 'flex';
             empty.style.display = 'none';
 
-            // Sort by score (highest first), then by created date (newest first for ties)
             const sorted = [...features].sort((a, b) => {
                 if (b.score !== a.score) return b.score - a.score;
                 return new Date(b.created) - new Date(a.created);
@@ -392,13 +388,11 @@
                 `;
             }).join('');
 
-            // Attach vote event listeners
             list.querySelectorAll('.vote-btn:not([disabled])').forEach(btn => {
                 btn.addEventListener('click', () => handleVote(btn.dataset.id));
             });
         }
 
-        // Simple escape to prevent XSS
         function escapeHtml(text) {
             const div = document.createElement('div');
             div.textContent = text;
@@ -410,10 +404,7 @@
             if (hasVoted(featureId)) return;
 
             const btn = document.querySelector(`.vote-btn[data-id="${featureId}"]`);
-            if (btn) {
-                btn.disabled = true;
-                btn.textContent = '...';
-            }
+            if (btn) { btn.disabled = true; btn.textContent = '...'; }
 
             try {
                 const res = await fetch(API_URL, {
@@ -423,17 +414,12 @@
                 });
                 if (!res.ok) throw new Error('Vote failed');
                 const updated = await res.json();
-
-                // Mark as voted locally
                 addVotedFeature(featureId);
-
-                // Refresh the list
                 const features = await fetchFeatures();
                 renderFeatures(features);
             } catch (err) {
                 console.error('Error voting:', err);
                 alert('Something went wrong. Please try again.');
-                // Re-enable the button
                 if (btn) {
                     btn.disabled = false;
                     btn.textContent = 'Upvote';
@@ -460,10 +446,7 @@
                 });
                 if (!res.ok) throw new Error('Submission failed');
                 const newFeature = await res.json();
-
-                // Auto-vote for the submitter's own idea
                 addVotedFeature(newFeature.id);
-
                 input.value = '';
                 const features = await fetchFeatures();
                 renderFeatures(features);
@@ -485,36 +468,33 @@
             renderFeatures(features);
         }
 
-        // ---- Menu toggle (reuse from global script) ----
+        // ---- Menu toggle (self-contained) ----
         function toggleMenu() {
             const overlay = document.querySelector('.menu-overlay');
-            overlay.classList.toggle('active');
+            if (overlay) overlay.classList.toggle('active');
         }
 
-        // Close menu on background click
         document.addEventListener('click', (event) => {
             const overlay = document.querySelector('.menu-overlay');
             const content = document.querySelector('.menu-content');
             const icon = document.querySelector('.menu-icon');
-            if (overlay.classList.contains('active') && !content.contains(event.target) && !icon.contains(event.target)) {
+            if (overlay && overlay.classList.contains('active') && content && icon &&
+                !content.contains(event.target) && !icon.contains(event.target)) {
                 overlay.classList.remove('active');
             }
         });
 
-        // Close menu on Escape key
         document.addEventListener('keydown', (event) => {
             if (event.key === 'Escape') {
                 const overlay = document.querySelector('.menu-overlay');
-                if (overlay.classList.contains('active')) {
+                if (overlay && overlay.classList.contains('active')) {
                     overlay.classList.remove('active');
                 }
             }
         });
 
-        // Make toggleMenu globally available
         window.toggleMenu = toggleMenu;
 
-        // Start the app
         document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
