@@ -80,6 +80,7 @@ export default async (req, context) => {
   }
 };
 
-export const config = {
-  path: '/api/features',
-};
+// REMOVE the config block entirely
+// export const config = {
+//   path: '/api/features',
+// };
