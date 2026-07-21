@@ -1,6 +1,2 @@
-[build]
-  command = "echo 'No build step required'"
-  publish = "."
-
 [functions]
-  directory = "netlify/functions"
+  node_bundler = "default"
