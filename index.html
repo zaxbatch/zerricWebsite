@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zerric Dotcom | Your Trusted Real Estate Professional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://js-na2.hsforms.net/forms/embed/243835533.js" defer></script>
+</head>
+<body ng-app="">
+
+    <!-- Header Banner -->
+    <header class="header-banner">
+        <div class="social-links">
+            <img src="./images/logo/logo02.svg" alt="LPT Logo" class="footer-logo" />
+            <a href="tel:5022995252"><i class="fas fa-phone"></i> Call Me</a>
+            <a href="mailto:zerricdotcom@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- ===== HOMEPAGE HEADER – clickable expandable ===== -->
+        <div class="header homepage-header" id="main-header">
+            <div class="header-inner">
+                <!-- Top section: name + tagline -->
+                <div class="top-section">
+                    <h1>Zerric Dotcom</h1>
+                    <p>Your Trusted Real Estate Professional</p>
+                </div>
+
+                <!-- About section (hidden until expanded) -->
+                <div class="about-section">
+                    <img src="./images/zerric.webp" alt="Zerric Dotcom" />
+                    <div class="about-text">
+                        <h3>About Me</h3>
+                        <p>
+                            I'm passionate about helping people find their place in Louisville – whether it's a
+                            first home, a dream upgrade, or the perfect commercial space. This city has given me so
+                            much, and I love giving back by guiding clients through one of life's biggest decisions.
+                        </p>
+                        <p>
+                            When you work with me, you get a dedicated advocate who listens, communicates clearly,
+                            and fights for your best interests. I believe the best agent is part advisor, part
+                            negotiator, and part friend – always transparent, always honest.
+                        </p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Deep knowledge of Louisville neighborhoods</li>
+                            <li><i class="fas fa-check-circle"></i> Personalized marketing &amp; negotiation strategies</li>
+                            <li><i class="fas fa-check-circle"></i> 24/7 availability and clear communication</li>
+                            <li><i class="fas fa-check-circle"></i> Genuine care for your goals and peace of mind</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- About trigger button -->
+                <div class="about-trigger-wrapper">
+                    <button class="about-trigger-btn" onclick="event.stopPropagation(); toggleHeader();">
+                        <i class="fas fa-user"></i>
+                        <span>About Me</span>
+                        <i class="fas fa-chevron-down" id="chevron-icon"></i>
+                    </button>
+                    <span class="about-shimmer-text" id="aboutToggleText">– Learn More</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Service Buttons -->
+        <div class="service-buttons">
+            <button id="buy-btn" class="active">Buy Property</button>
+            <button id="sell-btn">Sell Property</button>
+            <button id="lease-btn">Lease Property</button>
+            <button id="contact-btn">Contact Agent</button>
+        </div>
+
+        <!-- Content Sections -->
+        <div class="content">
+            <!-- Buy Section -->
+            <section id="buy-home" class="active">
+                <h2>Let Me Help You Find Your Next Property</h2>
+                <p>Discover exceptional properties across Louisville – whether you're searching for your dream home or the ideal commercial space. I provide expert guidance for buyers, sellers, and investors alike.</p>
+                <p>With exclusive access to MLS listings and off-market opportunities, I'll help you navigate the market with confidence. From residential neighborhoods to prime commercial locations, your perfect property is just a conversation away.</p>
+                <div class="buy-actions">
+                    <button class="cta" onclick="showForm('buy')">Contact Me Today</button>
+                    <button class="cta" onclick="window.location.href='property-search.html'" style="background: var(--secondary); color: var(--gold); box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+                        <i class="fas fa-search"></i> Search Properties
+                    </button>
+                </div>
+            </section>
+
+            <!-- Sell Section -->
+            <section id="sell-home">
+                <h2>Let Zerric Sell Your Property</h2>
+                <p>Whether you're listing a residential home or a commercial asset, I bring tailored marketing strategies and sharp negotiation skills to maximize your return. From retail spaces to single-family homes, every property gets white-glove service.</p>
+                <p>My comprehensive approach includes professional photography, virtual tours, and data-driven digital campaigns designed to attract the right buyers, tenants, or investors—so your property moves quickly and at the best price.</p>
+                <button class="cta" onclick="showForm('sell')">Get a Free Valuation</button>
+            </section>
+
+            <!-- Lease Section -->
+            <section id="lease-home">
+                <h2>Lease Your Property with Confidence</h2>
+                <p>Whether you're a landlord looking for quality tenants or a business owner seeking the perfect commercial lease, I provide expert leasing services tailored to your needs. From residential rentals to retail and office spaces, I handle every detail.</p>
+                <p>My proven marketing strategies attract qualified tenants, and I negotiate lease terms that protect your interests. Let me help you maximize your property's rental potential with minimal hassle.</p>
+                <button class="cta" onclick="showForm('lease')">Request Leasing Info</button>
+            </section>
+
+            <!-- ===== CONTACT FORMS ===== -->
+            <!-- Generic Contact Form -->
+            <div id="contact-form-generic" style="display: none;">
+                <h2>Contact Zerric</h2>
+                <div class="hs-form-frame" data-region="na2" data-form-id="58e927bd-68b3-443e-af9e-44b25cef1e39" data-portal-id="243835533"></div>
+                <div class="form-nav-buttons">
+                    <button class="form-nav-btn" onclick="switchService('buy')">🏠 Buy</button>
+                    <button class="form-nav-btn" onclick="switchService('sell')">💰 Sell</button>
+                    <button class="form-nav-btn" onclick="switchService('lease')">📋 Lease</button>
+                </div>
+            </div>
+
+            <!-- Buying Contact Form -->
+            <div id="contact-form-buy" style="display: none;">
+                <h2>Contact Zerric - Buying Inquiry</h2>
+                <div class="hs-form-frame" data-region="na2" data-form-id="f8183c1e-75b6-4cde-af1a-8cf54116bd65" data-portal-id="243835533"></div>
+                <div class="form-nav-buttons">
+                    <button class="form-nav-btn" onclick="switchService('buy')">🏠 Buy</button>
+                    <button class="form-nav-btn" onclick="switchService('sell')">💰 Sell</button>
+                    <button class="form-nav-btn" onclick="switchService('lease')">📋 Lease</button>
+                </div>
+            </div>
+
+            <!-- Selling Contact Form -->
+            <div id="contact-form-sell" style="display: none;">
+                <h2>Contact Zerric - Selling Inquiry</h2>
+                <div class="hs-form-frame" data-region="na2" data-form-id="c08debf8-6bb0-4353-87a9-19b177f02236" data-portal-id="243835533"></div>
+                <div class="form-nav-buttons">
+                    <button class="form-nav-btn" onclick="switchService('buy')">🏠 Buy</button>
+                    <button class="form-nav-btn" onclick="switchService('sell')">💰 Sell</button>
+                    <button class="form-nav-btn" onclick="switchService('lease')">📋 Lease</button>
+                </div>
+            </div>
+
+            <!-- Leasing Contact Form -->
+            <div id="contact-form-lease" style="display: none;">
+                <h2>Contact Zerric - Leasing Inquiry</h2>
+                <div class="hs-form-frame" data-region="na2" data-form-id="7c7102cf-6596-4104-8769-aa36a7741aad" data-portal-id="243835533"></div>
+                <div class="form-nav-buttons">
+                    <button class="form-nav-btn" onclick="switchService('buy')">🏠 Buy</button>
+                    <button class="form-nav-btn" onclick="switchService('sell')">💰 Sell</button>
+                    <button class="form-nav-btn" onclick="switchService('lease')">📋 Lease</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <img src="./images/logo/logo02.svg" alt="LPT Logo" class="footer-logo" />
+            <div class="brokerage-info">
+                <p><strong>LPT Realty</strong></p>
+                <p>1400 S International Parkway Suite 1020</p>
+                <p>Lake Mary, FL 32746</p>
+            </div>
+            <img src="https://cms.nar.realtor//sites/default/files/images/logos/NAR/web_R_blue.jpg" alt="Realtor Logo" class="realtor-logo" />
+            <img src="https://www.nar.realtor/sites/default/files/downloadable/equal-housing-opportunity-logo-1200w.jpg" alt="Fair Housing Logo" class="realtor-logo" />
+        </div>
+    </footer>
+
+    <!-- ===== Interactive Glowing Menu ===== -->
+    <div class="glow-menu">
+        <div class="menu-icon" onclick="toggleMenu()" tabindex="0" role="button" aria-label="Toggle menu">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="menu-overlay">
+            <div class="menu-content">
+                <a href="index.html">Home</a>
+                <a href="property-search.html">Property Search</a>
+                <a href="mortgage-calculator.html">Mortgage Calculator</a>
+                <a href="guest-book.html">Guest Book</a>
+                <a href="https://scrollcity.zerric.com">Scroll City - Beta</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/script.js"></script>
+    <!-- Start of HubSpot Embed Code -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js-na2.hs-scripts.com/243835533.js"></script>
+    <!-- End of HubSpot Embed Code -->
+
+    <script>
+        // ---- Header Toggle ----
+        function toggleHeader() {
+            const header = document.getElementById('main-header');
+            header.classList.toggle('expanded');
+
+            const chevron = document.getElementById('chevron-icon');
+            const toggleText = document.getElementById('aboutToggleText');
+
+            if (header.classList.contains('expanded')) {
+                chevron.classList.remove('fa-chevron-down');
+                chevron.classList.add('fa-chevron-up');
+                toggleText.innerHTML = '– Collapse';
+            } else {
+                chevron.classList.remove('fa-chevron-up');
+                chevron.classList.add('fa-chevron-down');
+                toggleText.innerHTML = '– Learn More';
+            }
+
+            if (header.classList.contains('expanded')) {
+                setTimeout(() => {
+                    header.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 300);
+            }
+        }
+
+        // ---- Menu Toggle ----
+        function toggleMenu() {
+            const overlay = document.querySelector('.menu-overlay');
+            overlay.classList.toggle('active');
+        }
+
+        // ---- Close menu on background click ----
+        document.addEventListener('click', (event) => {
+            const overlay = document.querySelector('.menu-overlay');
+            const content = document.querySelector('.menu-content');
+            const icon = document.querySelector('.menu-icon');
+            if (overlay.classList.contains('active') && !content.contains(event.target) && !icon.contains(event.target)) {
+                overlay.classList.remove('active');
+            }
+        });
+
+        // ---- Close menu on Escape key ----
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                const overlay = document.querySelector('.menu-overlay');
+                if (overlay.classList.contains('active')) {
+                    overlay.classList.remove('active');
+                }
+            }
+        });
+
+        // Expose functions globally
+        window.toggleMenu = toggleMenu;
+        window.toggleHeader = toggleHeader;
+    </script>
+</body>
+</html>

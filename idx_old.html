@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zerric Dotcom | Your Trusted Real Estate Professional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zerric Dotcom | Your Trusted Real Estate Professional</title>
+<style>
+
+</style>
+</head>
+<body>
+
+    <!-- Header Banner -->
+    <header class="header-banner">
+        <div class="social-links">
+            <!-- img src="./images/logo/logo01.svg" alt="LPT Logo" class="footer-logo" -->
+            <img src="./images/logo/logo02.svg" alt="LPT Logo" class="footer-logo">
+            <a href="tel:5022995252"><i class="fas fa-phone"></i> Call Me</a>
+            <a href="mailto:zerricdotcom@gmail.com"><i class="fas fa-envelope"></i>  Email</a>
+        </div>
+    </header>
+
+
+<!-- Start Cut/Copy Here -->
+<style>
+    .property-search-component {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+    }
+    
+    .iframe-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    
+    .property-search-component iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+    
+    .contact-floating-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+        color: white;
+        padding: 18px 25px;
+        border-radius: 50px;
+        cursor: pointer;
+        z-index: 1000;
+        box-shadow: 0 5px 20px rgba(255, 126, 95, 0.4);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        border: none;
+    }
+    
+    .contact-floating-btn:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(255, 126, 95, 0.6);
+    }
+    
+    .contact-icon {
+        font-size: 1.4rem;
+    }
+    
+    .contact-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.7);
+        z-index: 1001;
+        backdrop-filter: blur(3px);
+    }
+    
+    .contact-modal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        z-index: 1002;
+        width: 90%;
+        max-width: 600px;
+        max-height: 85vh;
+        overflow-y: auto;
+    }
+    
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .modal-header h3 {
+        color: #2a5298;
+        font-size: 1.6rem;
+        margin: 0;
+    }
+    
+    .modal-close-btn {
+        background: none;
+        border: none;
+        font-size: 28px;
+        cursor: pointer;
+        color: #777;
+        transition: color 0.3s;
+        line-height: 1;
+    }
+    
+    .modal-close-btn:hover {
+        color: #ff7e5f;
+    }
+    
+    .form-container {
+        padding: 10px 0;
+    }
+    
+    .form-note {
+        background-color: #f0f7ff;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        border-left: 4px solid #2a5298;
+    }
+    
+    .form-note p {
+        margin: 0;
+        color: #2a5298;
+        font-size: 0.95rem;
+    }
+    
+    .fullscreen-toggle {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: rgba(255,255,255,0.9);
+        border: none;
+        border-radius: 5px;
+        padding: 8px 12px;
+        cursor: pointer;
+        z-index: 10;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        display: none;
+    }
+    
+    .fullscreen-toggle:hover {
+        background: white;
+    }
+    
+    /* Form styles */
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .form-label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #333;
+    }
+    
+    .form-input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 16px;
+        transition: border-color 0.3s;
+    }
+    
+    .form-input:focus {
+        outline: none;
+        border-color: #2a5298;
+        box-shadow: 0 0 0 2px rgba(42, 82, 152, 0.1);
+    }
+    
+    .form-textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 16px;
+        resize: vertical;
+        min-height: 100px;
+        transition: border-color 0.3s;
+    }
+    
+    .form-textarea:focus {
+        outline: none;
+        border-color: #2a5298;
+        box-shadow: 0 0 0 2px rgba(42, 82, 152, 0.1);
+    }
+    
+    .submit-btn {
+        background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+        color: white;
+        border: none;
+        padding: 14px 25px;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+        transition: all 0.3s;
+    }
+    
+    .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(255, 126, 95, 0.4);
+    }
+    
+    .address-hint {
+        font-size: 12px;
+        color: #666;
+        margin-top: 5px;
+    }
+    
+    /* Mobile-specific styles */
+    @media (max-width: 768px) {
+        .property-search-component {
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999;
+        }
+        
+        .fullscreen-toggle {
+            display: block;
+        }
+        
+        .contact-floating-btn {
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            font-size: 1rem;
+        }
+        
+        .contact-modal {
+            width: 95%;
+            padding: 20px;
+        }
+    }
+    
+    /* Mobile Portrait specific adjustments */
+    @media (max-width: 768px) and (orientation: portrait) {
+        .contact-floating-btn {
+            bottom: 80px; /* Moved up to avoid overlapping with search buttons */
+            right: 20px;
+            padding: 14px 18px;
+            font-size: 0.95rem;
+        }
+        
+        /* Ensure iframe has enough bottom padding for search interface */
+        .iframe-container {
+            padding-bottom: 60px;
+        }
+        
+        .property-search-component iframe {
+            height: calc(100% - 60px);
+        }
+    }
+    
+    /* Small mobile devices in portrait */
+    @media (max-width: 480px) and (orientation: portrait) {
+        .contact-floating-btn {
+            bottom: 100px; /* Even higher for very small screens */
+            right: 15px;
+            padding: 12px 16px;
+            font-size: 0.9rem;
+        }
+        
+        .iframe-container {
+            padding-bottom: 80px;
+        }
+        
+        .property-search-component iframe {
+            height: calc(100% - 80px);
+        }
+        
+        /* Adjust button text for very small screens */
+        .contact-floating-btn span:not(.contact-icon) {
+            display: none; /* Hide text, show only icon on very small screens */
+        }
+        
+        .contact-floating-btn .contact-icon {
+            margin-right: 0;
+            font-size: 1.2rem;
+        }
+    }
+    
+    /* Mobile Landscape adjustments */
+    @media (max-width: 768px) and (orientation: landscape) {
+        .contact-floating-btn {
+            bottom: 15px;
+            right: 15px;
+            padding: 12px 16px;
+            font-size: 0.9rem;
+        }
+        
+        .iframe-container {
+            padding-bottom: 40px;
+        }
+        
+        .property-search-component iframe {
+            height: calc(100% - 40px);
+        }
+    }
+    
+    /* Fullscreen mode */
+    .fullscreen-mode .property-search-component {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10000;
+        background: white;
+    }
+    
+    .fullscreen-mode .fullscreen-toggle {
+        display: block;
+    }
+    
+    /* Fullscreen mobile adjustments */
+    @media (max-width: 768px) {
+        .fullscreen-mode .contact-floating-btn {
+            bottom: 80px;
+        }
+        
+        .fullscreen-mode .iframe-container {
+            padding-bottom: 60px;
+        }
+        
+        .fullscreen-mode .property-search-component iframe {
+            height: calc(100% - 60px);
+        }
+    }
+    
+    @media (max-width: 480px) and (orientation: portrait) {
+        .fullscreen-mode .contact-floating-btn {
+            bottom: 100px;
+        }
+        
+        .fullscreen-mode .iframe-container {
+            padding-bottom: 80px;
+        }
+        
+        .fullscreen-mode .property-search-component iframe {
+            height: calc(100% - 80px);
+        }
+    }
+</style>
+
+<div class="property-search-component">
+    <button class="fullscreen-toggle" id="fullscreenToggle">⛶ Fullscreen</button>
+    
+    <div class="iframe-container">
+        <iframe src="https://my.flexmls.com/louisvillemls/search/idx_links/20140124135219185882000000/listings" id="propertySearchFrame" title="Property Search Results"></iframe>
+    </div>
+    
+    <button class="contact-floating-btn" onclick="openContactForm()">
+        <span class="contact-icon">📧</span>
+        Contact About Properties
+    </button>
+    
+    <div class="contact-overlay" id="overlay" onclick="closeContactForm()"></div>
+    
+    <div class="contact-modal" id="contactModal">
+        <div class="modal-header">
+            <h3>Contact Us About Properties</h3>
+            <button class="modal-close-btn" onclick="closeContactForm()">×</button>
+        </div>
+        
+        <div class="form-note">
+            <p>Please provide your contact information and let us know which properties you're interested in. We'll get back to you within 24 hours to schedule viewings or answer any questions.</p>
+        </div>
+        
+        <div class="form-container">
+            <form id="propertyContactForm">
+                <div class="form-group">
+                    <label for="propertyAddress" class="form-label">Property Address</label>
+                    <input type="text" id="propertyAddress" name="propertyAddress" class="form-input" placeholder="Address will auto-populate if available">
+                    <div class="address-hint" id="addressHint">We'll try to automatically detect the property address</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="fullName" class="form-label">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" name="email" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone" class="form-label">Phone</label>
+                    <input type="tel" id="phone" name="phone" class="form-input">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea id="message" name="message" class="form-textarea" placeholder="Tell us more about the property you're interested in..."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Send Inquiry</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Enhanced View Results button handler with sorting integration
+    class ViewResultsHandler {
+        constructor() {
+            this.isViewSelected = false;
+            this.viewResultsButton = null;
+            this.observer = null;
+            this.maxAttempts = 15;
+            this.attemptCount = 0;
+        }
+
+        start() {
+            console.log('Starting View Results button monitoring...');
+            
+            // Multiple initialization strategies
+            this.initializeImmediate();
+            this.initializeOnDOMReady();
+            this.initializeOnWindowLoad();
+            this.initializeOnIframeLoad();
+            this.setupMutationObserver();
+            this.startPeriodicMonitoring();
+        }
+
+        initializeImmediate() {
+            this.findAndSetupViewResultsButton();
+        }
+
+        initializeOnDOMReady() {
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', () => {
+                    setTimeout(() => this.findAndSetupViewResultsButton(), 300);
+                });
+            }
+        }
+
+        initializeOnWindowLoad() {
+            window.addEventListener('load', () => {
+                setTimeout(() => this.findAndSetupViewResultsButton(), 500);
+            });
+        }
+
+        initializeOnIframeLoad() {
+            const iframe = document.getElementById('propertySearchFrame');
+            if (iframe) {
+                iframe.addEventListener('load', () => {
+                    setTimeout(() => {
+                        this.findAndSetupViewResultsButton();
+                        // Also try to find button inside iframe
+                        this.findButtonInIframe();
+                    }, 1000);
+                });
+            }
+        }
+
+        findAndSetupViewResultsButton() {
+            if (this.viewResultsButton) return;
+
+            const buttonSelectors = [
+                '#bbb_view_results',
+                '.btn.btn-sm.btn-primary',
+                '[onclick*="showResults"]',
+                '[id*="view"]',
+                '[class*="view"]',
+                'button:contains("View Results")',
+                'div:contains("View Results")'
+            ];
+
+            for (let selector of buttonSelectors) {
+                const button = document.querySelector(selector);
+                if (button && this.isViewResultsButton(button)) {
+                    this.setupButtonHandler(button);
+                    return;
+                }
+            }
+
+            // Also search in iframe
+            this.findButtonInIframe();
+        }
+
+        findButtonInIframe() {
+            try {
+                const iframe = document.getElementById('propertySearchFrame');
+                if (!iframe) return;
+
+                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                const buttonSelectors = [
+                    '#bbb_view_results',
+                    '.btn.btn-sm.btn-primary',
+                    '[onclick*="showResults"]'
+                ];
+
+                for (let selector of buttonSelectors) {
+                    const button = iframeDoc.querySelector(selector);
+                    if (button && this.isViewResultsButton(button)) {
+                        this.setupButtonHandler(button);
+                        return;
+                    }
+                }
+            } catch (e) {
+                // Cross-origin restriction
+                console.log('Cannot access iframe content due to cross-origin restrictions');
+            }
+        }
+
+        isViewResultsButton(element) {
+            const text = element.textContent || '';
+            const onclick = element.getAttribute('onclick') || '';
+            const id = element.id || '';
+            const className = element.className || '';
+
+            return (
+                text.includes('View Results') ||
+                onclick.includes('showResults') ||
+                id === 'bbb_view_results' ||
+                (className.includes('btn') && className.includes('btn-primary') && text.includes('View'))
+            );
+        }
+
+        setupButtonHandler(button) {
+            if (this.viewResultsButton) return;
+
+            this.viewResultsButton = button;
+            console.log('Found View Results button:', button);
+
+            // Store original onclick handler
+            const originalOnClick = button.onclick;
+
+            // Override click handler
+            button.onclick = (event) => {
+                console.log('View Results button clicked - triggering sorting...');
+                
+                // Call original handler first
+                if (originalOnClick) {
+                    originalOnClick.call(button, event);
+                }
+
+                // Trigger sorting after a delay to allow results to load
+                setTimeout(() => {
+                    this.triggerSorting();
+                }, 1500);
+
+                // Prevent default if needed
+                if (event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+
+                return false;
+            };
+
+            // Also add event listener for other click events
+            button.addEventListener('click', (event) => {
+                console.log('View Results button clicked via event listener');
+                setTimeout(() => {
+                    this.triggerSorting();
+                }, 1500);
+            }, true);
+
+            this.isViewSelected = true;
+            console.log('View Results button handler setup complete');
+        }
+
+        triggerSorting() {
+            console.log('Triggering sorting functionality...');
+            
+            // Try multiple sorting trigger methods
+            this.triggerSortBySelect();
+            this.triggerSortByFunction();
+            this.triggerSortByEvent();
+        }
+
+        triggerSortBySelect() {
+            // Look for sort select element and trigger change
+            const sortSelectors = [
+                'select[name="new_sd_tech_id"]',
+                '#new_sd_tech_id',
+                '[id*="sort"]',
+                '[name*="sort"]'
+            ];
+
+            for (let selector of sortSelectors) {
+                const select = document.querySelector(selector);
+                if (select) {
+                    console.log('Found sort select, triggering change:', selector);
+                    const event = new Event('change', { bubbles: true });
+                    select.dispatchEvent(event);
+                    
+                    // Also try to call any existing onchange
+                    if (select.onchange) {
+                        select.onchange(event);
+                    }
+                }
+            }
+
+            // Also try in iframe
+            try {
+                const iframe = document.getElementById('propertySearchFrame');
+                if (iframe) {
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                    for (let selector of sortSelectors) {
+                        const select = iframeDoc.querySelector(selector);
+                        if (select) {
+                            const event = new Event('change', { bubbles: true });
+                            select.dispatchEvent(event);
+                        }
+                    }
+                }
+            } catch (e) {
+                // Cross-origin restriction
+            }
+        }
+
+        triggerSortByFunction() {
+            // Try to call sorting functions directly
+            const sortFunctions = [
+                'showResults',
+                'columnSort',
+                'applySorting',
+                'refreshResults',
+                'updateGrid'
+            ];
+
+            for (let funcName of sortFunctions) {
+                try {
+                    if (typeof window[funcName] === 'function') {
+                        console.log('Calling sort function:', funcName);
+                        window[funcName]();
+                    }
+                } catch (e) {
+                    // Function doesn't exist or error
+                }
+            }
+
+            // Also try in iframe context
+            try {
+                const iframe = document.getElementById('propertySearchFrame');
+                if (iframe) {
+                    const iframeWindow = iframe.contentWindow;
+                    for (let funcName of sortFunctions) {
+                        if (typeof iframeWindow[funcName] === 'function') {
+                            console.log('Calling sort function in iframe:', funcName);
+                            iframeWindow[funcName]();
+                        }
+                    }
+                }
+            } catch (e) {
+                // Cross-origin restriction
+            }
+        }
+
+        triggerSortByEvent() {
+            // Trigger custom event that might be listened to
+            const events = [
+                new Event('resultsLoaded', { bubbles: true }),
+                new Event('sortRequired', { bubbles: true }),
+                new Event('refreshView', { bubbles: true })
+            ];
+
+            events.forEach(event => {
+                document.dispatchEvent(event);
+                
+                // Also dispatch in iframe
+                try {
+                    const iframe = document.getElementById('propertySearchFrame');
+                    if (iframe && iframe.contentDocument) {
+                        iframe.contentDocument.dispatchEvent(event);
+                    }
+                } catch (e) {
+                    // Cross-origin restriction
+                }
+            });
+        }
+
+        setupMutationObserver() {
+            this.observer = new MutationObserver((mutations) => {
+                if (this.viewResultsButton) {
+                    this.observer.disconnect();
+                    return;
+                }
+
+                for (let mutation of mutations) {
+                    if (mutation.type === 'childList') {
+                        const hasNewButtons = Array.from(mutation.addedNodes).some(node => {
+                            if (node.nodeType !== 1) return false;
+                            
+                            return this.isViewResultsButton(node) || 
+                                   (node.querySelector && 
+                                    node.querySelector('#bbb_view_results, .btn.btn-sm.btn-primary, [onclick*="showResults"]'));
+                        });
+
+                        if (hasNewButtons) {
+                            setTimeout(() => this.findAndSetupViewResultsButton(), 100);
+                        }
+                    }
+                }
+            });
+
+            this.observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        }
+
+        startPeriodicMonitoring() {
+            const interval = setInterval(() => {
+                if (this.viewResultsButton || this.attemptCount >= this.maxAttempts) {
+                    clearInterval(interval);
+                    if (!this.viewResultsButton) {
+                        console.log('View Results button not found after maximum attempts');
+                    }
+                    return;
+                }
+
+                this.attemptCount++;
+                this.findAndSetupViewResultsButton();
+            }, 2000);
+
+            // Stop after 30 seconds
+            setTimeout(() => {
+                clearInterval(interval);
+            }, 30000);
+        }
+
+        cleanup() {
+            if (this.observer) {
+                this.observer.disconnect();
+            }
+        }
+    }
+
+    // Initialize View Results handler
+    const viewResultsHandler = new ViewResultsHandler();
+
+    // Fullscreen functionality
+    const fullscreenToggle = document.getElementById('fullscreenToggle');
+    const propertySearchComponent = document.querySelector('.property-search-component');
+    
+    fullscreenToggle.addEventListener('click', function() {
+        if (!document.fullscreenElement) {
+            if (propertySearchComponent.requestFullscreen) {
+                propertySearchComponent.requestFullscreen();
+            } else if (propertySearchComponent.webkitRequestFullscreen) {
+                propertySearchComponent.webkitRequestFullscreen();
+            } else if (propertySearchComponent.msRequestFullscreen) {
+                propertySearchComponent.msRequestFullscreen();
+            }
+            propertySearchComponent.classList.add('fullscreen-mode');
+            fullscreenToggle.textContent = '⛶ Exit Fullscreen';
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+            propertySearchComponent.classList.remove('fullscreen-mode');
+            fullscreenToggle.textContent = '⛶ Fullscreen';
+        }
+    });
+    
+    // Detect when fullscreen changes
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+    document.addEventListener('msfullscreenchange', handleFullscreenChange);
+    
+    function handleFullscreenChange() {
+        if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+            propertySearchComponent.classList.remove('fullscreen-mode');
+            fullscreenToggle.textContent = '⛶ Fullscreen';
+        }
+    }
+    
+    // Contact form functionality
+    function openContactForm() {
+        document.getElementById('contactModal').style.display = 'block';
+        document.getElementById('overlay').style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        capturePropertyAddress();
+    }
+    
+    function closeContactForm() {
+        document.getElementById('contactModal').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+    
+    // Address capture function
+    function capturePropertyAddress() {
+        const iframe = document.getElementById('propertySearchFrame');
+        const addressField = document.getElementById('propertyAddress');
+        const addressHint = document.getElementById('addressHint');
+        
+        addressField.value = '';
+        addressHint.textContent = 'Attempting to detect property address...';
+        addressHint.style.color = '#666';
+        
+        setTimeout(() => {
+            try {
+                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                const addressLabelSpans = iframeDoc.querySelectorAll('span');
+                let addressFound = false;
+                
+                for (let span of addressLabelSpans) {
+                    if (span.textContent.trim() === 'Address:' && 
+                        span.style.fontWeight === 'bold') {
+                        
+                        const parent = span.parentElement;
+                        if (parent) {
+                            const parentText = parent.textContent || '';
+                            const addressMatch = parentText.match(/Address:\s*(.+)/i);
+                            
+                            if (addressMatch && addressMatch[1]) {
+                                const address = addressMatch[1].trim();
+                                addressField.value = address;
+                                addressHint.textContent = '✓ Address automatically detected';
+                                addressHint.style.color = '#28a745';
+                                addressFound = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+                
+                if (!addressFound) {
+                    addressHint.textContent = '⚠ Could not automatically detect address. Please enter it manually.';
+                    addressHint.style.color = '#dc3545';
+                }
+                
+            } catch (e) {
+                addressHint.textContent = '⚠ Cross-origin restrictions prevent automatic address detection. Please enter the address manually.';
+                addressHint.style.color = '#dc3545';
+            }
+        }, 1000);
+    }
+    
+    // Form submission
+    document.getElementById('propertyContactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(this);
+        const data = Object.fromEntries(formData);
+        
+        if (!data.fullName || !data.email) {
+            alert('Please fill in all required fields');
+            return;
+        }
+        
+        console.log('Form submitted with data:', data);
+        alert('Thank you for your inquiry! We will contact you shortly.');
+        closeContactForm();
+        this.reset();
+    });
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeContactForm();
+        }
+    });
+    
+    // Auto-show fullscreen button on mobile
+    if (window.innerWidth <= 768) {
+        fullscreenToggle.style.display = 'block';
+    }
+    
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth <= 768) {
+            fullscreenToggle.style.display = 'block';
+        } else {
+            fullscreenToggle.style.display = 'none';
+            if (document.fullscreenElement) {
+                document.exitFullscreen();
+                propertySearchComponent.classList.remove('fullscreen-mode');
+                fullscreenToggle.textContent = '⛶ Fullscreen';
+            }
+        }
+    });
+    
+    // Start View Results handler when component loads
+    document.addEventListener('DOMContentLoaded', function() {
+        viewResultsHandler.start();
+    });
+    
+    // Additional start attempt
+    window.addEventListener('load', function() {
+        viewResultsHandler.start();
+    });
+</script>
+
+<script type="text/javascript">
+    // Updated address capture function using .listing-detail-street-address
+function capturePropertyAddress() {
+    const iframe = document.getElementById('propertySearchFrame');
+    const addressField = document.getElementById('propertyAddress');
+    const addressHint = document.getElementById('addressHint');
+    
+    // Reset the field and hint
+    addressField.value = '';
+    addressHint.textContent = 'Attempting to detect property address...';
+    addressHint.style.color = '#666';
+    
+    setTimeout(() => {
+        try {
+            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+            
+            // Method 1: Direct selector for .listing-detail-street-address
+            const addressElement = iframeDoc.querySelector('.listing-detail-street-address');
+            
+            if (addressElement && addressElement.textContent.trim()) {
+                const address = addressElement.textContent.trim();
+                addressField.value = address;
+                addressHint.textContent = '✓ Address automatically detected';
+                addressHint.style.color = '#28a745';
+                console.log('Address found via .listing-detail-street-address:', address);
+                return;
+            }
+            
+            // Method 2: Fallback - look for elements with similar class patterns
+            const similarAddressElements = iframeDoc.querySelectorAll('[class*="address"], [class*="street"]');
+            
+            for (let element of similarAddressElements) {
+                if (element.textContent && element.textContent.trim()) {
+                    const possibleAddress = element.textContent.trim();
+                    // Basic validation - check if it looks like an address
+                    if (possibleAddress.match(/\d+.*\w+/) && possibleAddress.length > 5) {
+                        addressField.value = possibleAddress;
+                        addressHint.textContent = '✓ Address detected from similar element';
+                        addressHint.style.color = '#28a745';
+                        console.log('Address found via fallback selector:', possibleAddress);
+                        return;
+                    }
+                }
+            }
+            
+            // Method 3: Text content search as last resort
+            const allText = iframeDoc.body.textContent || '';
+            const addressRegex = /(\d+\s+[\w\s]+,?\s*[A-Za-z\s]+(?:\s+\d{5})?)/;
+            const addressMatch = allText.match(addressRegex);
+            
+            if (addressMatch && addressMatch[1]) {
+                const address = addressMatch[1].trim();
+                addressField.value = address;
+                addressHint.textContent = '✓ Address detected from page text';
+                addressHint.style.color = '#28a745';
+                console.log('Address found via text regex:', address);
+                return;
+            }
+            
+            // If no address found
+            addressHint.textContent = '⚠ Could not automatically detect address. Please enter it manually.';
+            addressHint.style.color = '#dc3545';
+            
+        } catch (e) {
+            // Cross-origin restrictions
+            console.log("Cross-origin restriction:", e.message);
+            addressHint.textContent = '⚠ Cross-origin restrictions prevent automatic address detection. Please enter the address manually.';
+            addressHint.style.color = '#dc3545';
+        }
+    }, 1000);
+}
+
+// Updated monitoring function for address changes
+let lastDetectedAddress = '';
+
+function monitorAddressChanges() {
+    try {
+        const iframe = document.getElementById('propertySearchFrame');
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+        
+        // Look for the specific address element
+        const addressElement = iframeDoc.querySelector('.listing-detail-street-address');
+        let currentAddress = '';
+        
+        if (addressElement && addressElement.textContent.trim()) {
+            currentAddress = addressElement.textContent.trim();
+        }
+        
+        if (currentAddress && currentAddress !== lastDetectedAddress) {
+            lastDetectedAddress = currentAddress;
+            console.log('Address changed to:', lastDetectedAddress);
+            
+            // Update the form if it's open
+            const addressField = document.getElementById('propertyAddress');
+            if (addressField && document.getElementById('contactModal').style.display === 'block') {
+                addressField.value = lastDetectedAddress;
+                document.getElementById('addressHint').textContent = '✓ Address updated automatically';
+                document.getElementById('addressHint').style.color = '#28a745';
+            }
+        }
+    } catch (e) {
+        // Cross-origin restrictions
+    }
+}
+
+// Start monitoring for address changes every 3 seconds
+setInterval(monitorAddressChanges, 3000);
+</script>
+
+<!-- End Cut/Copy Here -->
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <!--img src="./images/logo/logo01.svg" alt="LPT Logo" class="footer-logo"-->
+            <img src="./images/logo/logo02.svg" alt="LPT Logo" class="footer-logo">
+            <div class="brokerage-info">
+              <p><strong>LPT Realty</strong></p>
+              <p>1400 S International Parkway Suite 1020</p>
+              <p>Lake Mary, FL 32746</p>
+            </div>
+            <img src="https://cms.nar.realtor//sites/default/files/images/logos/NAR/web_R_blue.jpg" alt="Realtor Logo" class="realtor-logo">
+            <img src="https://www.nar.realtor/sites/default/files/downloadable/equal-housing-opportunity-logo-1200w.jpg" alt="Fair Housing Logo" class="realtor-logo">
+        </div>
+    </footer>
+
+    <!-- Interactive Glowing Menu -->
+    <div class="glow-menu">
+        <div class="menu-icon" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="menu-overlay">
+            <div class="menu-content">
+                <a href="index.html">Home</a>
+                <a href="property-search.html">Property Search</a>
+                <a href="./mortgage-calculator.html">Mortgage Calculator</a>
+                <a href="./guest-book.html">Guest Book</a>
+                <a href="https://scrollcity.zerric.com">Scroll City - Beta</a>
+                <!--a href="./open-houses.html" disable>Open Houses</a>
+                <a href="./guest-book.html" disable>Guest Book</a>
+                <a href="#" target=_blank disable>Contact</a -->
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/script.js"></script>
+    <!-- Start of HubSpot Embed Code -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js-na2.hs-scripts.com/243835533.js"></script>
+    <!-- End of HubSpot Embed Code -->
+
+</body>
+</html>
