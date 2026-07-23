@@ -8,21 +8,21 @@
     <link rel="stylesheet" href="../css/styles.css" />
     <style>
         /* ---- Page-specific styles ---- */
-        .hot-sheet-header {
+        .page-header {
             text-align: center;
             padding: 3rem 2rem 1.5rem;
         }
-        .hot-sheet-header h1 {
+        .page-header h1 {
             font-size: 2.8rem;
             margin-bottom: 0.5rem;
         }
-        .hot-sheet-header .subtitle {
+        .page-header .subtitle {
             font-size: 1.2rem;
             color: #666;
             max-width: 600px;
             margin: 0 auto 1.5rem;
         }
-        .hot-sheet-badge {
+        .page-badge {
             display: inline-block;
             background: var(--gold);
             color: var(--charcoal);
@@ -85,7 +85,7 @@
         }
 
         @media (max-width: 600px) {
-            .hot-sheet-header h1 { font-size: 2rem; }
+            .page-header h1 { font-size: 2rem; }
             .widget-wrapper { padding: 0.8rem; }
         }
     </style>
@@ -103,9 +103,9 @@
 
     <!-- Main Content -->
     <div class="container">
-        <!-- Hot Sheet Header -->
-        <div class="hot-sheet-header">
-            <div class="hot-sheet-badge">🔥 Hot Sheet</div>
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="page-badge">🔥 Hot Sheet</div>
             <h1>Today's New Listings</h1>
             <p class="subtitle">
                 Fresh properties hitting the market in Louisville and surrounding areas.
@@ -119,17 +119,15 @@
             Updated: <span id="updateTime">Loading...</span>
         </div>
 
-        <!-- Property Search Widget -->
+        <!-- Chime Widget -->
         <div class="widget-wrapper" id="widgetWrapper">
-            <!-- Loading State -->
             <div class="widget-loading" id="widgetLoading">
                 <i class="fas fa-spinner fa-spin"></i>
                 <p>Loading today's hottest new listings...</p>
             </div>
 
-            <!-- Chime Widget -->
             <iframe
-                src="https://zerric.lpthomesearch.com/api-site/widget/88519"
+                src="https://zerric.lpthomesearch.com/api-site/widget/88522"
                 id="chimeWidget"
                 frameborder="0"
                 style="width:100%; height:800px; border-radius: var(--border-radius);"
@@ -169,6 +167,10 @@
                 <a href="../index.html">Home</a>
                 <a href="../property-search.html">Property Search</a>
                 <a href="../listings/index.html">Hot Sheet</a>
+                <a href="../listings/price-reduced.html">Price Reduced</a>
+                <a href="../listings/open-houses.html">Open Houses</a>
+                <a href="../listings/multifamily.html">Multifamily</a>
+                <a href="../listings/under-100k.html">Under $100K</a>
                 <a href="../mortgage-calculator.html">Mortgage Calculator</a>
                 <a href="../blog/index.html">Blog</a>
                 <a href="../contact.html">Contact</a>
@@ -209,7 +211,7 @@
             }
         });
 
-        // ---- Menu toggle (self-contained) ----
+        // ---- Menu toggle ----
         function toggleMenu() {
             const overlay = document.querySelector('.menu-overlay');
             if (overlay) overlay.classList.toggle('active');
