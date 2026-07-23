@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hot Sheet – Today's New Listings | Zerric Dotcom</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+        /* ---- Page-specific styles ---- */
+        .hot-sheet-header {
+            text-align: center;
+            padding: 3rem 2rem 1.5rem;
+        }
+        .hot-sheet-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .hot-sheet-header .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+        }
+        .hot-sheet-badge {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--charcoal);
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 0.3rem 1.2rem;
+            border-radius: 30px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+        .last-updated {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 1.5rem;
+        }
+        .last-updated i {
+            margin-right: 0.4rem;
+        }
+
+        /* Widget container */
+        .widget-wrapper {
+            background: var(--light);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-light);
+            min-height: 600px;
+            position: relative;
+        }
+        .widget-wrapper iframe {
+            width: 100%;
+            height: 800px;
+            border-radius: var(--border-radius);
+            border: none;
+        }
+
+        /* Loading state */
+        .widget-loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            color: #888;
+            text-align: center;
+        }
+        .widget-loading i {
+            font-size: 2.5rem;
+            color: var(--gold-dark);
+            margin-bottom: 1rem;
+        }
+        .widget-loading p {
+            font-size: 1rem;
+        }
+
+        .widget-loaded .widget-loading {
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            .hot-sheet-header h1 { font-size: 2rem; }
+            .widget-wrapper { padding: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Banner -->
+    <header class="header-banner">
+        <div class="social-links">
+            <img src="../images/logo/logo02.svg" alt="LPT Logo" class="footer-logo" />
+            <a href="tel:5022995252"><i class="fas fa-phone"></i> Call Me</a>
+            <a href="mailto:zerricdotcom@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Hot Sheet Header -->
+        <div class="hot-sheet-header">
+            <div class="hot-sheet-badge">🔥 Hot Sheet</div>
+            <h1>Today's New Listings</h1>
+            <p class="subtitle">
+                Fresh properties hitting the market in Louisville and surrounding areas.
+                Check back daily for the newest homes, condos, and commercial spaces.
+            </p>
+        </div>
+
+        <!-- Last Updated -->
+        <div class="last-updated">
+            <i class="fas fa-sync-alt"></i>
+            Updated: <span id="updateTime">Loading...</span>
+        </div>
+
+        <!-- Property Search Widget -->
+        <div class="widget-wrapper" id="widgetWrapper">
+            <!-- Loading State -->
+            <div class="widget-loading" id="widgetLoading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading today's hottest new listings...</p>
+            </div>
+
+            <!-- Chime Widget -->
+            <iframe
+                src="https://zerric.lpthomesearch.com/api-site/widget/88519"
+                id="chimeWidget"
+                frameborder="0"
+                style="width:100%; height:800px; border-radius: var(--border-radius);"
+                onload="hideLoading()"
+            ></iframe>
+        </div>
+
+        <!-- Back to Home -->
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="../index.html" class="cta" style="text-decoration: none;">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <img src="../images/logo/logo02.svg" alt="LPT Logo" class="footer-logo" />
+            <div class="brokerage-info">
+                <p><strong>LPT Realty</strong></p>
+                <p>1400 S International Parkway Suite 1020</p>
+                <p>Lake Mary, FL 32746</p>
+            </div>
+            <img src="https://cms.nar.realtor//sites/default/files/images/logos/NAR/web_R_blue.jpg" alt="Realtor Logo" class="realtor-logo" />
+            <img src="https://www.nar.realtor/sites/default/files/downloadable/equal-housing-opportunity-logo-1200w.jpg" alt="Fair Housing Logo" class="realtor-logo" />
+        </div>
+    </footer>
+
+    <!-- Interactive Glowing Menu -->
+    <div class="glow-menu">
+        <div class="menu-icon" onclick="toggleMenu()" tabindex="0" role="button" aria-label="Toggle menu">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="menu-overlay">
+            <div class="menu-content">
+                <a href="../index.html">Home</a>
+                <a href="../property-search.html">Property Search</a>
+                <a href="../listings/index.html">Hot Sheet</a>
+                <a href="../mortgage-calculator.html">Mortgage Calculator</a>
+                <a href="../blog/index.html">Blog</a>
+                <a href="../contact.html">Contact</a>
+                <a href="../guest-book.html">Guest Book</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/script.js"></script>
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js-na2.hs-scripts.com/243835533.js"></script>
+
+    <script>
+        // ---- Set last updated time ----
+        document.getElementById('updateTime').textContent = new Date().toLocaleString();
+
+        // ---- Hide loading state when iframe loads ----
+        function hideLoading() {
+            const loading = document.getElementById('widgetLoading');
+            const wrapper = document.getElementById('widgetWrapper');
+            if (loading) {
+                loading.style.display = 'none';
+                wrapper.classList.add('widget-loaded');
+            }
+        }
+
+        // ---- Dynamic height adjustment (Chime widget) ----
+        const chimeWidget = document.getElementById('chimeWidget');
+        window.addEventListener('message', function (e) {
+            try {
+                let data = JSON.parse(e.data);
+                if (data.from === 'chimeSite' && data.event === 'updateBodyRect') {
+                    if (chimeWidget) {
+                        chimeWidget.style.height = data.data.height + 'px';
+                    }
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        });
+
+        // ---- Menu toggle (self-contained) ----
+        function toggleMenu() {
+            const overlay = document.querySelector('.menu-overlay');
+            if (overlay) overlay.classList.toggle('active');
+        }
+
+        document.addEventListener('click', (event) => {
+            const overlay = document.querySelector('.menu-overlay');
+            const content = document.querySelector('.menu-content');
+            const icon = document.querySelector('.menu-icon');
+            if (overlay && overlay.classList.contains('active') && content && icon &&
+                !content.contains(event.target) && !icon.contains(event.target)) {
+                overlay.classList.remove('active');
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                const overlay = document.querySelector('.menu-overlay');
+                if (overlay && overlay.classList.contains('active')) {
+                    overlay.classList.remove('active');
+                }
+            }
+        });
+
+        window.toggleMenu = toggleMenu;
+    </script>
+</body>
+</html>

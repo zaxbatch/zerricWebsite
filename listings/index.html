@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Property Search | Zerric Dotcom</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+
+    <style>
+        .search-notice {
+            background: var(--gold-subtle);
+            border-left: 4px solid var(--gold);
+            padding: 0.8rem 1.5rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            color: #444;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+        .search-notice i {
+            color: var(--gold-dark);
+            font-size: 1.3rem;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .search-notice i:hover {
+            color: var(--gold);
+            transform: scale(1.1);
+        }
+        .search-notice strong {
+            color: var(--charcoal);
+        }
+        .search-notice .badge {
+            background: var(--gold);
+            color: var(--charcoal);
+            font-weight: 700;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            margin-left: auto;
+            white-space: nowrap;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .search-notice .badge:hover {
+            background: var(--gold-dark);
+            color: var(--light);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-gold);
+        }
+        .search-notice .badge .fa-external-link-alt {
+            font-size: 0.6rem;
+        }
+        @media (max-width: 600px) {
+            .search-notice {
+                flex-direction: column;
+                text-align: center;
+            }
+            .search-notice .badge {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Banner -->
+    <header class="header-banner">
+        <div class="social-links">
+            <img src="./images/logo/logo02.svg" alt="LPT Logo" class="footer-logo" />
+            <a href="tel:5022995252"><i class="fas fa-phone"></i> Call Me</a>
+            <a href="mailto:zerricdotcom@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="header" style="margin-bottom: 2rem;">
+            <h1>🔍 Property Search</h1>
+            <p style="font-size: 1.2rem; color: #555; max-width: 600px; margin: 0.5rem auto 0;">
+                Search homes, condos, and commercial properties across Louisville
+            </p>
+        </div>
+
+        <!-- ===== NOTICE with clickable icon ===== -->
+        <div class="search-notice">
+            <a href="https://zerric.lpthomesearch.com/listing" target="_blank" title="View all listings on my LPT Realty (opens in new tab)">
+                <i class="fas fa-external-link-alt"></i>
+            </a>
+            <span>
+                <strong>You're searching the MLS via LPT Realty's IDX platform.</strong>
+                Clicking a property will open it on my LPT Realty site for full details.
+            </span>
+            <a href="https://zerric.lpthomesearch.com/listing" target="_blank" class="badge" title="Opens in a new tab">
+                <i class="fas fa-external-link-alt"></i> External
+                <i class="fas fa-arrow-up-right-from-square" style="font-size: 0.5rem; opacity: 0.7;"></i>
+            </a>
+        </div>
+
+        <!-- Property Search Widget -->
+        <div class="content" style="padding: 1.5rem; min-height: 600px;">
+            <iframe
+                src="https://zerric.lpthomesearch.com/api-site/widget/75664"
+                id="chimeWidget"
+                frameborder="0"
+                style="width:100%; height:800px; border-radius: var(--border-radius);"
+            ></iframe>
+            <script>
+                const chimeWidget = document.getElementById('chimeWidget');
+                window.addEventListener('message', function(e) {
+                    try {
+                        let data = JSON.parse(e.data);
+                        if (data.from === 'chimeSite' && data.event === 'updateBodyRect') {
+                            chimeWidget.style.height = data.data.height + 'px';
+                        }
+                    } catch (error) {
+                        console.log(error);
+                    }
+                });
+            </script>
+        </div>
+
+        <!-- Back to Home -->
+        <div style="text-align: center; margin-top: 1.5rem;">
+            <a href="index.html" class="cta" style="text-decoration: none;">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <img src="./images/logo/logo02.svg" alt="LPT Logo" class="footer-logo" />
+            <div class="brokerage-info">
+                <p><strong>LPT Realty</strong></p>
+                <p>1400 S International Parkway Suite 1020</p>
+                <p>Lake Mary, FL 32746</p>
+            </div>
+            <img src="https://cms.nar.realtor//sites/default/files/images/logos/NAR/web_R_blue.jpg" alt="Realtor Logo" class="realtor-logo" />
+            <img src="https://www.nar.realtor/sites/default/files/downloadable/equal-housing-opportunity-logo-1200w.jpg" alt="Fair Housing Logo" class="realtor-logo" />
+        </div>
+    </footer>
+
+    <!-- Interactive Glowing Menu -->
+    <div class="glow-menu">
+        <div class="menu-icon" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="menu-overlay">
+            <div class="menu-content">
+                <a href="index.html">Home</a>
+                <a href="property-search.html">Property Search</a>
+                <a href="mortgage-calculator.html">Mortgage Calculator</a>
+                <a href="guest-book.html">Guest Book</a>
+                <a href="https://scrollcity.zerric.com">Scroll City - Beta</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/script.js"></script>
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js-na2.hs-scripts.com/243835533.js"></script>
+    
+    <script>
+        function toggleMenu() {
+            const overlay = document.querySelector('.menu-overlay');
+            overlay.classList.toggle('active');
+        }.
+        document.addEventListener('click', (event) => {
+            const overlay = document.querySelector('.menu-overlay');
+            const content = document.querySelector('.menu-content');
+            const icon = document.querySelector('.menu-icon');
+            if (overlay.classList.contains('active') && !content.contains(event.target) && !icon.contains(event.target)) {
+                overlay.classList.remove('active');
+            }
+        });
+        window.toggleMenu = toggleMenu;
+    </script>
+</body>
+</html>
