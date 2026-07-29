@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Zerric Dotcom · CC · Resume</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <!-- main theme CSS: relative path for subfolder -> ../css/styles.css -->
+  <link rel="stylesheet" href="../css/styles.css" />
+  <!-- Override styles to fix clickability issues -->
+  <style>
+    /* ----- OVERRIDES TO FIX CLICKABILITY ----- */
+    
+    /* Fix for header banner social links */
+    .header-banner .social-links a {
+      pointer-events: auto !important;
+      cursor: pointer !important;
+      position: relative !important;
+      z-index: 60 !important;
+    }
+    
+    /* Fix for download button */
+    .download-btn {
+      pointer-events: auto !important;
+      cursor: pointer !important;
+      position: relative !important;
+      z-index: 10 !important;
+    }
+    
+    .download-btn * {
+      pointer-events: none !important;
+    }
+    
+    /* Fix for menu - ensure it's clickable */
+    .glow-menu,
+    .menu-icon {
+      pointer-events: auto !important;
+      cursor: pointer !important;
+      z-index: 1002 !important;
+    }
+    
+    .menu-icon * {
+      pointer-events: none !important;
+    }
+    
+    /* Ensure all links are clickable */
+    a {
+      pointer-events: auto !important;
+      cursor: pointer !important;
+    }
+    
+    /* Fix any overlay issues */
+    .menu-overlay {
+      pointer-events: none !important;
+    }
+    
+    .menu-overlay.active {
+      pointer-events: auto !important;
+    }
+    
+    .menu-content {
+      pointer-events: auto !important;
+    }
+    
+    .menu-content a {
+      pointer-events: auto !important;
+      cursor: pointer !important;
+    }
+    
+    /* Resume card - ensure content is clickable */
+    .resume-card {
+      pointer-events: auto !important;
+    }
+    
+    .resume-card * {
+      pointer-events: auto !important;
+    }
+    
+    /* Fix for any hidden overlays */
+    .header-banner {
+      pointer-events: auto !important;
+      z-index: 50 !important;
+    }
+    
+    /* Ensure body doesn't block clicks */
+    body {
+      pointer-events: auto !important;
+    }
+    
+    /* Fix for any pseudo-elements that might block clicks */
+    .menu-icon::before,
+    .menu-icon::after {
+      pointer-events: none !important;
+    }
+    
+    /* Resume specific styles that were missing */
+    .resume-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.2rem 1rem 2rem;
+    }
+
+    .resume-card {
+      background: var(--light);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(250, 204, 15, 0.15);
+      padding: 1.8rem 1.2rem;
+      margin-top: 1.5rem;
+      transition: var(--transition);
+    }
+
+    .resume-card:hover {
+      border-color: var(--gold);
+      box-shadow: var(--shadow-gold);
+    }
+
+    .resume-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--gold);
+      padding-bottom: 0.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .resume-head h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .resume-head .badge {
+      background: var(--gold);
+      color: var(--charcoal);
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+      margin-top: 0.3rem;
+    }
+
+    .subhead {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.5rem;
+      font-size: 0.95rem;
+      color: #444;
+      margin-bottom: 1.5rem;
+      padding: 0.2rem 0;
+    }
+
+    .subhead i {
+      color: var(--gold-dark);
+      width: 1.2rem;
+      text-align: center;
+    }
+
+    .subhead a {
+      color: var(--charcoal);
+      text-decoration: none;
+      transition: var(--transition);
+      border-bottom: 1px dotted transparent;
+    }
+
+    .subhead a:hover {
+      color: var(--gold-dark);
+      border-bottom-color: var(--gold);
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      border-left: 6px solid var(--gold);
+      padding-left: 0.8rem;
+      margin: 1.8rem 0 1rem 0;
+    }
+
+    .section-title i {
+      color: var(--gold-dark);
+      margin-right: 0.4rem;
+    }
+
+    .summary-text {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #333;
+      background: var(--cream);
+      padding: 1rem 1.2rem;
+      border-radius: var(--border-radius);
+      border-left: 4px solid var(--gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .exp-item {
+      margin-bottom: 1.8rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid var(--gray-light);
+    }
+
+    .exp-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    .exp-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.3rem 0.8rem;
+    }
+
+    .exp-header h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin: 0;
+    }
+
+    .exp-header .company {
+      font-weight: 600;
+      color: var(--gold-dark);
+    }
+
+    .exp-header .date {
+      font-size: 0.85rem;
+      color: #777;
+      background: var(--gray-light);
+      padding: 0.15rem 0.8rem;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .exp-desc {
+      margin-top: 0.5rem;
+      padding-left: 0.5rem;
+      list-style: none;
+    }
+
+    .exp-desc li {
+      position: relative;
+      padding-left: 1.6rem;
+      margin-bottom: 0.4rem;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #444;
+    }
+
+    .exp-desc li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: var(--gold-dark);
+      font-weight: 700;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem 1.2rem;
+      background: var(--cream);
+      padding: 1rem 1.2rem;
+      border-radius: var(--border-radius);
+      margin: 0.5rem 0 1.2rem 0;
+    }
+
+    .skills-grid span {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.92rem;
+      color: #333;
+    }
+
+    .skills-grid i {
+      color: var(--gold-dark);
+      width: 1.2rem;
+      text-align: center;
+    }
+
+    .cert-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 1.5rem;
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0 1rem 0;
+    }
+
+    .cert-list li {
+      background: var(--cream);
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      border: 1px solid var(--gray-medium);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .cert-list li i {
+      color: var(--gold-dark);
+    }
+
+    .edu-item {
+      background: var(--cream);
+      padding: 0.8rem 1.2rem;
+      border-radius: var(--border-radius);
+      margin: 0.5rem 0 1rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.3rem 1rem;
+    }
+
+    .edu-item strong {
+      color: var(--charcoal);
+    }
+
+    .edu-item .meta {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .download-area {
+      text-align: center;
+      margin: 2rem 0 0.5rem;
+    }
+
+    .download-btn {
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: var(--charcoal);
+      padding: 0.9rem 2.8rem;
+      border: none;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      box-shadow: var(--shadow-gold);
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      text-decoration: none;
+      font-family: inherit;
+      border: 2px solid transparent;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      pointer-events: auto !important;
+    }
+
+    .download-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 35px rgba(250, 204, 15, 0.4);
+      background: var(--gold);
+      border-color: var(--gold-dark);
+    }
+
+    .download-btn:active {
+      transform: scale(0.97);
+    }
+
+    .download-btn i {
+      font-size: 1.2rem;
+      pointer-events: none;
+    }
+
+    @media (max-width: 550px) {
+      .resume-head h1 { font-size: 1.6rem; }
+      .resume-head .badge { font-size: 0.65rem; padding: 0.2rem 0.7rem; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .exp-header { flex-direction: column; align-items: flex-start; }
+      .exp-header .date { white-space: normal; }
+      .subhead { font-size: 0.85rem; gap: 0.4rem 1rem; }
+      .section-title { font-size: 1.2rem; }
+      .download-btn { 
+        padding: 0.7rem 1.8rem; 
+        font-size: 1rem; 
+        width: 100%; 
+        justify-content: center; 
+      }
+    }
+
+    @media (min-width: 700px) {
+      .resume-card { padding: 2.5rem 2.8rem; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Banner -->
+  <header class="header-banner">
+    <div class="social-links">
+      <img src="../images/logo/logo02.svg" alt="LPT" class="header-logo" onerror="this.style.display='none'" />
+      <a href="tel:5022995252"><i class="fas fa-phone"></i> Call</a>
+      <a href="mailto:zerricdotcom@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+    </div>
+  </header>
+
+  <!-- Main Resume Container -->
+  <div class="resume-container">
+
+    <div class="resume-card">
+
+      <!-- HEADER: name + badge (CC included) -->
+      <div class="resume-head">
+        <h1>Zerric Dotcom <span style="font-size:1.2rem; font-weight:600; color:var(--gold-dark);">· CC</span></h1>
+        <span class="badge"><i class="fas fa-star"></i> Realtor®</span>
+      </div>
+
+      <!-- contact subhead -->
+      <div class="subhead">
+        <span><i class="fas fa-phone"></i> (502) 299-5252</span>
+        <span><i class="fas fa-envelope"></i> <a href="mailto:zerricdotcom@gmail.com">zerricdotcom@gmail.com</a></span>
+        <span><i class="fas fa-globe"></i> <a href="https://www.zerric.com" target="_blank">zerric.com</a></span>
+        <span><i class="fas fa-map-pin"></i> Louisville, KY</span>
+      </div>
+
+      <!-- SUMMARY -->
+      <div class="summary-text">
+        <strong><i class="fas fa-bullseye" style="color:var(--gold-dark);"></i> Professional Summary</strong><br />
+        Dynamic Property Management and Real Estate professional with a unique blend of hands‑on operational experience, cybersecurity expertise, and software development skills. Proven track record of managing multi‑unit properties, maximizing occupancy rates, and leveraging custom‑built technology to streamline operations. Certified in Cybersecurity (CC), with a focus on protecting tenant and landlord data, mitigating fraud, and securing properties. Dedicated to creating win‑win scenarios by filling vacancies with qualified tenants while providing owners with transparent, data‑driven management and maximum ROI.
+      </div>
+
+      <!-- EXPERIENCE -->
+      <h2 class="section-title"><i class="fas fa-briefcase"></i> Professional Experience</h2>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <h3>Managing Member</h3>
+          <span class="company">Z Dot LLC</span>
+          <span class="date">Louisville, KY</span>
+        </div>
+        <ul class="exp-desc">
+          <li>Direct property management operations for 3 apartment buildings, overseeing daily tenant concerns, maintenance scheduling, lease execution, and compliance with local regulations.</li>
+          <li>Developed and deployed a custom tenant portal enabling a client to collect rent directly, eliminating costly third‑party fees associated with platforms like Zillow and Avail.</li>
+          <li>Provide comprehensive business consultation, advising property owners on operational efficiency, long‑term growth, and leveraging technology to increase asset value.</li>
+          <li>Build and maintain robust networks, connecting tenants with lenders and credit experts to convert renters into future homeowners.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <h3>Realtor – Leasing &amp; Tenant Representation</h3>
+          <span class="company">LPT Realty</span>
+          <span class="date">Louisville, KY</span>
+        </div>
+        <ul class="exp-desc">
+          <li><strong>Leasing &amp; Tenant Placement:</strong> Specialize as a Leasing and Tenant Agent, priding myself on rapid vacancy fill rates. Deliver high‑quality tenants who provide reliable income for landlords while ensuring tenants gain security and pride in their new homes.</li>
+          <li><strong>Marketing Innovation:</strong> Market listings using a comprehensive suite of tools including professional photography, immersive 3D tours, targeted social media commercials, printed advertisements, and word‑of‑mouth campaigns to drive high visibility and engagement.</li>
+          <li><strong>Investor Services:</strong> Work directly with real estate investors to analyze cap rates and cash flow, identifying properties that meet specific financial targets and growth strategies.</li>
+          <li><strong>Technical Integration:</strong> Utilize advanced IT and software development skills to automate workflows, analyze market data, and create a seamless experience for property owners and tenants.</li>
+          <li><strong>Advisory Roles:</strong> Serve on the Fair Housing Committee at GLAR and contribute to the Tech Advisory Council at LPT Realty, shaping the future of real estate technology and ethical practices.</li>
+        </ul>
+      </div>
+
+      <!-- SKILLS -->
+      <h2 class="section-title"><i class="fas fa-tools"></i> Property Management &amp; Technology Skills</h2>
+      <div class="skills-grid">
+        <span><i class="fas fa-check-circle"></i> Avail, Turbo Tenant, Tenant Cloud</span>
+        <span><i class="fas fa-check-circle"></i> Custom direct‑payment tenant portal</span>
+        <span><i class="fas fa-check-circle"></i> Cybersecurity (ISC)² Certified</span>
+        <span><i class="fas fa-check-circle"></i> Scam prevention &amp; secure document handling</span>
+        <span><i class="fas fa-check-circle"></i> Smart‑home monitoring &amp; digital key management</span>
+        <span><i class="fas fa-check-circle"></i> DotLoop encrypted platforms</span>
+      </div>
+
+      <!-- EDUCATION & CERTIFICATIONS -->
+      <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Education &amp; Certifications</h2>
+
+      <div class="edu-item">
+        <span><strong>University of Louisville</strong> – B.S. Marketing</span>
+        <span class="meta">Mortar Board Honor Society · Chapter Advisor Award</span>
+      </div>
+
+      <div class="edu-item">
+        <span><strong>Broker's License Education (Completed)</strong> – Cooke Real Estate School</span>
+        <span class="meta">Brokerage Management &amp; Commercial Real Estate</span>
+      </div>
+
+      <ul class="cert-list">
+        <li><i class="fas fa-certificate"></i> (ISC)² Certified in Cybersecurity (CC)</li>
+        <li><i class="fas fa-certificate"></i> HubSpot Certified: Marketing, Reporting, CMS</li>
+        <li><i class="fas fa-certificate"></i> NAR Certification &amp; Requirements</li>
+        <li><i class="fas fa-certificate"></i> CRM Automation Boot Camp</li>
+        <li><i class="fas fa-certificate"></i> Zillow Premier Agent Training</li>
+      </ul>
+
+      <!-- KEY ACHIEVEMENTS -->
+      <h2 class="section-title"><i class="fas fa-trophy"></i> Key Achievements</h2>
+      <ul style="list-style:none; padding-left:0.5rem; margin-bottom:0.5rem;">
+        <li style="display:flex; gap:0.6rem; align-items:baseline; margin-bottom:0.4rem;"><span style="color:var(--gold-dark);">▹</span> Designed and implemented a custom‑built tenant portal for direct rent collection.</li>
+        <li style="display:flex; gap:0.6rem; align-items:baseline; margin-bottom:0.4rem;"><span style="color:var(--gold-dark);">▹</span> Reduced vacancy turnaround time through aggressive, multi‑channel marketing strategies (3D tours, commercials, print).</li>
+        <li style="display:flex; gap:0.6rem; align-items:baseline; margin-bottom:0.4rem;"><span style="color:var(--gold-dark);">▹</span> Actively contribute to industry ethics and technology through committee and council appointments (GLAR Fair Housing; LPT Tech Advisory).</li>
+        <li style="display:flex; gap:0.6rem; align-items:baseline;"><span style="color:var(--gold-dark);">▹</span> Leveraged cybersecurity certification to protect client assets and educate on scam prevention.</li>
+      </ul>
+
+      <!-- DOWNLOAD BUTTON (PDF) -->
+      <div class="download-area">
+        <a href="./pdf/Zerric%20-%20Property%20Management%20Resume.pdf" class="download-btn" download>
+          <i class="fas fa-file-pdf"></i> Download Resume (PDF)
+        </a>
+        <p style="font-size:0.8rem; color:#888; margin-top:0.6rem;">Zerric · CC · Property Management Resume</p>
+      </div>
+
+    </div><!-- end resume-card -->
+  </div><!-- end resume-container -->
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <img src="../images/logo/logo02.svg" alt="LPT Realty" class="footer-logo" onerror="this.style.display='none'" />
+      <div class="brokerage-info">
+        <p><strong>LPT Realty</strong></p>
+        <p>1400 S International Parkway Suite 1020</p>
+        <p>Lake Mary, FL 32746</p>
+      </div>
+      <div class="footer-logos">
+        <img src="https://cms.nar.realtor//sites/default/files/images/logos/NAR/web_R_blue.jpg" alt="NAR" class="realtor-logo" />
+        <img src="https://www.nar.realtor/sites/default/files/downloadable/equal-housing-opportunity-logo-1200w.jpg" alt="Fair Housing" class="realtor-logo" />
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== GLOWING MENU ===== -->
+  <div class="glow-menu">
+    <div class="menu-icon" id="menuIcon" aria-label="Menu" role="button" tabindex="0">
+      <i class="fas fa-bars"></i>
+    </div>
+    <div class="menu-overlay" id="menuOverlay">
+      <div class="menu-content">
+        <a href="../index.html">Home</a>
+        <a href="../property-search.html">Property Search</a>
+        <a href="../mortgage-calculator.html">Mortgage Calculator</a>
+        <a href="../guest-book.html">Guest Book</a>
+        <a href="https://botcity.zerric.com">Bot City – Beta</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIMPLIFIED JAVASCRIPT -->
+  <script>
+    (function() {
+      "use strict";
+
+      // Menu toggle - simplified
+      var menuIcon = document.getElementById('menuIcon');
+      var menuOverlay = document.getElementById('menuOverlay');
+      var isOpen = false;
+
+      menuIcon.onclick = function(e) {
+        e.stopPropagation();
+        if (isOpen) {
+          menuOverlay.classList.remove('active');
+          isOpen = false;
+        } else {
+          menuOverlay.classList.add('active');
+          isOpen = true;
+        }
+      };
+
+      // Close menu on overlay click (outside content)
+      menuOverlay.onclick = function(e) {
+        if (e.target === menuOverlay) {
+          menuOverlay.classList.remove('active');
+          isOpen = false;
+        }
+      };
+
+      // Close on Escape key
+      document.onkeydown = function(e) {
+        if (e.key === 'Escape' && isOpen) {
+          menuOverlay.classList.remove('active');
+          isOpen = false;
+        }
+      };
+
+    })();
+  </script>
+
+</body>
+</html>
