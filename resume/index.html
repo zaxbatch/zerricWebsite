@@ -1,248 +1,778 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Zerric Dotcom | Your Trusted Real Estate Professional</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-    <link rel="stylesheet" href="./css/styles.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-    <script src="https://js-na2.hsforms.net/forms/embed/243835533.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Resumes · Zerric Dotcom</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    /* ====================================================
+       THEME VARIABLES (extracted from styles.css)
+    ==================================================== */
+    :root {
+      --gold: #FACC0F;
+      --gold-dark: #d4a800;
+      --gold-light: #fde68a;
+      --gold-subtle: #fcf6e8;
+      --charcoal: #1e1e1e;
+      --charcoal-soft: #2c2c2c;
+      --accent: #7D6607;
+      --light: #ffffff;
+      --cream: #faf8f5;
+      --gray-light: #f0ede8;
+      --gray-medium: #e2ddd6;
+      --shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      --shadow-gold: 0 8px 30px rgba(250, 204, 15, 0.2);
+      --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --border-radius: 14px;
+    }
+
+    /* ====================================================
+       BASE STYLES
+    ==================================================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      color: var(--charcoal);
+      background: var(--cream);
+      min-height: 100vh;
+    }
+
+    /* ====================================================
+       HEADER BANNER
+    ==================================================== */
+    .header-banner {
+      background: linear-gradient(180deg, #f0ece6 0%, #ffffff 100%);
+      padding: 0.8rem 1rem;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
+      border-bottom: 2px solid var(--gold);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem 1.2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header-logo {
+      height: 32px;
+      width: auto;
+      margin-right: auto;
+    }
+
+    .social-links a {
+      color: var(--charcoal);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: 500;
+      font-size: 0.9rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 30px;
+      background: rgba(0, 0, 0, 0.02);
+      border: 1px solid transparent;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      background: rgba(250, 204, 15, 0.12);
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    /* ====================================================
+       RESUME INDEX
+    ==================================================== */
+    .resume-index-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.2rem 1rem 2rem;
+    }
+
+    .index-header {
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .index-header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 0.5rem;
+    }
+
+    .index-header h1 .cc-badge {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--gold-dark);
+    }
+
+    .index-header p {
+      font-size: 1.1rem;
+      color: #666;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .index-header .subtitle {
+      color: var(--gold-dark);
+      font-weight: 600;
+      margin-top: 0.5rem;
+    }
+
+    .resume-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .resume-card-index {
+      background: var(--light);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--gray-light);
+      padding: 1.8rem 1.5rem;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .resume-card-index:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold);
+      box-shadow: var(--shadow-gold);
+    }
+
+    .resume-card-index .card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .resume-card-index .card-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .resume-card-index .card-icon i {
+      color: var(--charcoal);
+      font-size: 1.4rem;
+    }
+
+    .resume-card-index .card-title {
+      flex: 1;
+    }
+
+    .resume-card-index .card-title h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin: 0 0 0.2rem 0;
+    }
+
+    .resume-card-index .card-title .badge {
+      background: var(--gold);
+      color: var(--charcoal);
+      padding: 0.15rem 0.7rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      display: inline-block;
+      letter-spacing: 0.3px;
+    }
+
+    .resume-card-index .card-title .file-size {
+      font-size: 0.75rem;
+      color: #999;
+      display: block;
+      margin-top: 0.2rem;
+    }
+
+    .resume-card-index .card-description {
+      font-size: 0.92rem;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 1.2rem;
+      flex: 1;
+    }
+
+    .resume-card-index .card-description ul {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0 0 0;
+    }
+
+    .resume-card-index .card-description ul li {
+      padding: 0.2rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+    }
+
+    .resume-card-index .card-description ul li i {
+      color: var(--gold-dark);
+      width: 1rem;
+      font-size: 0.7rem;
+    }
+
+    .resume-card-index .card-actions {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid var(--gray-light);
+      flex-wrap: wrap;
+    }
+
+    .resume-card-index .btn-download {
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: var(--charcoal);
+      padding: 0.6rem 1.5rem;
+      border: none;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      font-family: inherit;
+      border: 2px solid transparent;
+      flex: 1;
+      justify-content: center;
+      min-width: 120px;
+    }
+
+    .resume-card-index .btn-download:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-gold);
+      background: var(--gold);
+      border-color: var(--gold-dark);
+    }
+
+    .resume-card-index .btn-download:active {
+      transform: scale(0.97);
+    }
+
+    .resume-card-index .btn-download i {
+      font-size: 1rem;
+      pointer-events: none;
+    }
+
+    .resume-card-index .btn-view {
+      background: var(--light);
+      color: var(--charcoal);
+      padding: 0.6rem 1.2rem;
+      border: 2px solid var(--gray-medium);
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      font-family: inherit;
+      flex: 1;
+      justify-content: center;
+      min-width: 100px;
+    }
+
+    .resume-card-index .btn-view:hover {
+      border-color: var(--gold);
+      background: var(--gold-subtle);
+      transform: translateY(-2px);
+    }
+
+    .resume-card-index .btn-print {
+      background: var(--gray-light);
+      color: var(--charcoal);
+      padding: 0.6rem 1.2rem;
+      border: 2px solid var(--gray-medium);
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      font-family: inherit;
+      flex: 1;
+      justify-content: center;
+      min-width: 100px;
+    }
+
+    .resume-card-index .btn-print:hover {
+      border-color: var(--gold);
+      background: var(--gold-subtle);
+      transform: translateY(-2px);
+    }
+
+    .resume-card-index.coming-soon {
+      opacity: 0.7;
+      border-style: dashed;
+    }
+
+    .resume-card-index.coming-soon .btn-download,
+    .resume-card-index.coming-soon .btn-view,
+    .resume-card-index.coming-soon .btn-print {
+      opacity: 0.5;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .resume-card-index.coming-soon .coming-badge {
+      background: var(--gray-medium);
+      color: #888;
+      padding: 0.15rem 0.7rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      display: inline-block;
+    }
+
+    /* ====================================================
+       FOOTER
+    ==================================================== */
+    footer {
+      background: linear-gradient(180deg, #f0ece6 0%, #ffffff 100%);
+      color: var(--charcoal);
+      padding: 2rem 1rem;
+      text-align: center;
+      margin-top: 2.5rem;
+      border-top: 3px solid var(--gold);
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    .footer-logo,
+    .realtor-logo {
+      height: 40px;
+      width: auto;
+      display: inline-block;
+    }
+
+    .brokerage-info p {
+      margin-bottom: 0.2rem;
+      color: #555;
+      font-size: 0.9rem;
+    }
+
+    .brokerage-info strong {
+      color: var(--gold-dark);
+      font-weight: 700;
+    }
+
+    .footer-logos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    /* ====================================================
+       GLOWING MENU
+    ==================================================== */
+    .glow-menu {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+
+    .menu-icon {
+      width: 54px;
+      height: 54px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1002;
+      border: 2px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 4px 25px rgba(250, 204, 15, 0.4);
+      transition: transform 0.2s ease;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .menu-icon i {
+      color: var(--charcoal);
+      font-size: 1.3rem;
+      pointer-events: none;
+    }
+
+    .menu-icon:hover {
+      transform: scale(1.06);
+    }
+
+    .menu-icon:active {
+      transform: scale(0.94);
+    }
+
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(20, 20, 20, 0.97);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1001;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.35s ease, visibility 0.35s ease;
+    }
+
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .menu-content {
+      text-align: center;
+      transform: translateY(-10px) scale(0.96);
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .menu-overlay.active .menu-content {
+      transform: translateY(0) scale(1);
+    }
+
+    .menu-content a {
+      display: block;
+      color: #e0dcd5;
+      text-decoration: none;
+      font-size: 1.6rem;
+      margin: 1rem 0;
+      padding: 0.5rem 2rem;
+      transition: var(--transition);
+      border-radius: 50px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    .menu-content a:hover {
+      color: var(--gold);
+      transform: translateX(6px);
+      background: rgba(250, 204, 15, 0.06);
+    }
+
+    /* ====================================================
+       RESPONSIVE
+    ==================================================== */
+    @media (max-width: 550px) {
+      .index-header h1 {
+        font-size: 1.8rem;
+      }
+      .index-header h1 .cc-badge {
+        font-size: 1.2rem;
+      }
+      .resume-grid {
+        grid-template-columns: 1fr;
+      }
+      .resume-card-index .card-actions {
+        flex-direction: column;
+      }
+      .resume-card-index .btn-download,
+      .resume-card-index .btn-view,
+      .resume-card-index .btn-print {
+        width: 100%;
+        justify-content: center;
+        flex: none;
+      }
+      .social-links {
+        flex-direction: column;
+        gap: 0.3rem;
+      }
+      .header-logo {
+        margin-right: 0;
+      }
+    }
+
+    @media (min-width: 700px) {
+      .resume-index-container {
+        padding: 2rem 2rem;
+      }
+    }
+  </style>
 </head>
-<body ng-app="">
+<body>
 
-    <!-- Header Banner -->
-    <header class="header-banner">
-        <div class="social-links">
-            <img src="./images/logo/logo02.svg" alt="LPT Logo" class="footer-logo" />
-            <a href="tel:5022995252"><i class="fas fa-phone"></i> Call Me</a>
-            <a href="mailto:zerricdotcom@gmail.com"><i class="fas fa-envelope"></i> Email</a>
-        </div>
-    </header>
+  <!-- Header Banner -->
+  <header class="header-banner">
+    <div class="social-links">
+      <img src="../images/logo/logo02.svg" alt="LPT" class="header-logo" onerror="this.style.display='none'" />
+      <a href="tel:5022995252"><i class="fas fa-phone"></i> Call</a>
+      <a href="mailto:zerricdotcom@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+    </div>
+  </header>
 
-    <!-- Main Content -->
-    <div class="container">
-        <!-- ===== HOMEPAGE HEADER – clickable expandable ===== -->
-        <div class="header homepage-header" id="main-header">
-            <div class="header-inner">
-                <!-- Top section: name + tagline -->
-                <div class="top-section">
-                    <h1>Zerric Dotcom</h1>
-                    <p>Your Trusted Real Estate Professional</p>
-                </div>
+  <!-- Main Container -->
+  <div class="resume-index-container">
 
-                <!-- About section (hidden until expanded) -->
-                <div class="about-section">
-                    <img src="./images/zerric.webp" alt="Zerric Dotcom" />
-                    <div class="about-text">
-                        <h3>About Me</h3>
-                        <p>
-                            I'm passionate about helping people find their place in Louisville – whether it's a
-                            first home, a dream upgrade, or the perfect commercial space. This city has given me so
-                            much, and I love giving back by guiding clients through one of life's biggest decisions.
-                        </p>
-                        <p>
-                            When you work with me, you get a dedicated advocate who listens, communicates clearly,
-                            and fights for your best interests. I believe the best agent is part advisor, part
-                            negotiator, and part friend – always transparent, always honest.
-                        </p>
-                        <ul>
-                            <li><i class="fas fa-check-circle"></i> Deep knowledge of Louisville neighborhoods</li>
-                            <li><i class="fas fa-check-circle"></i> Personalized marketing &amp; negotiation strategies</li>
-                            <li><i class="fas fa-check-circle"></i> 24/7 availability and clear communication</li>
-                            <li><i class="fas fa-check-circle"></i> Genuine care for your goals and peace of mind</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- About trigger button -->
-                <div class="about-trigger-wrapper">
-                    <button class="about-trigger-btn" onclick="event.stopPropagation(); toggleHeader();">
-                        <i class="fas fa-user"></i>
-                        <span>About Me</span>
-                        <i class="fas fa-chevron-down" id="chevron-icon"></i>
-                    </button>
-                    <span class="about-shimmer-text" id="aboutToggleText">– Learn More</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Service Buttons -->
-        <div class="service-buttons">
-            <button id="buy-btn" class="active">Buy Property</button>
-            <button id="sell-btn">Sell Property</button>
-            <button id="lease-btn">Lease Property</button>
-            <button id="contact-btn">Contact Agent</button>
-        </div>
-
-        <!-- Content Sections -->
-        <div class="content">
-            <!-- Buy Section -->
-            <section id="buy-home" class="active">
-                <h2>Let Me Help You Find Your Next Property</h2>
-                <p>Discover exceptional properties across Louisville – whether you're searching for your dream home or the ideal commercial space. I provide expert guidance for buyers, sellers, and investors alike.</p>
-                <p>With exclusive access to MLS listings and off-market opportunities, I'll help you navigate the market with confidence. From residential neighborhoods to prime commercial locations, your perfect property is just a conversation away.</p>
-                <div class="buy-actions">
-                    <button class="cta" onclick="showForm('buy')">Contact Me Today</button>
-                    <button class="cta" onclick="window.location.href='property-search.html'" style="background: var(--secondary); color: var(--gold); box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
-                        <i class="fas fa-search"></i> Search Properties
-                    </button>
-                </div>
-            </section>
-
-            <!-- Sell Section -->
-            <section id="sell-home">
-                <h2>Let Zerric Sell Your Property</h2>
-                <p>Whether you're listing a residential home or a commercial asset, I bring tailored marketing strategies and sharp negotiation skills to maximize your return. From retail spaces to single-family homes, every property gets white-glove service.</p>
-                <p>My comprehensive approach includes professional photography, virtual tours, and data-driven digital campaigns designed to attract the right buyers, tenants, or investors—so your property moves quickly and at the best price.</p>
-                <button class="cta" onclick="showForm('sell')">Get a Free Valuation</button>
-            </section>
-
-            <!-- Lease Section -->
-            <section id="lease-home">
-                <h2>Lease Your Property with Confidence</h2>
-                <p>Whether you're a landlord looking for quality tenants or a business owner seeking the perfect commercial lease, I provide expert leasing services tailored to your needs. From residential rentals to retail and office spaces, I handle every detail.</p>
-                <p>My proven marketing strategies attract qualified tenants, and I negotiate lease terms that protect your interests. Let me help you maximize your property's rental potential with minimal hassle.</p>
-                <button class="cta" onclick="showForm('lease')">Request Leasing Info</button>
-            </section>
-
-            <!-- ===== CONTACT FORMS ===== -->
-            <!-- Generic Contact Form -->
-            <div id="contact-form-generic" style="display: none;">
-                <h2>Contact Zerric</h2>
-                <div class="hs-form-frame" data-region="na2" data-form-id="58e927bd-68b3-443e-af9e-44b25cef1e39" data-portal-id="243835533"></div>
-                <div class="form-nav-buttons">
-                    <button class="form-nav-btn" onclick="switchService('buy')">🏠 Buy</button>
-                    <button class="form-nav-btn" onclick="switchService('sell')">💰 Sell</button>
-                    <button class="form-nav-btn" onclick="switchService('lease')">📋 Lease</button>
-                </div>
-            </div>
-
-            <!-- Buying Contact Form -->
-            <div id="contact-form-buy" style="display: none;">
-                <h2>Contact Zerric - Buying Inquiry</h2>
-                <div class="hs-form-frame" data-region="na2" data-form-id="f8183c1e-75b6-4cde-af1a-8cf54116bd65" data-portal-id="243835533"></div>
-                <div class="form-nav-buttons">
-                    <button class="form-nav-btn" onclick="switchService('buy')">🏠 Buy</button>
-                    <button class="form-nav-btn" onclick="switchService('sell')">💰 Sell</button>
-                    <button class="form-nav-btn" onclick="switchService('lease')">📋 Lease</button>
-                </div>
-            </div>
-
-            <!-- Selling Contact Form -->
-            <div id="contact-form-sell" style="display: none;">
-                <h2>Contact Zerric - Selling Inquiry</h2>
-                <div class="hs-form-frame" data-region="na2" data-form-id="c08debf8-6bb0-4353-87a9-19b177f02236" data-portal-id="243835533"></div>
-                <div class="form-nav-buttons">
-                    <button class="form-nav-btn" onclick="switchService('buy')">🏠 Buy</button>
-                    <button class="form-nav-btn" onclick="switchService('sell')">💰 Sell</button>
-                    <button class="form-nav-btn" onclick="switchService('lease')">📋 Lease</button>
-                </div>
-            </div>
-
-            <!-- Leasing Contact Form -->
-            <div id="contact-form-lease" style="display: none;">
-                <h2>Contact Zerric - Leasing Inquiry</h2>
-                <div class="hs-form-frame" data-region="na2" data-form-id="7c7102cf-6596-4104-8769-aa36a7741aad" data-portal-id="243835533"></div>
-                <div class="form-nav-buttons">
-                    <button class="form-nav-btn" onclick="switchService('buy')">🏠 Buy</button>
-                    <button class="form-nav-btn" onclick="switchService('sell')">💰 Sell</button>
-                    <button class="form-nav-btn" onclick="switchService('lease')">📋 Lease</button>
-                </div>
-            </div>
-        </div>
+    <!-- Header -->
+    <div class="index-header">
+      <h1>
+        Zerric Dotcom <span class="cc-badge">· CC</span>
+      </h1>
+      <p>Professional Resumes &amp; CVs</p>
+      <div class="subtitle">
+        <i class="fas fa-file-pdf"></i> Download my professional resumes below
+      </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <img src="./images/logo/logo02.svg" alt="LPT Logo" class="footer-logo" />
-            <div class="brokerage-info">
-                <p><strong>LPT Realty</strong></p>
-                <p>1400 S International Parkway Suite 1020</p>
-                <p>Lake Mary, FL 32746</p>
-            </div>
-            <img src="https://cms.nar.realtor//sites/default/files/images/logos/NAR/web_R_blue.jpg" alt="Realtor Logo" class="realtor-logo" />
-            <img src="https://www.nar.realtor/sites/default/files/downloadable/equal-housing-opportunity-logo-1200w.jpg" alt="Fair Housing Logo" class="realtor-logo" />
-        </div>
-    </footer>
+    <!-- Resume Grid -->
+    <div class="resume-grid">
 
-    <!-- ===== Interactive Glowing Menu ===== -->
-    <div class="glow-menu">
-        <div class="menu-icon" onclick="toggleMenu()" tabindex="0" role="button" aria-label="Toggle menu">
-            <i class="fas fa-bars"></i>
+      <!-- Resume 1: Property Management -->
+      <div class="resume-card-index">
+        <div class="card-header">
+          <div class="card-icon">
+            <i class="fas fa-building"></i>
+          </div>
+          <div class="card-title">
+            <h3>Property Management Resume</h3>
+            <span class="badge"><i class="fas fa-star"></i> Current</span>
+            <span class="file-size"><i class="far fa-file-pdf"></i> PDF · 3 pages</span>
+          </div>
         </div>
-        <div class="menu-overlay">
-            <div class="menu-content">
-                <a href="index.html">Home</a>
-                <a href="property-search.html">Property Search</a>
-                <a href="mortgage-calculator.html">Mortgage Calculator</a>
-                <a href="guest-book.html">Guest Book</a>
-                <a href="https://botcity.zerric.com">Bot City - Beta</a>
-            </div>
+        <div class="card-description">
+          <p>Comprehensive resume highlighting property management operations, cybersecurity expertise, and tech-integrated real estate strategy.</p>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Multi-unit property management</li>
+            <li><i class="fas fa-check-circle"></i> Custom tenant portal development</li>
+            <li><i class="fas fa-check-circle"></i> (ISC)² Cybersecurity Certified</li>
+          </ul>
         </div>
+        <div class="card-actions">
+          <a href="./pdf/Zerric%20-%20Property%20Management%20Resume.pdf" class="btn-download" download>
+            <i class="fas fa-download"></i> Download PDF
+          </a>
+          <a href="./property-management.html" class="btn-view">
+            <i class="fas fa-eye"></i> View
+          </a>
+          <button class="btn-print" onclick="window.print()">
+            <i class="fas fa-print"></i> Print
+          </button>
+        </div>
+      </div>
+
+      <!-- Resume 2: Coming Soon - Cybersecurity -->
+      <div class="resume-card-index coming-soon">
+        <div class="card-header">
+          <div class="card-icon" style="background: var(--gray-light);">
+            <i class="fas fa-shield-alt" style="color: #888;"></i>
+          </div>
+          <div class="card-title">
+            <h3>Cybersecurity Resume</h3>
+            <span class="coming-badge"><i class="fas fa-clock"></i> Coming Soon</span>
+            <span class="file-size"><i class="far fa-file-pdf"></i> PDF · In Progress</span>
+          </div>
+        </div>
+        <div class="card-description">
+          <p>Specialized resume focusing on cybersecurity expertise, fraud prevention, and secure systems implementation.</p>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> (ISC)² CC Certification</li>
+            <li><i class="fas fa-check-circle"></i> Threat analysis &amp; mitigation</li>
+            <li><i class="fas fa-check-circle"></i> Secure system architecture</li>
+          </ul>
+        </div>
+        <div class="card-actions">
+          <button class="btn-download" disabled>
+            <i class="fas fa-clock"></i> Coming Soon
+          </button>
+          <button class="btn-view" disabled>
+            <i class="fas fa-eye"></i> Preview
+          </button>
+          <button class="btn-print" disabled>
+            <i class="fas fa-print"></i> Print
+          </button>
+        </div>
+      </div>
+
+      <!-- Resume 3: Coming Soon - Software Development -->
+      <div class="resume-card-index coming-soon">
+        <div class="card-header">
+          <div class="card-icon" style="background: var(--gray-light);">
+            <i class="fas fa-code" style="color: #888;"></i>
+          </div>
+          <div class="card-title">
+            <h3>Software Development Resume</h3>
+            <span class="coming-badge"><i class="fas fa-clock"></i> Coming Soon</span>
+            <span class="file-size"><i class="far fa-file-pdf"></i> PDF · In Progress</span>
+          </div>
+        </div>
+        <div class="card-description">
+          <p>Technical resume showcasing full-stack development, custom solutions, and automation expertise.</p>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Full-stack development</li>
+            <li><i class="fas fa-check-circle"></i> Custom portal &amp; API integration</li>
+            <li><i class="fas fa-check-circle"></i> Workflow automation</li>
+          </ul>
+        </div>
+        <div class="card-actions">
+          <button class="btn-download" disabled>
+            <i class="fas fa-clock"></i> Coming Soon
+          </button>
+          <button class="btn-view" disabled>
+            <i class="fas fa-eye"></i> Preview
+          </button>
+          <button class="btn-print" disabled>
+            <i class="fas fa-print"></i> Print
+          </button>
+        </div>
+      </div>
+
+      <!-- Resume 4: Coming Soon - Executive Summary -->
+      <div class="resume-card-index coming-soon">
+        <div class="card-header">
+          <div class="card-icon" style="background: var(--gray-light);">
+            <i class="fas fa-user-tie" style="color: #888;"></i>
+          </div>
+          <div class="card-title">
+            <h3>Executive Summary</h3>
+            <span class="coming-badge"><i class="fas fa-clock"></i> Coming Soon</span>
+            <span class="file-size"><i class="far fa-file-pdf"></i> PDF · In Progress</span>
+          </div>
+        </div>
+        <div class="card-description">
+          <p>High-level executive summary highlighting leadership, strategic vision, and cross-functional expertise.</p>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Leadership &amp; strategy</li>
+            <li><i class="fas fa-check-circle"></i> Business development</li>
+            <li><i class="fas fa-check-circle"></i> Tech integration</li>
+          </ul>
+        </div>
+        <div class="card-actions">
+          <button class="btn-download" disabled>
+            <i class="fas fa-clock"></i> Coming Soon
+          </button>
+          <button class="btn-view" disabled>
+            <i class="fas fa-eye"></i> Preview
+          </button>
+          <button class="btn-print" disabled>
+            <i class="fas fa-print"></i> Print
+          </button>
+        </div>
+      </div>
+
     </div>
+  </div>
 
-    <script src="./js/script.js"></script>
-    <!-- Start of HubSpot Embed Code -->
-    <script type="text/javascript" id="hs-script-loader" async defer src="//js-na2.hs-scripts.com/243835533.js"></script>
-    <!-- End of HubSpot Embed Code -->
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <img src="../images/logo/logo02.svg" alt="LPT Realty" class="footer-logo" onerror="this.style.display='none'" />
+      <div class="brokerage-info">
+        <p><strong>LPT Realty</strong></p>
+        <p>1400 S International Parkway Suite 1020</p>
+        <p>Lake Mary, FL 32746</p>
+      </div>
+      <div class="footer-logos">
+        <img src="https://cms.nar.realtor//sites/default/files/images/logos/NAR/web_R_blue.jpg" alt="NAR" class="realtor-logo" />
+        <img src="https://www.nar.realtor/sites/default/files/downloadable/equal-housing-opportunity-logo-1200w.jpg" alt="Fair Housing" class="realtor-logo" />
+      </div>
+    </div>
+  </footer>
 
-    <script>
-        // ---- Header Toggle ----
-        function toggleHeader() {
-            const header = document.getElementById('main-header');
-            header.classList.toggle('expanded');
+  <!-- ===== GLOWING MENU ===== -->
+  <div class="glow-menu">
+    <div class="menu-icon" id="menuIcon" aria-label="Menu" role="button" tabindex="0">
+      <i class="fas fa-bars"></i>
+    </div>
+    <div class="menu-overlay" id="menuOverlay">
+      <div class="menu-content">
+        <a href="../index.html">Home</a>
+        <a href="../property-search.html">Property Search</a>
+        <a href="../mortgage-calculator.html">Mortgage Calculator</a>
+        <a href="../guest-book.html">Guest Book</a>
+        <a href="https://botcity.zerric.com">Bot City – Beta</a>
+      </div>
+    </div>
+  </div>
 
-            const chevron = document.getElementById('chevron-icon');
-            const toggleText = document.getElementById('aboutToggleText');
+  <!-- JavaScript -->
+  <script>
+    (function() {
+      "use strict";
 
-            if (header.classList.contains('expanded')) {
-                chevron.classList.remove('fa-chevron-down');
-                chevron.classList.add('fa-chevron-up');
-                toggleText.innerHTML = '– Collapse';
-            } else {
-                chevron.classList.remove('fa-chevron-up');
-                chevron.classList.add('fa-chevron-down');
-                toggleText.innerHTML = '– Learn More';
-            }
+      // Menu toggle
+      var menuIcon = document.getElementById('menuIcon');
+      var menuOverlay = document.getElementById('menuOverlay');
+      var isOpen = false;
 
-            if (header.classList.contains('expanded')) {
-                setTimeout(() => {
-                    header.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 300);
-            }
+      menuIcon.onclick = function(e) {
+        e.stopPropagation();
+        if (isOpen) {
+          menuOverlay.classList.remove('active');
+          isOpen = false;
+        } else {
+          menuOverlay.classList.add('active');
+          isOpen = true;
         }
+      };
 
-        // ---- Menu Toggle ----
-        function toggleMenu() {
-            const overlay = document.querySelector('.menu-overlay');
-            overlay.classList.toggle('active');
+      // Close menu on overlay click (outside content)
+      menuOverlay.onclick = function(e) {
+        if (e.target === menuOverlay) {
+          menuOverlay.classList.remove('active');
+          isOpen = false;
         }
+      };
 
-        // ---- Close menu on background click ----
-        document.addEventListener('click', (event) => {
-            const overlay = document.querySelector('.menu-overlay');
-            const content = document.querySelector('.menu-content');
-            const icon = document.querySelector('.menu-icon');
-            if (overlay.classList.contains('active') && !content.contains(event.target) && !icon.contains(event.target)) {
-                overlay.classList.remove('active');
-            }
-        });
+      // Close on Escape key
+      document.onkeydown = function(e) {
+        if (e.key === 'Escape' && isOpen) {
+          menuOverlay.classList.remove('active');
+          isOpen = false;
+        }
+      };
 
-        // ---- Close menu on Escape key ----
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape') {
-                const overlay = document.querySelector('.menu-overlay');
-                if (overlay.classList.contains('active')) {
-                    overlay.classList.remove('active');
-                }
-            }
-        });
+    })();
+  </script>
 
-        // Expose functions globally
-        window.toggleMenu = toggleMenu;
-        window.toggleHeader = toggleHeader;
-    </script>
 </body>
 </html>
