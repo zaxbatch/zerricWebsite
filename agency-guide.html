@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agency Guide | Zerric Dotcom</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <style>
+        /* ---- Page-specific styles ---- */
+        .guide-header {
+            text-align: center;
+            padding: 2rem 0 1.5rem;
+        }
+        .guide-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .guide-header .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .guide-content {
+            background: var(--light);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-light);
+            margin-bottom: 2rem;
+        }
+        .guide-content h2 {
+            color: var(--charcoal);
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.6rem;
+        }
+        .guide-content h2:first-of-type {
+            margin-top: 0;
+        }
+        .guide-content p {
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 1rem;
+        }
+        .guide-content ul {
+            list-style: disc;
+            padding-left: 2rem;
+            margin-bottom: 1rem;
+            color: #444;
+        }
+        .guide-content ul li {
+            margin-bottom: 0.4rem;
+        }
+
+        .download-section {
+            text-align: center;
+            margin: 2rem 0 1rem;
+            padding: 2rem;
+            background: var(--cream);
+            border-radius: var(--border-radius);
+            border: 2px dashed var(--gold);
+        }
+        .download-section p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: #555;
+        }
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 2.5rem;
+            background: var(--charcoal);
+            color: var(--light);
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            background: var(--gold-dark);
+            color: var(--light);
+        }
+        .download-btn i {
+            font-size: 1.4rem;
+        }
+
+        @media (max-width: 600px) {
+            .guide-header h1 { font-size: 2rem; }
+            .guide-content { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Banner -->
+    <header class="header-banner">
+        <div class="social-links">
+            <img src="./images/logo/logo02.svg" alt="LPT Logo" class="footer-logo" />
+            <a href="tel:5022995252"><i class="fas fa-phone"></i> Call Me</a>
+            <a href="mailto:zerricdotcom@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="guide-header">
+            <h1>📄 A Guide to Agency Relationships</h1>
+            <p class="subtitle">
+                Understanding agency relationships is a crucial part of any real estate transaction.
+                Kentucky law requires that we discuss this with you. This guide explains the different
+                types of agency and how they impact you.
+            </p>
+        </div>
+
+        <div class="guide-content">
+            <h2>What is an Agency Relationship?</h2>
+            <p>
+                In real estate, an agency relationship is created when a buyer or seller (the principal)
+                hires a real estate agent (the agent) to represent them in a transaction. The agent is
+                legally obligated to act in the best interest of their principal, providing loyalty,
+                confidentiality, and full disclosure.
+            </p>
+
+            <h2>Types of Agency in Kentucky</h2>
+            <p>
+                <strong>Seller's Agent (Listing Agent):</strong> Represents the seller. Their duties
+                include marketing the property, negotiating offers, and advising the seller throughout
+                the process. They owe fiduciary duties to the seller.
+            </p>
+            <p>
+                <strong>Buyer's Agent:</strong> Represents the buyer. They help buyers find properties,
+                negotiate purchase agreements, and guide them through inspections and closing. They owe
+                fiduciary duties to the buyer.
+            </p>
+            <p>
+                <strong>Dual Agent:</strong> Represents both the buyer and the seller in the same
+                transaction. This can only happen with the written consent of both parties. Dual agents
+                must remain neutral and cannot disclose confidential information from one party to the other.
+            </p>
+            <p>
+                <strong>Designated Agent:</strong> In a dual agency situation, the brokerage may assign
+                different agents within the same firm to represent the buyer and seller separately.
+                Each designated agent owes full fiduciary duties to their respective client.
+            </p>
+
+            <h2>Why This Matters to You</h2>
+            <p>
+                Knowing who is representing whom helps ensure that your rights are protected and that you
+                receive the guidance you need. Whether you are buying or selling, it's important to
+                understand the roles and responsibilities of everyone involved.
+            </p>
+            <p>
+                For a complete overview and formal explanation, please download the official Agency
+                Guide PDF below.
+            </p>
+        </div>
+
+        <!-- Download Section -->
+        <div class="download-section">
+            <p><i class="fas fa-file-pdf" style="color: var(--gold-dark); font-size: 2rem; display: block; margin-bottom: 0.5rem;"></i>
+            Download the full Agency Guide for your records.</p>
+            <a href="docs/agency-guide.pdf" class="download-btn" download>
+                <i class="fas fa-download"></i> Download PDF Guide
+            </a>
+        </div>
+
+        <!-- Back to Home -->
+        <div style="text-align: center; margin-top: 1.5rem;">
+            <a href="./index.html" class="cta" style="text-decoration: none;">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <img src="./images/logo/logo02.svg" alt="LPT Logo" class="footer-logo" />
+            <div class="brokerage-info">
+                <p><strong>LPT Realty</strong></p>
+                <p>1400 S International Parkway Suite 1020</p>
+                <p>Lake Mary, FL 32746</p>
+            </div>
+            <img src="https://cms.nar.realtor//sites/default/files/images/logos/NAR/web_R_blue.jpg" alt="Realtor Logo" class="realtor-logo" />
+            <img src="https://www.nar.realtor/sites/default/files/downloadable/equal-housing-opportunity-logo-1200w.jpg" alt="Fair Housing Logo" class="realtor-logo" />
+        </div>
+    </footer>
+
+    <!-- Interactive Glowing Menu -->
+    <div class="glow-menu">
+        <div class="menu-icon" onclick="toggleMenu()" tabindex="0" role="button" aria-label="Toggle menu">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="menu-overlay">
+            <div class="menu-content">
+                <a href="index.html">Home</a>
+                <a href="property-search.html">Property Search</a>
+                <a href="mortgage-calculator.html">Mortgage Calculator</a>
+                <a href="guest-book.html">Guest Book</a>
+                <a href="https://botcity.zerric.com">Bot City - Beta</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/script.js"></script>
+    <script>
+        // ---- Menu toggle (self-contained) ----
+        function toggleMenu() {
+            const overlay = document.querySelector('.menu-overlay');
+            if (overlay) overlay.classList.toggle('active');
+        }
+
+        document.addEventListener('click', (event) => {
+            const overlay = document.querySelector('.menu-overlay');
+            const content = document.querySelector('.menu-content');
+            const icon = document.querySelector('.menu-icon');
+            if (overlay && overlay.classList.contains('active') && content && icon &&
+                !content.contains(event.target) && !icon.contains(event.target)) {
+                overlay.classList.remove('active');
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                const overlay = document.querySelector('.menu-overlay');
+                if (overlay && overlay.classList.contains('active')) {
+                    overlay.classList.remove('active');
+                }
+            }
+        });
+
+        window.toggleMenu = toggleMenu;
+    </script>
+</body>
+</html>
