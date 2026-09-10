@@ -3,90 +3,399 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>226 W Burnett | Zerric Dotcom</title>
+    <title>2BR Apartment in Historic Old Louisville | Zerric Dotcom</title>
+    <meta name="description" content="Light-filled 3rd-floor 2BR apartment in historic Old Louisville. Minutes from UofL, Central Park, cafes, and the St. James Court Art Show. Private balcony, brand-new flooring." />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <link rel="stylesheet" href="../css/styles.css" />
     <style>
-        /* ---- Page-specific styles ---- */
-        .page-header {
-            text-align: center;
-            padding: 3rem 2rem 1.5rem;
+        /* ====================================================
+           PROMO PAGE STYLES
+        ==================================================== */
+
+        /* ---- Hero ---- */
+        .promo-hero {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            background: #000;
         }
-        .page-header h1 {
-            font-size: 2.8rem;
-            margin-bottom: 0.5rem;
+        .promo-hero img {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            display: block;
+            opacity: 0.85;
         }
-        .page-header .subtitle {
-            font-size: 1.2rem;
-            color: #666;
-            max-width: 600px;
-            margin: 0 auto 1.5rem;
+        .promo-hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 3rem 2.5rem 2rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 50%, transparent 100%);
+            color: #fff;
         }
-        .page-badge {
+        .promo-badge {
             display: inline-block;
             background: var(--gold);
             color: var(--charcoal);
             font-weight: 700;
-            font-size: 0.85rem;
-            padding: 0.3rem 1.2rem;
+            font-size: 0.8rem;
+            padding: 0.3rem 1rem;
             border-radius: 30px;
             letter-spacing: 1px;
             text-transform: uppercase;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
         }
-        .last-updated {
-            text-align: center;
-            font-size: 0.85rem;
-            color: #888;
-            margin-bottom: 1.5rem;
+        .promo-hero h1 {
+            font-size: 2.4rem;
+            color: #fff;
+            margin-bottom: 0.4rem;
+            line-height: 1.2;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
         }
-        .last-updated i {
-            margin-right: 0.4rem;
+        .promo-hero .hero-sub {
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.9);
+            max-width: 700px;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+            margin-bottom: 1.2rem;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+        .hero-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.8rem 1.8rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+        .hero-btn-primary {
+            background: var(--gold);
+            color: var(--charcoal);
+            box-shadow: var(--shadow-gold);
+        }
+        .hero-btn-primary:hover {
+            background: var(--gold-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(250, 204, 15, 0.4);
+        }
+        .hero-btn-outline {
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+            border: 2px solid rgba(255,255,255,0.5);
+            backdrop-filter: blur(4px);
+        }
+        .hero-btn-outline:hover {
+            background: #fff;
+            color: var(--charcoal);
+            border-color: #fff;
+            transform: translateY(-3px);
         }
 
-        /* Widget container */
-        .widget-wrapper {
+        /* ---- Quick Stats Bar ---- */
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .stat-card {
             background: var(--light);
             border-radius: var(--border-radius);
-            padding: 1.5rem;
+            padding: 1.2rem 1rem;
+            text-align: center;
             box-shadow: var(--shadow);
             border: 1px solid var(--gray-light);
-            min-height: 600px;
-            position: relative;
+            transition: var(--transition);
         }
-        .widget-wrapper iframe {
-            width: 100%;
-            height: 800px;
-            border-radius: var(--border-radius);
-            border: none;
+        .stat-card:hover {
+            border-color: var(--gold);
+            box-shadow: var(--shadow-gold);
+            transform: translateY(-3px);
+        }
+        .stat-card i {
+            font-size: 1.5rem;
+            color: var(--gold-dark);
+            margin-bottom: 0.4rem;
+            display: block;
+        }
+        .stat-card .stat-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #888;
+            font-weight: 600;
+        }
+        .stat-card .stat-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-top: 0.1rem;
         }
 
-        /* Loading state */
-        .widget-loading {
+        /* ---- Content Card ---- */
+        .promo-card {
+            background: var(--light);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-light);
+            margin-bottom: 2rem;
+        }
+        .promo-card h2 {
+            color: var(--charcoal);
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid var(--gold);
+            padding-bottom: 0.6rem;
+            display: inline-block;
+        }
+        .promo-card h3 {
+            color: var(--charcoal);
+            font-size: 1.15rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.6rem;
+        }
+        .promo-card p {
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        /* ---- Listing Link Banner ---- */
+        .listing-banner {
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            background: linear-gradient(135deg, var(--gold-subtle) 0%, #fff8e7 100%);
+            border: 2px solid var(--gold);
+            border-radius: var(--border-radius);
+            padding: 1.5rem 2rem;
+            margin-bottom: 2rem;
+            transition: var(--transition);
+        }
+        .listing-banner:hover {
+            box-shadow: var(--shadow-gold);
+        }
+        .listing-banner-text {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex: 1;
+            min-width: 240px;
+        }
+        .listing-banner-text i {
+            font-size: 2rem;
+            color: var(--gold-dark);
+            flex-shrink: 0;
+        }
+        .listing-banner-text strong {
+            display: block;
+            color: var(--charcoal);
+            font-size: 1.1rem;
+            margin-bottom: 0.15rem;
+        }
+        .listing-banner-text span {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .listing-banner .cta {
+            margin-top: 0;
+            white-space: nowrap;
+        }
+
+        /* ---- Highlight Features ---- */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            padding: 0.8rem 1rem;
+            background: var(--cream);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--gray-light);
+            transition: var(--transition);
+        }
+        .feature-item:hover {
+            border-color: var(--gold);
+            background: var(--gold-subtle);
+        }
+        .feature-item i {
+            color: var(--gold-dark);
+            font-size: 1.1rem;
+            margin-top: 0.2rem;
+            flex-shrink: 0;
+        }
+        .feature-item span {
+            font-size: 0.95rem;
+            color: #444;
+            line-height: 1.5;
+        }
+
+        /* ---- Gallery ---- */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .gallery-item {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-light);
+            cursor: pointer;
+            transition: var(--transition);
+            aspect-ratio: 4 / 3;
+        }
+        .gallery-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-gold);
+            border-color: var(--gold);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* ---- Lightbox ---- */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        .lightbox.active {
+            display: flex;
+        }
+        .lightbox img {
+            max-width: 95%;
+            max-height: 90vh;
+            border-radius: var(--border-radius);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 28px;
+            font-size: 2.5rem;
+            color: #fff;
+            cursor: pointer;
+            background: none;
+            border: none;
+            line-height: 1;
+            transition: var(--transition);
+        }
+        .lightbox-close:hover {
+            color: var(--gold);
+            transform: rotate(90deg);
+        }
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+            border: none;
+            font-size: 1.8rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
             align-items: center;
             justify-content: center;
-            padding: 4rem 2rem;
-            color: #888;
+        }
+        .lightbox-nav:hover {
+            background: var(--gold);
+            color: var(--charcoal);
+        }
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
+
+        /* ---- CTA Section ---- */
+        .promo-cta {
             text-align: center;
+            padding: 2.5rem 2rem;
+            background: linear-gradient(135deg, var(--charcoal) 0%, #2c2c2c 100%);
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            border: 2px solid var(--gold);
         }
-        .widget-loading i {
-            font-size: 2.5rem;
-            color: var(--gold-dark);
-            margin-bottom: 1rem;
+        .promo-cta h2 {
+            color: #fff;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            border: none;
+            padding: 0;
         }
-        .widget-loading p {
-            font-size: 1rem;
+        .promo-cta p {
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+        .promo-cta .cta {
+            margin: 0.3rem;
+        }
+        .cta-outline {
+            background: transparent;
+            color: var(--gold);
+            border: 2px solid var(--gold);
+            box-shadow: none;
+        }
+        .cta-outline:hover {
+            background: var(--gold);
+            color: var(--charcoal);
         }
 
-        .widget-loaded .widget-loading {
-            display: none;
+        /* ---- Responsive ---- */
+        @media (max-width: 768px) {
+            .promo-hero img { height: 320px; }
+            .promo-hero-overlay { padding: 2rem 1.5rem 1.5rem; }
+            .promo-hero h1 { font-size: 1.7rem; }
+            .promo-hero .hero-sub { font-size: 1rem; }
+            .promo-card { padding: 1.5rem; }
+            .promo-card h2 { font-size: 1.35rem; }
+            .promo-cta h2 { font-size: 1.4rem; }
+            .lightbox-nav { width: 40px; height: 40px; font-size: 1.3rem; }
+            .listing-banner { padding: 1.2rem 1.5rem; }
+            .listing-banner .cta { width: 100%; justify-content: center; }
         }
-
-        @media (max-width: 600px) {
-            .page-header h1 { font-size: 2rem; }
-            .widget-wrapper { padding: 0.8rem; }
+        @media (max-width: 480px) {
+            .promo-hero img { height: 260px; }
+            .promo-hero h1 { font-size: 1.4rem; }
+            .gallery { grid-template-columns: 1fr; }
+            .hero-btn { width: 100%; justify-content: center; }
         }
     </style>
 </head>
@@ -103,38 +412,219 @@
 
     <!-- Main Content -->
     <div class="container">
-        <!-- Page Header -->
-        <div class="page-header">
-            <div class="page-badge">226 W Burnett</div>
-            <h1>226 W Burnetts</h1>
-            <p class="subtitle">
-                Light-Filled 3rd-Floor 2BR in Historic Old Louisville - Now with brand-new flooring!  Just minutes from the UofL campus, this spacious 2-bedroom, 1-bath apartment offers generously sized rooms, abundant natural light, and classic historic charm. Large windows frame lovely views, while a beautiful private balcony provides the perfect spot to unwind.  Located in a quiet, walkable neighborhood, you're steps from Central Park, local cafes, restaurants, and annual favorites like the St. James Court Art Show. Ideal for those who want character, convenience, and comfort in one of Louisville's most beloved historic districts.
-            </p>
-        </div>
 
-        <!-- Last Updated -->
-        <div class="last-updated">
-            <i class="fas fa-sync-alt"></i>
-            Updated: <span id="updateTime">Loading...</span>
-        </div>
-
-        <!-- Chime Widget -->
-        <div class="widget-wrapper" id="widgetWrapper">
-            <div class="widget-loading" id="widgetLoading">
-                <i class="fas fa-spinner fa-spin"></i>
-                <p>Loading featuredlisting...</p>
+        <!-- ===== HERO ===== -->
+        <div class="promo-hero">
+            <img src="https://cdn.resize.sparkplatform.com/lou/1280x1024/true/20260907181942343923000000-o.jpg" alt="Light-filled 2BR apartment in Old Louisville" />
+            <div class="promo-hero-overlay">
+                <div class="promo-badge">🏛️ For Rent – Old Louisville</div>
+                <h1>Light-Filled 2BR in Historic Old Louisville</h1>
+                <p class="hero-sub">
+                    Spacious 3rd-floor apartment with brand-new flooring, a private balcony,
+                    and classic historic charm – just minutes from UofL and Central Park.
+                </p>
+                <div class="hero-actions">
+                    <a href="https://www.flexmls.com/share/Ea6Ej/226-W-Burnett-Ave-B-Louisville-KY-40208"
+                       target="_blank" rel="noopener" class="hero-btn hero-btn-primary">
+                        <i class="fas fa-external-link-alt"></i> View Full Listing
+                    </a>
+                    <a href="tel:5022995252" class="hero-btn hero-btn-outline">
+                        <i class="fas fa-phone"></i> Call to Schedule
+                    </a>
+                </div>
             </div>
+        </div>
 
-<iframe src="https://zerric.lpthomesearch.com/api-site/widget/91446" id="chimeWidget" frameborder="0" style="width:100%;height:100%"></iframe>
-                <script>const chimeWidget = document.getElementById('chimeWidget');window.addEventListener('message', function (e) {try {let data = JSON.parse(e.data);if(data.from === 'chimeSite' && data.event === 'updateBodyRect'){chimeWidget.style.height = data.data.height + 'px'}} catch (error) {console.log(error)}})</script>
+        <!-- ===== QUICK STATS ===== -->
+        <div class="quick-stats">
+            <div class="stat-card">
+                <i class="fas fa-bed"></i>
+                <div class="stat-label">Bedrooms</div>
+                <div class="stat-value">2</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-bath"></i>
+                <div class="stat-label">Bathrooms</div>
+                <div class="stat-value">1</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-building"></i>
+                <div class="stat-label">Floor</div>
+                <div class="stat-value">3rd</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-walking"></i>
+                <div class="stat-label">Neighborhood</div>
+                <div class="stat-value">Old Louisville</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-graduation-cap"></i>
+                <div class="stat-label">Near</div>
+                <div class="stat-value">UofL</div>
+            </div>
+        </div>
+
+        <!-- ===== LISTING LINK BANNER ===== -->
+        <div class="listing-banner">
+            <div class="listing-banner-text">
+                <i class="fas fa-home"></i>
+                <div>
+                    <strong>226 W Burnett Ave B, Louisville, KY 40208</strong>
+                    <span>See full details, photos, and availability on the MLS listing.</span>
+                </div>
+            </div>
+            <a href="https://www.flexmls.com/share/Ea6Ej/226-W-Burnett-Ave-B-Louisville-KY-40208"
+               target="_blank" rel="noopener" class="cta" style="text-decoration:none;">
+                <i class="fas fa-external-link-alt"></i> View Full Listing
+            </a>
+        </div>
+
+        <!-- ===== DESCRIPTION ===== -->
+        <div class="promo-card">
+            <h2>About This Apartment</h2>
+            <p>
+                Light-Filled 3rd-Floor 2BR in Historic Old Louisville – <strong>now with brand-new flooring!</strong>
+                Just minutes from the UofL campus, this spacious 2-bedroom, 1-bath apartment offers generously
+                sized rooms, abundant natural light, and classic historic charm.
+            </p>
+            <p>
+                Large windows frame lovely views, while a beautiful <strong>private balcony</strong> provides
+                the perfect spot to unwind. Located in a quiet, walkable neighborhood, you're steps from
+                Central Park, local cafes, restaurants, and annual favorites like the St. James Court Art Show.
+            </p>
+            <p>
+                Ideal for those who want character, convenience, and comfort in one of Louisville's most
+                beloved historic districts.
+            </p>
+
+            <!-- Feature Highlights -->
+            <h3>Highlights</h3>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <i class="fas fa-layer-group"></i>
+                    <span>Brand-new flooring</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-sun"></i>
+                    <span>Abundant natural light from large windows</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-door-open"></i>
+                    <span>Private balcony for relaxing</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-ruler-combined"></i>
+                    <span>Generously sized rooms</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-landmark"></i>
+                    <span>Classic historic charm</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-tree"></i>
+                    <span>Steps from Central Park</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-utensils"></i>
+                    <span>Walk to local cafes &amp; restaurants</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-palette"></i>
+                    <span>Near the St. James Court Art Show</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-university"></i>
+                    <span>Minutes from UofL campus</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-shoe-prints"></i>
+                    <span>Quiet, walkable neighborhood</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== NEIGHBORHOOD ===== -->
+        <div class="promo-card">
+            <h2>The Neighborhood</h2>
+            <p>
+                Old Louisville is one of the city's most beloved historic districts – known for its
+                tree-lined streets, Victorian architecture, and vibrant community. You'll be within
+                walking distance of:
+            </p>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <i class="fas fa-tree"></i>
+                    <span><strong>Central Park</strong> – concerts, walking paths, and green space</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-music"></i>
+                    <span><strong>St. James Court Art Show</strong> – one of the nation's largest outdoor art fairs</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span><strong>University of Louisville</strong> – just minutes away</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-coffee"></i>
+                    <span><strong>Local cafes &amp; restaurants</strong> – walkable options on every corner</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-theater-masks"></i>
+                    <span><strong>Arts &amp; culture</strong> – galleries, theaters, and historic mansions</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-bus"></i>
+                    <span><strong>Easy access</strong> – to downtown and major roadways</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== GALLERY ===== -->
+        <div class="promo-card">
+            <h2>Photo Gallery</h2>
+            <p style="color:#666; font-size:0.95rem;">Click any photo to view it larger.</p>
+            <div class="gallery" id="gallery">
+                <div class="gallery-item"><img src="https://cdn.resize.sparkplatform.com/lou/1280x1024/true/20260907181942343923000000-o.jpg" alt="Apartment photo 1" loading="lazy" /></div>
+                <div class="gallery-item"><img src="https://cdn.resize.sparkplatform.com/lou/1280x1024/true/20260907181332960637000000-o.jpg" alt="Apartment photo 2" loading="lazy" /></div>
+                <div class="gallery-item"><img src="https://cdn.resize.sparkplatform.com/lou/1280x1024/true/20260907181329525636000000-o.jpg" alt="Apartment photo 3" loading="lazy" /></div>
+                <div class="gallery-item"><img src="https://cdn.resize.sparkplatform.com/lou/1280x1024/true/20260907181350012912000000-o.jpg" alt="Apartment photo 4" loading="lazy" /></div>
+                <div class="gallery-item"><img src="https://cdn.resize.sparkplatform.com/lou/1280x1024/true/20260907181621756317000000-o.jpg" alt="Apartment photo 5" loading="lazy" /></div>
+                <div class="gallery-item"><img src="https://cdn.resize.sparkplatform.com/lou/1280x1024/true/20260907181336237599000000-o.jpg" alt="Apartment photo 6" loading="lazy" /></div>
+                <div class="gallery-item"><img src="https://cdn.resize.sparkplatform.com/lou/1280x1024/true/20260907181940381821000000-o.jpg" alt="Apartment photo 7" loading="lazy" /></div>
+                <div class="gallery-item"><img src="https://cdn.resize.sparkplatform.com/lou/1280x1024/true/20260907181941721652000000-o.jpg" alt="Apartment photo 8" loading="lazy" /></div>
+                <div class="gallery-item"><img src="https://cdn.resize.sparkplatform.com/lou/1280x1024/true/20260907181346580941000000-o.jpg" alt="Apartment photo 9" loading="lazy" /></div>
+                <div class="gallery-item"><img src="https://cdn.resize.sparkplatform.com/lou/1280x1024/true/20260907181941120983000000-o.jpg" alt="Apartment photo 10" loading="lazy" /></div>
+                <div class="gallery-item"><img src="https://cdn.resize.sparkplatform.com/lou/1280x1024/true/20260907181404563904000000-o.jpg" alt="Apartment photo 11" loading="lazy" /></div>
+            </div>
+        </div>
+
+        <!-- ===== CTA ===== -->
+        <div class="promo-cta">
+            <h2>Interested in This Apartment?</h2>
+            <p>View the full MLS listing, schedule a showing, or reach out with any questions – I'd love to help you call Old Louisville home.</p>
+            <a href="https://www.flexmls.com/share/Ea6Ej/226-W-Burnett-Ave-B-Louisville-KY-40208"
+               target="_blank" rel="noopener" class="cta" style="text-decoration:none;">
+                <i class="fas fa-external-link-alt"></i> View Full Listing
+            </a>
+            <a href="tel:5022995252" class="cta cta-outline" style="text-decoration:none;">
+                <i class="fas fa-phone"></i> Call (502) 299-5252
+            </a>
         </div>
 
         <!-- Back to Home -->
-        <div style="text-align: center; margin-top: 2rem;">
+        <div style="text-align: center; margin-top: 1.5rem;">
             <a href="../index.html" class="cta" style="text-decoration: none;">
                 <i class="fas fa-arrow-left"></i> Back to Home
             </a>
         </div>
+    </div>
+
+    <!-- ===== LIGHTBOX ===== -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+        <img src="" alt="Enlarged apartment photo" id="lightboxImg" />
+        <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
     </div>
 
     <!-- Footer -->
@@ -153,59 +643,78 @@
 
     <!-- Interactive Glowing Menu -->
     <div class="glow-menu">
-        <div class="menu-icon" onclick="toggleMenu()" tabindex="0" role="button" aria-label="Toggle menu">
+        <div class="menu-icon" onclick="toggleMenu()">
             <i class="fas fa-bars"></i>
         </div>
         <div class="menu-overlay">
             <div class="menu-content">
-                <a href="../index.html">Home</a>
-                <a href="../property-search.html">Property Search</a>
-                <a href="../listings/index.html">Hot Sheet</a>
-                <a href="../listings/price-reduced.html">Price Reduced</a>
-                <a href="../listings/open-houses.html">Open Houses</a>
-                <a href="../listings/multifamily.html">Multifamily</a>
-                <a href="../listings/under-100k.html">Under $100K</a>
-                <a href="../mortgage-calculator.html">Mortgage Calculator</a>
-                <a href="../blog/index.html">Blog</a>
-                <a href="../contact.html">Contact</a>
-                <a href="../guest-book.html">Guest Book</a>
+                <a href="index.html">Home</a>
+                <a href="property-search.html">Property Search</a>
+                <a href="mortgage-calculator.html">Mortgage Calculator</a>
+                <a href="guest-book.html">Guest Book</a>
+                <a href="https://botcity.zerric.com">Bot-City</a>
             </div>
         </div>
     </div>
 
     <script src="../js/script.js"></script>
-    <script type="text/javascript" id="hs-script-loader" async defer src="//js-na2.hs-scripts.com/243835533.js"></script>
 
     <script>
-        // ---- Set last updated time ----
-        document.getElementById('updateTime').textContent = new Date().toLocaleString();
+        // ====================================================
+        //   LIGHTBOX GALLERY
+        // ====================================================
+        const galleryImages = Array.from(document.querySelectorAll('#gallery .gallery-item img'));
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const lightboxPrev = document.getElementById('lightboxPrev');
+        const lightboxNext = document.getElementById('lightboxNext');
+        let currentIndex = 0;
 
-        // ---- Hide loading state when iframe loads ----
-        function hideLoading() {
-            const loading = document.getElementById('widgetLoading');
-            const wrapper = document.getElementById('widgetWrapper');
-            if (loading) {
-                loading.style.display = 'none';
-                wrapper.classList.add('widget-loaded');
-            }
+        function openLightbox(index) {
+            currentIndex = index;
+            lightboxImg.src = galleryImages[currentIndex].src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
-        // ---- Dynamic height adjustment (Chime widget) ----
-        const chimeWidget = document.getElementById('chimeWidget');
-        window.addEventListener('message', function (e) {
-            try {
-                let data = JSON.parse(e.data);
-                if (data.from === 'chimeSite' && data.event === 'updateBodyRect') {
-                    if (chimeWidget) {
-                        chimeWidget.style.height = data.data.height + 'px';
-                    }
-                }
-            } catch (error) {
-                console.log(error);
-            }
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function showPrev() {
+            currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+            lightboxImg.src = galleryImages[currentIndex].src;
+        }
+
+        function showNext() {
+            currentIndex = (currentIndex + 1) % galleryImages.length;
+            lightboxImg.src = galleryImages[currentIndex].src;
+        }
+
+        galleryImages.forEach((img, index) => {
+            img.parentElement.addEventListener('click', () => openLightbox(index));
         });
 
-        // ---- Menu toggle ----
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxPrev.addEventListener('click', showPrev);
+        lightboxNext.addEventListener('click', showNext);
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') showPrev();
+            if (e.key === 'ArrowRight') showNext();
+        });
+
+        // ====================================================
+        //   MENU TOGGLE (self-contained)
+        // ====================================================
         function toggleMenu() {
             const overlay = document.querySelector('.menu-overlay');
             if (overlay) overlay.classList.toggle('active');
