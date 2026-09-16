@@ -8,6 +8,149 @@
     <link rel="stylesheet" href="./css/styles.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="https://js-na2.hsforms.net/forms/embed/243835533.js" defer></script>
+    <style>
+        /* ====================================================
+           FEATURED LISTINGS
+        ==================================================== */
+        .featured-section {
+            margin-bottom: 3rem;
+        }
+        .featured-section .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .featured-section .section-title h2 {
+            font-size: 2rem;
+            color: var(--charcoal);
+            margin-bottom: 0.4rem;
+        }
+        .featured-section .section-title p {
+            color: #666;
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+        .featured-card {
+            background: var(--light);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-light);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+        }
+        .featured-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-gold);
+            border-color: var(--gold);
+        }
+        .featured-img-wrap {
+            position: relative;
+            aspect-ratio: 16 / 10;
+            overflow: hidden;
+            background: #000;
+        }
+        .featured-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        .featured-card:hover .featured-img-wrap img {
+            transform: scale(1.06);
+        }
+        .featured-badge {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: var(--gold);
+            color: var(--charcoal);
+            font-weight: 700;
+            font-size: 0.75rem;
+            padding: 0.3rem 0.9rem;
+            border-radius: 30px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .featured-body {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .featured-body h3 {
+            font-size: 1.25rem;
+            color: var(--charcoal);
+            margin-bottom: 0.3rem;
+        }
+        .featured-address {
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .featured-address i {
+            color: var(--gold-dark);
+        }
+        .featured-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.2rem;
+        }
+        .featured-tag {
+            background: var(--cream);
+            border: 1px solid var(--gray-light);
+            border-radius: 30px;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: #555;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .featured-tag i {
+            color: var(--gold-dark);
+            font-size: 0.7rem;
+        }
+        .featured-cta {
+            margin-top: auto;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--charcoal);
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+        .featured-card:hover .featured-cta {
+            background: var(--charcoal);
+            color: var(--gold);
+        }
+
+        @media (max-width: 480px) {
+            .featured-section .section-title h2 { font-size: 1.5rem; }
+            .featured-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body ng-app="">
 
@@ -64,6 +207,65 @@
                     </button>
                     <span class="about-shimmer-text" id="aboutToggleText">– Learn More</span>
                 </div>
+            </div>
+        </div>
+
+        <!-- ===== FEATURED LISTINGS ===== -->
+        <div class="featured-section">
+            <div class="section-title">
+                <h2>🏡 Featured Listings</h2>
+                <p>Explore my current rental properties in Louisville – each with a full listing page, photos, and a 3D virtual tour.</p>
+            </div>
+
+            <div class="featured-grid">
+
+                <!-- 226 Burnett Ave B -->
+                <a href="./listings/226-burnett-b.html" class="featured-card">
+                    <div class="featured-img-wrap">
+                        <span class="featured-badge">🔥 Featured</span>
+                        <img src="https://cdn.resize.sparkplatform.com/lou/1280x1024/true/20260907181942343923000000-o.jpg"
+                             alt="226 W Burnett Ave B – Old Louisville 2BR" loading="lazy" />
+                    </div>
+                    <div class="featured-body">
+                        <h3>Light-Filled 2BR in Old Louisville</h3>
+                        <p class="featured-address">
+                            <i class="fas fa-map-marker-alt"></i> 226 W Burnett Ave B, Louisville, KY
+                        </p>
+                        <div class="featured-tags">
+                            <span class="featured-tag"><i class="fas fa-bed"></i> 2 Beds</span>
+                            <span class="featured-tag"><i class="fas fa-bath"></i> 1 Bath</span>
+                            <span class="featured-tag"><i class="fas fa-building"></i> 3rd Floor</span>
+                            <span class="featured-tag"><i class="fas fa-tree"></i> Near Central Park</span>
+                        </div>
+                        <span class="featured-cta">
+                            <i class="fas fa-home"></i> View This Rental
+                        </span>
+                    </div>
+                </a>
+
+                <!-- 3179 S 3rd St #1 -->
+                <a href="./listings/3179-s-3rd-st-1.html" class="featured-card">
+                    <div class="featured-img-wrap">
+                        <span class="featured-badge">🎥 3D Tour</span>
+                        <img src="https://img.chime.me/imageemb/mls-listing/833/1729210/5eb278c9/1789570388/original_HMDRDYQgDAbgia796QOcbkMwShRsA3V_E7_qbnNlLttNVtV10rQ8LmvZdx2dinZu-rBAIpaAkAD5RySI4PNTOu14AwAA__8-jpg.webp"
+                             alt="3179 S 3rd St #1 – Louisville Rental" loading="lazy" />
+                    </div>
+                    <div class="featured-body">
+                        <h3>3179 S 3rd St #1</h3>
+                        <p class="featured-address">
+                            <i class="fas fa-map-marker-alt"></i> 3179 S 3rd St #1, Louisville, KY 40214
+                        </p>
+                        <div class="featured-tags">
+                            <span class="featured-tag"><i class="fas fa-vr-cardboard"></i> Virtual Tour</span>
+                            <span class="featured-tag"><i class="fas fa-home"></i> For Rent</span>
+                            <span class="featured-tag"><i class="fas fa-camera"></i> Photo Gallery</span>
+                        </div>
+                        <span class="featured-cta">
+                            <i class="fas fa-home"></i> View This Rental
+                        </span>
+                    </div>
+                </a>
+
             </div>
         </div>
 
