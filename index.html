@@ -146,9 +146,50 @@
             color: var(--gold);
         }
 
+        /* ====================================================
+           BOTTOM PROPERTY WIDGET
+        ==================================================== */
+        .bottom-widget-section {
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+        }
+        .bottom-widget-section .section-title {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .bottom-widget-section .section-title h2 {
+            font-size: 1.8rem;
+            color: var(--charcoal);
+            margin-bottom: 0.3rem;
+        }
+        .bottom-widget-section .section-title p {
+            color: #666;
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .bottom-widget-wrapper {
+            background: var(--light);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-light);
+            min-height: 400px;
+        }
+        .bottom-widget-wrapper iframe {
+            width: 100%;
+            height: 800px;
+            border-radius: var(--border-radius);
+            border: none;
+            display: block;
+        }
+
         @media (max-width: 480px) {
             .featured-section .section-title h2 { font-size: 1.5rem; }
             .featured-grid { grid-template-columns: 1fr; }
+            .bottom-widget-section .section-title h2 { font-size: 1.4rem; }
+            .bottom-widget-wrapper { padding: 0.8rem; }
+            .bottom-widget-wrapper iframe { height: 600px; }
         }
     </style>
 </head>
@@ -353,6 +394,22 @@
                 </div>
             </div>
         </div>
+
+        <!-- ===== BOTTOM PROPERTY WIDGET (before footer) ===== -->
+        <div class="bottom-widget-section">
+            <div class="section-title">
+                <h2>🔍 Browse Louisville Listings</h2>
+                <p>Explore available homes, rentals, and investment properties in the area.</p>
+            </div>
+            <div class="bottom-widget-wrapper">
+                <iframe
+                    src="https://zerric.lpthomesearch.com/api-site/widget/91894"
+                    id="chimeWidget"
+                    frameborder="0"
+                    style="width:100%; height:800px; border-radius: var(--border-radius);"
+                ></iframe>
+            </div>
+        </div>
     </div>
 
     <!-- Footer -->
@@ -439,6 +496,21 @@
                 if (overlay.classList.contains('active')) {
                     overlay.classList.remove('active');
                 }
+            }
+        });
+
+        // ---- Chime Widget dynamic height adjustment ----
+        const chimeWidget = document.getElementById('chimeWidget');
+        window.addEventListener('message', function (e) {
+            try {
+                let data = JSON.parse(e.data);
+                if (data.from === 'chimeSite' && data.event === 'updateBodyRect') {
+                    if (chimeWidget) {
+                        chimeWidget.style.height = data.data.height + 'px';
+                    }
+                }
+            } catch (error) {
+                console.log(error);
             }
         });
 
