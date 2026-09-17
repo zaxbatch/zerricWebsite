@@ -90,6 +90,19 @@
             transform: translateY(-3px);
             box-shadow: 0 12px 35px rgba(250, 204, 15, 0.4);
         }
+        .hero-btn-apply {
+            background: #fff;
+            color: var(--charcoal);
+            box-shadow: 0 4px 20px rgba(255,255,255,0.25);
+            border: 2px solid #fff;
+        }
+        .hero-btn-apply:hover {
+            background: var(--charcoal);
+            color: var(--gold);
+            border-color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+        }
         .hero-btn-outline {
             background: rgba(255,255,255,0.15);
             color: #fff;
@@ -213,7 +226,64 @@
             color: #666;
             font-size: 0.9rem;
         }
+        .listing-banner-actions {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
         .listing-banner .cta {
+            margin-top: 0;
+            white-space: nowrap;
+        }
+        .cta-apply {
+            background: var(--charcoal);
+            color: var(--gold);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .cta-apply:hover {
+            background: #000;
+            color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        /* ---- Application Callout ---- */
+        .apply-callout {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            background: linear-gradient(135deg, var(--charcoal) 0%, #2c2c2c 100%);
+            border: 2px solid var(--gold);
+            border-radius: var(--border-radius);
+            padding: 1.8rem 2rem;
+            margin-bottom: 2rem;
+            color: #fff;
+        }
+        .apply-callout-text {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex: 1;
+            min-width: 260px;
+        }
+        .apply-callout-text i {
+            font-size: 2.2rem;
+            color: var(--gold);
+            flex-shrink: 0;
+        }
+        .apply-callout-text strong {
+            display: block;
+            color: #fff;
+            font-size: 1.15rem;
+            margin-bottom: 0.15rem;
+        }
+        .apply-callout-text span {
+            color: rgba(255,255,255,0.75);
+            font-size: 0.9rem;
+        }
+        .apply-callout .cta {
             margin-top: 0;
             white-space: nowrap;
         }
@@ -389,13 +459,17 @@
             .promo-cta h2 { font-size: 1.4rem; }
             .lightbox-nav { width: 40px; height: 40px; font-size: 1.3rem; }
             .listing-banner { padding: 1.2rem 1.5rem; }
-            .listing-banner .cta { width: 100%; justify-content: center; }
+            .listing-banner-actions { width: 100%; }
+            .listing-banner .cta { flex: 1; justify-content: center; }
+            .apply-callout { padding: 1.5rem; }
+            .apply-callout .cta { width: 100%; justify-content: center; }
         }
         @media (max-width: 480px) {
             .promo-hero img { height: 260px; }
             .promo-hero h1 { font-size: 1.4rem; }
             .gallery { grid-template-columns: 1fr; }
             .hero-btn { width: 100%; justify-content: center; }
+            .listing-banner .cta { width: 100%; }
         }
     </style>
 </head>
@@ -424,6 +498,10 @@
                     and classic historic charm – just minutes from UofL and Central Park.
                 </p>
                 <div class="hero-actions">
+                    <a href="https://www.zillow.com/renter-hub/applications/listing/5h1dhuad8k86e/rental-application?utm_source=sohapplicationshare&utm_medium=desktopmweb&utm_campaign=applicationlinkshare"
+                       target="_blank" rel="noopener" class="hero-btn hero-btn-apply">
+                        <i class="fas fa-file-signature"></i> Apply Now
+                    </a>
                     <a href="https://www.flexmls.com/share/Ea6Ej/226-W-Burnett-Ave-B-Louisville-KY-40208"
                        target="_blank" rel="noopener" class="hero-btn hero-btn-primary">
                         <i class="fas fa-external-link-alt"></i> View Full Listing
@@ -464,6 +542,21 @@
             </div>
         </div>
 
+        <!-- ===== APPLICATION CALLOUT ===== -->
+        <div class="apply-callout">
+            <div class="apply-callout-text">
+                <i class="fas fa-file-signature"></i>
+                <div>
+                    <strong>Ready to Apply?</strong>
+                    <span>Submit your rental application securely through Zillow – it takes just a few minutes.</span>
+                </div>
+            </div>
+            <a href="https://www.zillow.com/renter-hub/applications/listing/5h1dhuad8k86e/rental-application?utm_source=sohapplicationshare&utm_medium=desktopmweb&utm_campaign=applicationlinkshare"
+               target="_blank" rel="noopener" class="cta" style="text-decoration:none;">
+                <i class="fas fa-file-signature"></i> Start Application
+            </a>
+        </div>
+
         <!-- ===== LISTING LINK BANNER ===== -->
         <div class="listing-banner">
             <div class="listing-banner-text">
@@ -473,10 +566,16 @@
                     <span>See full details, photos, and availability on the MLS listing.</span>
                 </div>
             </div>
-            <a href="https://www.flexmls.com/share/Ea6Ej/226-W-Burnett-Ave-B-Louisville-KY-40208"
-               target="_blank" rel="noopener" class="cta" style="text-decoration:none;">
-                <i class="fas fa-external-link-alt"></i> View Full Listing
-            </a>
+            <div class="listing-banner-actions">
+                <a href="https://www.flexmls.com/share/Ea6Ej/226-W-Burnett-Ave-B-Louisville-KY-40208"
+                   target="_blank" rel="noopener" class="cta" style="text-decoration:none;">
+                    <i class="fas fa-external-link-alt"></i> View Full Listing
+                </a>
+                <a href="https://www.zillow.com/renter-hub/applications/listing/5h1dhuad8k86e/rental-application?utm_source=sohapplicationshare&utm_medium=desktopmweb&utm_campaign=applicationlinkshare"
+                   target="_blank" rel="noopener" class="cta cta-apply" style="text-decoration:none;">
+                    <i class="fas fa-file-signature"></i> Apply Now
+                </a>
+            </div>
         </div>
 
         <!-- ===== DESCRIPTION ===== -->
@@ -601,9 +700,13 @@
         <!-- ===== CTA ===== -->
         <div class="promo-cta">
             <h2>Interested in This Apartment?</h2>
-            <p>View the full MLS listing, schedule a showing, or reach out with any questions – I'd love to help you call Old Louisville home.</p>
-            <a href="https://www.flexmls.com/share/Ea6Ej/226-W-Burnett-Ave-B-Louisville-KY-40208"
+            <p>Apply online, view the full MLS listing, or reach out with any questions – I'd love to help you call Old Louisville home.</p>
+            <a href="https://www.zillow.com/renter-hub/applications/listing/5h1dhuad8k86e/rental-application?utm_source=sohapplicationshare&utm_medium=desktopmweb&utm_campaign=applicationlinkshare"
                target="_blank" rel="noopener" class="cta" style="text-decoration:none;">
+                <i class="fas fa-file-signature"></i> Apply Now
+            </a>
+            <a href="https://www.flexmls.com/share/Ea6Ej/226-W-Burnett-Ave-B-Louisville-KY-40208"
+               target="_blank" rel="noopener" class="cta cta-outline" style="text-decoration:none;">
                 <i class="fas fa-external-link-alt"></i> View Full Listing
             </a>
             <a href="tel:5022995252" class="cta cta-outline" style="text-decoration:none;">

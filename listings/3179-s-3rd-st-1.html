@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>3179 S 3rd St #1 – Louisville Rental | Zerric Dotcom</title>
-    <meta name="description" content="Explore 3179 S 3rd St #1 in Louisville, KY. View photos, take a 3D virtual tour, and see full listing details." />
+    <meta name="description" content="Explore 3179 S 3rd St #1 in Louisville, KY. View photos, take a 3D virtual tour, and apply online." />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <link rel="stylesheet" href="../css/styles.css" />
     <style>
@@ -89,6 +89,19 @@
             background: var(--gold-dark);
             transform: translateY(-3px);
             box-shadow: 0 12px 35px rgba(250, 204, 15, 0.4);
+        }
+        .hero-btn-apply {
+            background: #fff;
+            color: var(--charcoal);
+            box-shadow: 0 4px 20px rgba(255,255,255,0.25);
+            border: 2px solid #fff;
+        }
+        .hero-btn-apply:hover {
+            background: var(--charcoal);
+            color: var(--gold);
+            border-color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.3);
         }
         .hero-btn-outline {
             background: rgba(255,255,255,0.15);
@@ -213,7 +226,64 @@
             color: #666;
             font-size: 0.9rem;
         }
+        .mls-banner-actions {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
         .mls-banner .cta {
+            margin-top: 0;
+            white-space: nowrap;
+        }
+        .cta-apply {
+            background: var(--charcoal);
+            color: var(--gold);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .cta-apply:hover {
+            background: #000;
+            color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        /* ---- Application Callout ---- */
+        .apply-callout {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            background: linear-gradient(135deg, var(--charcoal) 0%, #2c2c2c 100%);
+            border: 2px solid var(--gold);
+            border-radius: var(--border-radius);
+            padding: 1.8rem 2rem;
+            margin-bottom: 2rem;
+            color: #fff;
+        }
+        .apply-callout-text {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex: 1;
+            min-width: 260px;
+        }
+        .apply-callout-text i {
+            font-size: 2.2rem;
+            color: var(--gold);
+            flex-shrink: 0;
+        }
+        .apply-callout-text strong {
+            display: block;
+            color: #fff;
+            font-size: 1.15rem;
+            margin-bottom: 0.15rem;
+        }
+        .apply-callout-text span {
+            color: rgba(255,255,255,0.75);
+            font-size: 0.9rem;
+        }
+        .apply-callout .cta {
             margin-top: 0;
             white-space: nowrap;
         }
@@ -404,7 +474,10 @@
             .listing-card h2 { font-size: 1.35rem; }
             .listing-cta h2 { font-size: 1.4rem; }
             .mls-banner { padding: 1.2rem 1.5rem; }
-            .mls-banner .cta { width: 100%; justify-content: center; }
+            .mls-banner-actions { width: 100%; }
+            .mls-banner .cta { flex: 1; justify-content: center; }
+            .apply-callout { padding: 1.5rem; }
+            .apply-callout .cta { width: 100%; justify-content: center; }
             .tour-wrapper iframe { height: 380px; }
             .lightbox-nav { width: 40px; height: 40px; font-size: 1.3rem; }
         }
@@ -414,6 +487,7 @@
             .hero-btn { width: 100%; justify-content: center; }
             .tour-wrapper iframe { height: 300px; }
             .gallery { grid-template-columns: 1fr; }
+            .mls-banner .cta { width: 100%; }
         }
     </style>
 </head>
@@ -440,9 +514,13 @@
                 <h1>3179 S 3rd St #1</h1>
                 <p class="hero-sub">
                     Explore this Louisville rental in stunning 3D. Take the virtual tour below,
-                    then view the full listing for pricing, availability, and details.
+                    then apply online or view the full listing for details.
                 </p>
                 <div class="hero-actions">
+                    <a href="https://www.zillow.com/renter-hub/applications/listing/16f1gsuhapvgu/rental-application?utm_source=sohapplicationshare&utm_medium=desktopmweb&utm_campaign=applicationlinkshare"
+                       target="_blank" rel="noopener" class="hero-btn hero-btn-apply">
+                        <i class="fas fa-file-signature"></i> Apply Now
+                    </a>
                     <a href="https://zerric.lpthomesearch.com/listing-detail/1189364396/3179-S-3rd-St-1-Louisville-KY"
                        target="_blank" rel="noopener" class="hero-btn hero-btn-primary">
                         <i class="fas fa-external-link-alt"></i> View Full Listing
@@ -454,6 +532,50 @@
             </div>
         </div>
 
+        <!-- ===== QUICK STATS ===== -->
+        <div class="quick-stats">
+            <div class="stat-card">
+                <i class="fas fa-home"></i>
+                <div class="stat-label">Type</div>
+                <div class="stat-value">Rental</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-map-marker-alt"></i>
+                <div class="stat-label">Location</div>
+                <div class="stat-value">Louisville</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-vr-cardboard"></i>
+                <div class="stat-label">Tour</div>
+                <div class="stat-value">3D</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-camera"></i>
+                <div class="stat-label">Photos</div>
+                <div class="stat-value">12+</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-file-signature"></i>
+                <div class="stat-label">Apply</div>
+                <div class="stat-value">Online</div>
+            </div>
+        </div>
+
+        <!-- ===== APPLICATION CALLOUT ===== -->
+        <div class="apply-callout">
+            <div class="apply-callout-text">
+                <i class="fas fa-file-signature"></i>
+                <div>
+                    <strong>Ready to Apply?</strong>
+                    <span>Submit your rental application securely through Zillow – it takes just a few minutes.</span>
+                </div>
+            </div>
+            <a href="https://www.zillow.com/renter-hub/applications/listing/16f1gsuhapvgu/rental-application?utm_source=sohapplicationshare&utm_medium=desktopmweb&utm_campaign=applicationlinkshare"
+               target="_blank" rel="noopener" class="cta" style="text-decoration:none;">
+                <i class="fas fa-file-signature"></i> Start Application
+            </a>
+        </div>
+
         <!-- ===== MLS BANNER ===== -->
         <div class="mls-banner">
             <div class="mls-banner-text">
@@ -463,10 +585,16 @@
                     <span>See full details, pricing, and availability on the listing page.</span>
                 </div>
             </div>
-            <a href="https://zerric.lpthomesearch.com/listing-detail/1189364396/3179-S-3rd-St-1-Louisville-KY"
-               target="_blank" rel="noopener" class="cta" style="text-decoration:none;">
-                <i class="fas fa-external-link-alt"></i> View Full Listing
-            </a>
+            <div class="mls-banner-actions">
+                <a href="https://zerric.lpthomesearch.com/listing-detail/1189364396/3179-S-3rd-St-1-Louisville-KY"
+                   target="_blank" rel="noopener" class="cta" style="text-decoration:none;">
+                    <i class="fas fa-external-link-alt"></i> View Full Listing
+                </a>
+                <a href="https://www.zillow.com/renter-hub/applications/listing/16f1gsuhapvgu/rental-application?utm_source=sohapplicationshare&utm_medium=desktopmweb&utm_campaign=applicationlinkshare"
+                   target="_blank" rel="noopener" class="cta cta-apply" style="text-decoration:none;">
+                    <i class="fas fa-file-signature"></i> Apply Now
+                </a>
+            </div>
         </div>
 
         <!-- ===== VIRTUAL TOUR ===== -->
@@ -523,7 +651,7 @@
             <p>
                 Welcome to <strong>3179 S 3rd St #1</strong> – a Louisville rental that combines
                 comfort, convenience, and modern updates. Take the 3D tour above to explore every
-                corner, then reach out to schedule an in-person showing.
+                corner, then apply online or reach out to schedule an in-person showing.
             </p>
             <p>
                 For complete details – including rent, lease terms, utilities, pet policy, and
@@ -545,12 +673,12 @@
                     <span>Easy access to major roadways</span>
                 </div>
                 <div class="feature-item">
-                    <i class="fas fa-calendar-check"></i>
-                    <span>Showings available by appointment</span>
+                    <i class="fas fa-vr-cardboard"></i>
+                    <span>Interactive 3D virtual tour</span>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-file-signature"></i>
-                    <span>Full details on the listing page</span>
+                    <span>Apply online through Zillow</span>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-home"></i>
@@ -561,10 +689,14 @@
 
         <!-- ===== CTA ===== -->
         <div class="listing-cta">
-            <h2>Ready to See It in Person?</h2>
-            <p>View the full listing for pricing and availability, or call me directly to schedule a showing.</p>
-            <a href="https://zerric.lpthomesearch.com/listing-detail/1189364396/3179-S-3rd-St-1-Louisville-KY"
+            <h2>Ready to Make It Yours?</h2>
+            <p>Apply online, view the full listing, or call me directly to schedule a showing.</p>
+            <a href="https://www.zillow.com/renter-hub/applications/listing/16f1gsuhapvgu/rental-application?utm_source=sohapplicationshare&utm_medium=desktopmweb&utm_campaign=applicationlinkshare"
                target="_blank" rel="noopener" class="cta" style="text-decoration:none;">
+                <i class="fas fa-file-signature"></i> Apply Now
+            </a>
+            <a href="https://zerric.lpthomesearch.com/listing-detail/1189364396/3179-S-3rd-St-1-Louisville-KY"
+               target="_blank" rel="noopener" class="cta cta-outline" style="text-decoration:none;">
                 <i class="fas fa-external-link-alt"></i> View Full Listing
             </a>
             <a href="tel:5022995252" class="cta cta-outline" style="text-decoration:none;">
