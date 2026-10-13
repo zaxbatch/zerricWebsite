@@ -187,6 +187,36 @@
             font-size: 1.05rem;
         }
 
+        /* ---- Model Unit Notice ---- */
+        .model-notice {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            background: linear-gradient(135deg, #fff8e7 0%, var(--gold-subtle) 100%);
+            border-left: 4px solid var(--gold);
+            border-radius: var(--border-radius);
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 12px rgba(250, 204, 15, 0.1);
+        }
+        .model-notice i {
+            color: var(--gold-dark);
+            font-size: 1.6rem;
+            flex-shrink: 0;
+            margin-top: 0.15rem;
+        }
+        .model-notice-text strong {
+            display: block;
+            color: var(--charcoal);
+            font-size: 1.05rem;
+            margin-bottom: 0.3rem;
+        }
+        .model-notice-text span {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
         /* ---- MLS Banner ---- */
         .mls-banner {
             display: flex;
@@ -489,6 +519,8 @@
             .apply-callout .cta { width: 100%; justify-content: center; }
             .tour-wrapper iframe { height: 380px; }
             .lightbox-nav { width: 40px; height: 40px; font-size: 1.3rem; }
+            .model-notice { padding: 1rem 1.2rem; }
+            .model-notice i { font-size: 1.3rem; }
         }
         @media (max-width: 480px) {
             .listing-hero img { height: 440px; }
@@ -627,6 +659,16 @@
                 Walk through the property from anywhere. Click and drag to look around, or tap the
                 fullscreen icon for an immersive experience.
             </p>
+
+            <!-- Model Unit Notice -->
+            <div class="model-notice">
+                <i class="fas fa-info-circle"></i>
+                <div class="model-notice-text">
+                    <strong>Please Note: Model Unit</strong>
+                    <span>The photos and 3D tour shown are of the model unit. The layout of this unit is the same – finishes and furnishings may vary slightly.</span>
+                </div>
+            </div>
+
             <div class="tour-wrapper">
                 <iframe id="tour-embedded" title="1623 Brick Kiln #3"
                         src="https://tour.panoee.net/iframe/69d877b2a1870d61316cc1a5?embedFullscreen=1&embedVr=1&embedGyro=1"
@@ -640,6 +682,16 @@
         <div class="listing-card">
             <h2>📸 Photo Gallery</h2>
             <p style="color:#666; font-size:0.95rem;">Click any photo to view it larger.</p>
+
+            <!-- Model Unit Notice -->
+            <div class="model-notice">
+                <i class="fas fa-camera"></i>
+                <div class="model-notice-text">
+                    <strong>Photos of Model Unit</strong>
+                    <span>These photos are of the model unit and are representative of the layout. Actual finishes and furnishings may vary.</span>
+                </div>
+            </div>
+
             <div class="gallery" id="gallery">
                 <div class="gallery-item"><img src="https://img.chime.me/imageemb/mls-listing/833/1731763/d483c603/1791927487/original_HMALCoAgDADQE7WPiWW3EaOktA1d9w96xUzHhpj3B7SIyYChqd9akx3SG2RpWOVFRy4w8eyY2HMMcVk9_SaBS88vAAD__w-jpg.webp" alt="Property photo 1" loading="lazy" /></div>
                 <div class="gallery-item"><img src="https://img.chime.me/imageemb/mls-listing/833/1731763/04a8c7c9/1791927487/original_HMLRDYAgDAXAiWyhiB9uQzBKFHwN1P2NXq6Y6ViZ83aTFhgGDU390ppsR2-U0bjiYXGyeOeDfKOEOPvgfhPo1OMNAAD__w-jpg.webp" alt="Property photo 2" loading="lazy" /></div>
