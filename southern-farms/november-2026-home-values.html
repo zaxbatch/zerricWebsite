@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Southern Farms Home Values — November 2026</title>
+<meta name="description" content="What's actually happening in Southern Farms home values — November 2026 neighborhood market snapshot.">
+<style>
+  :root{
+    --ink:#1f2a24;
+    --muted:#5b6b62;
+    --accent:#2f6b4f;
+    --accent-dark:#24523c;
+    --bg:#f7f6f2;
+    --card:#ffffff;
+    --line:#e2e0d8;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.6;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:0 20px;}
+  header{
+    background:var(--accent);
+    color:#fff;
+    padding:44px 0 38px;
+  }
+  header h1{
+    margin:0 0 8px;
+    font-size:clamp(1.6rem,4vw,2.2rem);
+    line-height:1.2;
+  }
+  header p{
+    margin:0;
+    opacity:.9;
+    font-size:1rem;
+  }
+  main{padding:36px 0 56px;}
+  .intro{font-size:1.05rem;color:var(--muted);margin:0 0 28px;}
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin:0 0 32px;
+  }
+  .stat{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:20px 12px;
+    text-align:center;
+  }
+  .stat .num{
+    display:block;
+    font-size:clamp(1.4rem,4vw,1.9rem);
+    font-weight:700;
+    color:var(--accent-dark);
+    line-height:1.1;
+  }
+  .stat .label{
+    display:block;
+    margin-top:6px;
+    font-size:.8rem;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    color:var(--muted);
+  }
+  h2{
+    font-size:1.2rem;
+    margin:0 0 12px;
+  }
+  .body-copy p{margin:0 0 16px;}
+  .cta-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:26px 22px;
+    margin:32px 0;
+  }
+  .cta-card h2{margin-top:0;}
+  form{display:grid;gap:12px;margin-top:16px;}
+  label{font-size:.9rem;font-weight:600;}
+  input[type="text"],
+  input[type="email"]{
+    width:100%;
+    padding:12px 14px;
+    font-size:1rem;
+    border:1px solid var(--line);
+    border-radius:8px;
+    background:#fff;
+    color:var(--ink);
+  }
+  input:focus{
+    outline:2px solid var(--accent);
+    outline-offset:1px;
+    border-color:var(--accent);
+  }
+  button{
+    background:var(--accent);
+    color:#fff;
+    border:0;
+    border-radius:8px;
+    padding:14px 18px;
+    font-size:1rem;
+    font-weight:600;
+    cursor:pointer;
+  }
+  button:hover{background:var(--accent-dark);}
+  .contact{
+    font-size:.95rem;
+    color:var(--muted);
+    margin-top:14px;
+  }
+  .contact a{color:var(--accent-dark);text-decoration:none;font-weight:600;}
+  .contact a:hover{text-decoration:underline;}
+  footer{
+    border-top:1px solid var(--line);
+    padding:22px 0 40px;
+    font-size:.78rem;
+    color:var(--muted);
+  }
+  @media (max-width:480px){
+    .stats{grid-template-columns:1fr;}
+    header{padding:34px 0 30px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>Southern Farms Home Values — November 2026</h1>
+    <p>Neighborhood Market Snapshot</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <p class="intro">
+    You're getting this because you live in Southern Farms. I do too. Here's what's actually
+    happening in our neighborhood right now — and what it means for your home.
+  </p>
+
+  <section class="stats" aria-label="Southern Farms market statistics">
+    <div class="stat">
+      <span class="num">2</span>
+      <span class="label">Homes sold this year</span>
+    </div>
+    <div class="stat">
+      <span class="num">$196,000</span>
+      <span class="label">Median sale price</span>
+    </div>
+    <div class="stat">
+      <span class="num">14</span>
+      <span class="label">Avg. days on market</span>
+    </div>
+  </section>
+
+  <section class="body-copy">
+    <h2>Why the numbers look thin — and why that matters</h2>
+    <p>
+      County-wide averages don't tell you much about Southern Farms. With only two sales this
+      year — both gone in two weeks — there's almost no recent data to price a home by, and
+      that's exactly when a local read matters most.
+    </p>
+    <p>
+      Our streets, our lot sizes, our school boundaries — they price differently. I track every
+      sale in this neighborhood so I can give you a real number, not a guess.
+    </p>
+  </section>
+
+  <section class="cta-card">
+    <h2>Want your specific number?</h2>
+    <p>
+      Enter your address and I'll send you a personalized Southern Farms report — no obligation,
+      no listing commitment, no follow-up pressure.
+    </p>
+    <!-- Replace action with your form endpoint (e.g., your CRM or form service) -->
+    <form action="[YOUR_FORM_ENDPOINT]" method="post">
+      <div>
+        <label for="address">Your address</label>
+        <input type="text" id="address" name="address" placeholder="123 Southern Farms Dr" required>
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+      </div>
+      <button type="submit">Send Me My Southern Farms Report</button>
+    </form>
+    <p class="contact">
+      Prefer to talk? Call or text <a href="tel:[PHONE]">[PHONE]</a> or email
+      <a href="mailto:[EMAIL]">[EMAIL]</a>.
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>
+      [YOUR NAME] · [BROKERAGE] · [LICENSE #]<br>
+      This is not a solicitation for properties already listed with another broker.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
