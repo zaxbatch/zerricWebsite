@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buyer's CMA — Southern Farms | Zerric Dotcom</title>
+    <meta name="description" content="Statistical Buyer's Comparative Market Analysis for Southern Farms. Real numbers, real charts, real neighborhood insight." />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        /* ====================================================
+           BUYER'S CMA PAGE
+        ==================================================== */
+
+        /* ---- Print Button ---- */
+        .print-bar {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.6rem;
+            margin-bottom: 1.5rem;
+        }
+        .print-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.4rem;
+            background: var(--charcoal);
+            color: var(--gold);
+            border: 2px solid var(--gold);
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+        .print-btn:hover {
+            background: var(--gold);
+            color: var(--charcoal);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-gold);
+        }
+
+        /* ---- Cover / Header ---- */
+        .cma-header {
+            text-align: center;
+            padding: 2.5rem 0 1.5rem;
+        }
+        .cma-badge {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--charcoal);
+            font-weight: 700;
+            font-size: 0.8rem;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+        }
+        .cma-header h1 {
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            color: var(--charcoal);
+            margin-bottom: 0.4rem;
+            line-height: 1.2;
+        }
+        .cma-header .cma-sub {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .cma-meta {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 1.2rem;
+            font-size: 0.9rem;
+            color: #777;
+        }
+        .cma-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .cma-meta i {
+            color: var(--gold-dark);
+        }
+
+        /* ---- Stat Cards ---- */
+        .cma-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .cma-stat {
+            background: var(--light);
+            border-radius: var(--border-radius);
+            padding: 1.6rem 1rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-light);
+            transition: var(--transition);
+        }
+        .cma-stat:hover {
+            border-color: var(--gold);
+            box-shadow: var(--shadow-gold);
+            transform: translateY(-4px);
+        }
+        .cma-stat .num {
+            display: block;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gold-dark);
+            line-height: 1.1;
+            margin-bottom: 0.4rem;
+        }
+        .cma-stat .label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #888;
+            font-weight: 600;
+        }
+
+        /* ---- Content Card ---- */
+        .cma-card {
+            background: var(--light);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-light);
+            margin-bottom: 2rem;
+        }
+        .cma-card h2 {
+            color: var(--charcoal);
+            font-size: 1.4rem;
+            margin-bottom: 0.3rem;
+            border-bottom: 3px solid var(--gold);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+        .cma-card .card-sub {
+            color: #777;
+            font-size: 0.92rem;
+            margin: 0.6rem 0 1.2rem;
+        }
+        .cma-card p {
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        /* ---- Charts ---- */
+        .chart-wrap {
+            position: relative;
+            height: 320px;
+            margin-top: 1rem;
+        }
+        .chart-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        @media (max-width: 900px) {
+            .chart-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ---- Data Table ---- */
+        .cma-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+        .cma-table thead {
+            background: var(--charcoal);
+            color: var(--light);
+        }
+        .cma-table th {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .cma-table td {
+            padding: 0.7rem 1rem;
+            border-bottom: 1px solid var(--gray-light);
+            color: #444;
+        }
+        .cma-table tbody tr:nth-child(even) {
+            background: var(--cream);
+        }
+        .cma-table tbody tr:hover {
+            background: var(--gold-subtle);
+        }
+        .cma-table td:first-child {
+            font-weight: 600;
+            color: var(--charcoal);
+        }
+        .table-note {
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 0.8rem;
+            font-style: italic;
+        }
+
+        /* ---- Insight Callout ---- */
+        .insight {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            background: linear-gradient(135deg, #fff8e7 0%, var(--gold-subtle) 100%);
+            border-left: 4px solid var(--gold);
+            border-radius: var(--border-radius);
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .insight i {
+            color: var(--gold-dark);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+        .insight strong {
+            display: block;
+            color: var(--charcoal);
+            margin-bottom: 0.3rem;
+        }
+        .insight span {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ---- CTA ---- */
+        .cma-cta {
+            text-align: center;
+            padding: 2.2rem 2rem;
+            background: linear-gradient(135deg, var(--charcoal) 0%, #2c2c2c 100%);
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            border: 2px solid var(--gold);
+        }
+        .cma-cta h2 {
+            color: #fff;
+            font-size: 1.5rem;
+            margin-bottom: 0.4rem;
+            border: none;
+            padding: 0;
+            display: block;
+        }
+        .cma-cta p {
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 1.3rem;
+        }
+        .cma-cta .cta { margin: 0.3rem; }
+        .cta-outline {
+            background: transparent;
+            color: var(--gold);
+            border: 2px solid var(--gold);
+            box-shadow: none;
+        }
+        .cta-outline:hover {
+            background: var(--gold);
+            color: var(--charcoal);
+        }
+
+        /* ====================================================
+           PRINT STYLES
+        ==================================================== */
+        @media print {
+            body {
+                background: #fff !important;
+            }
+            .header-banner,
+            .glow-menu,
+            footer .footer-content,
+            .print-bar,
+            .cma-cta,
+            .back-home {
+                display: none !important;
+            }
+            .container {
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 0.5in !important;
+            }
+            .cma-card {
+                box-shadow: none !important;
+                border: 1px solid #ddd !important;
+                page-break-inside: avoid;
+            }
+            .cma-stat {
+                box-shadow: none !important;
+                border: 1px solid #ddd !important;
+            }
+            .cma-header { padding: 0.5rem 0 1rem; }
+            .chart-wrap { height: 260px; }
+            .cma-table { font-size: 0.8rem; }
+            .cma-table thead { background: #1e1e1e !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .cma-badge, .insight { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .cma-cta { display: none !important; }
+            footer { border-top: 1px solid #ddd; padding-top: 1rem; }
+        }
+
+        /* ---- Responsive ---- */
+        @media (max-width: 768px) {
+            .cma-card { padding: 1.5rem; }
+            .cma-card h2 { font-size: 1.2rem; }
+            .cma-stat .num { font-size: 1.6rem; }
+            .chart-wrap { height: 260px; }
+            .cma-table { font-size: 0.8rem; }
+            .cma-table th, .cma-table td { padding: 0.5rem 0.6rem; }
+            .cma-table { display: block; overflow-x: auto; white-space: nowrap; }
+        }
+        @media (max-width: 480px) {
+            .cma-stats { grid-template-columns: 1fr 1fr; }
+            .cma-header h1 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Banner -->
+    <header class="header-banner">
+        <div class="social-links">
+            <img src="../images/logo/logo02.svg" alt="LPT Logo" class="footer-logo" />
+            <a href="tel:5022995252"><i class="fas fa-phone"></i> Call Me</a>
+            <a href="mailto:zerricdotcom@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+
+        <!-- Print Button -->
+        <div class="print-bar">
+            <button class="print-btn" onclick="window.print()">
+                <i class="fas fa-file-pdf"></i> Save as PDF
+            </button>
+        </div>
+
+        <!-- ===== HEADER ===== -->
+        <div class="cma-header">
+            
+            <h1>Southern Farms Market Analysis</h1>
+            <p class="cma-sub">A statistical look at recent sales — what they mean for your buying power.</p>
+            <div class="cma-meta">
+                <span><i class="fas fa-calendar"></i> November 2026</span>
+                <span><i class="fas fa-map-marker-alt"></i> Southern Farms, Louisville</span>
+                <span><i class="fas fa-home"></i> 2 Closed Sales</span>
+            </div>
+        </div>
+
+        <!-- ===== STAT CARDS ===== -->
+        <div class="cma-stats">
+            <div class="cma-stat">
+                <span class="num">$196,000</span>
+                <span class="label">Avg. Sold Price</span>
+            </div>
+            <div class="cma-stat">
+                <span class="num">$201,500</span>
+                <span class="label">Avg. List Price</span>
+            </div>
+            <div class="cma-stat">
+                <span class="num">0.97</span>
+                <span class="label">Sale-to-List Ratio</span>
+            </div>
+            <div class="cma-stat">
+                <span class="num">14</span>
+                <span class="label">Avg. Days on Market</span>
+            </div>
+            <div class="cma-stat">
+                <span class="num">1,220</span>
+                <span class="label">Avg. SqFt (Above Grade)</span>
+            </div>
+            <div class="cma-stat">
+                <span class="num">$161</span>
+                <span class="label">Avg. $/SqFt Sold</span>
+            </div>
+        </div>
+
+        <!-- ===== INSIGHT ===== -->
+        <div class="insight">
+            <i class="fas fa-lightbulb"></i>
+            <div>
+                <strong>What this means for you</strong>
+                <span>Homes in Southern Farms are selling at <strong>97% of list price</strong> and moving in about <strong>two weeks</strong>. That's a strong seller's market — expect to move quickly and come in close to asking price.</span>
+            </div>
+        </div>
+
+        <!-- ===== CHART ROW 1 ===== -->
+        <div class="chart-grid">
+            <!-- Price Comparison Chart -->
+            <div class="cma-card">
+                <h2>List vs. Sold Price</h2>
+                <p class="card-sub">Comparing low, average, and high across recent sales.</p>
+                <div class="chart-wrap">
+                    <canvas id="priceChart"></canvas>
+                </div>
+            </div>
+
+            <!-- DOM Chart -->
+            <div class="cma-card">
+                <h2>Days on Market</h2>
+                <p class="card-sub">How quickly homes are moving in Southern Farms.</p>
+                <div class="chart-wrap">
+                    <canvas id="domChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== CHART ROW 2 ===== -->
+        <div class="chart-grid">
+            <!-- Price Per SqFt -->
+            <div class="cma-card">
+                <h2>Price Per Square Foot</h2>
+                <p class="card-sub">List vs. sold $/SqFt — a key pricing indicator.</p>
+                <div class="chart-wrap">
+                    <canvas id="sqftChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Sale-to-List Ratio -->
+            <div class="cma-card">
+                <h2>Sale-to-List Ratio</h2>
+                <p class="card-sub">How close to asking price homes are selling.</p>
+                <div class="chart-wrap">
+                    <canvas id="ratioChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== DATA TABLE ===== -->
+        <div class="cma-card">
+            <h2>Closed Sales Detail</h2>
+            <p class="card-sub">Full breakdown of all closed sales in the neighborhood.</p>
+            <table class="cma-table">
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Low</th>
+                        <th>Average</th>
+                        <th>High</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>List Price</td>
+                        <td>$177,999</td>
+                        <td>$201,500</td>
+                        <td>$225,000</td>
+                    </tr>
+                    <tr>
+                        <td>Sold Price</td>
+                        <td>$172,000</td>
+                        <td>$196,000</td>
+                        <td>$220,000</td>
+                    </tr>
+                    <tr>
+                        <td>Sale / List Price</td>
+                        <td>0.97</td>
+                        <td>0.97</td>
+                        <td>0.98</td>
+                    </tr>
+                    <tr>
+                        <td>Above Grade Finished (SqFt)</td>
+                        <td>1,207</td>
+                        <td>1,220</td>
+                        <td>1,232</td>
+                    </tr>
+                    <tr>
+                        <td>List $/SqFt</td>
+                        <td>$144.48</td>
+                        <td>$165.45</td>
+                        <td>$186.41</td>
+                    </tr>
+                    <tr>
+                        <td>Sold $/SqFt</td>
+                        <td>$139.61</td>
+                        <td>$160.94</td>
+                        <td>$182.27</td>
+                    </tr>
+                    <tr>
+                        <td>Days on Market</td>
+                        <td>6</td>
+                        <td>14</td>
+                        <td>22</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="table-note">Based on 2 closed sales · Total volume: $402,999 list / $392,000 sold</p>
+        </div>
+
+        <!-- ===== BOTTOM LINE ===== -->
+        <div class="cma-card">
+            <h2>The Bottom Line</h2>
+            <p>
+                With only two closed sales this year, Southern Farms is a <strong>low-inventory,
+                high-demand</strong> neighborhood. Homes are selling near asking price and moving
+                in about two weeks — meaning buyers should be pre-approved and ready to move fast.
+            </p>
+            <p>
+                Price per square foot ranges from <strong>$140 to $182</strong>, giving you a solid
+                baseline to evaluate any home in the neighborhood. If you're looking at a specific
+                property, I can run a targeted CMA against these comps.
+            </p>
+        </div>
+
+        <!-- ===== CTA ===== -->
+        <div class="cma-cta">
+            <h2>Want a CMA on a Specific Property?</h2>
+            <p>I'll run the numbers against these comps and give you a real, personalized analysis.</p>
+            <a href="tel:5022995252" class="cta" style="text-decoration:none;">
+                <i class="fas fa-phone"></i> Call (502) 299-5252
+            </a>
+            <a href="../contact.html" class="cta cta-outline" style="text-decoration:none;">
+                <i class="fas fa-envelope"></i> Send a Message
+            </a>
+        </div>
+
+        <!-- Back to Home -->
+        <div class="back-home" style="text-align: center; margin-top: 1.5rem;">
+            <a href="../index.html" class="cta" style="text-decoration: none;">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <img src="../images/logo/logo02.svg" alt="LPT Logo" class="footer-logo" />
+            <div class="brokerage-info">
+                <p><strong>LPT Realty</strong></p>
+                <p>1400 S International Parkway Suite 1020</p>
+                <p>Lake Mary, FL 32746</p>
+            </div>
+            <img src="https://cms.nar.realtor//sites/default/files/images/logos/NAR/web_R_blue.jpg" alt="Realtor Logo" class="realtor-logo" />
+            <img src="https://www.nar.realtor/sites/default/files/downloadable/equal-housing-opportunity-logo-1200w.jpg" alt="Fair Housing Logo" class="realtor-logo" />
+        </div>
+        <p style="margin-top: 1.5rem; font-size: 0.78rem; color: #888; text-align: center;">
+            This is not a solicitation for properties already listed with another broker.
+        </p>
+    </footer>
+
+    <!-- Interactive Glowing Menu -->
+    <div class="glow-menu">
+        <div class="menu-icon" onclick="toggleMenu()" tabindex="0" role="button" aria-label="Toggle menu">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="menu-overlay">
+            <div class="menu-content">
+                <a href="../index.html">Home</a>
+                <a href="../property-search.html">Property Search</a>
+                <a href="../mortgage-calculator.html">Mortgage Calculator</a>
+                <a href="../guest-book.html">Guest Book</a>
+                <a href="https://botcity.zerric.com">Bot-City</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/script.js"></script>
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js-na2.hs-scripts.com/243835533.js"></script>
+
+    <script>
+        // ====================================================
+        //   CHART CONFIGURATION
+        // ====================================================
+        const gold = '#FACC0F';
+        const goldDark = '#d4a800';
+        const charcoal = '#1e1e1e';
+        const gray = '#e2ddd6';
+
+        // Shared chart options
+        const baseOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: {
+                duration: window.matchMedia('print').matches ? 0 : 1000
+            },
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        padding: 16,
+                        usePointStyle: true,
+                        pointStyle: 'circle',
+                        font: { size: 12, family: "'Segoe UI', sans-serif" },
+                        color: charcoal
+                    }
+                },
+                tooltip: {
+                    backgroundColor: charcoal,
+                    titleColor: gold,
+                    bodyColor: '#fff',
+                    padding: 12,
+                    cornerRadius: 8,
+                    titleFont: { size: 13, weight: '600' },
+                    bodyFont: { size: 12 }
+                }
+            }
+        };
+
+        // ---- 1. Price Comparison (Grouped Bar) ----
+        new Chart(document.getElementById('priceChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Low', 'Average', 'High'],
+                datasets: [
+                    {
+                        label: 'List Price',
+                        data: [177999, 201500, 225000],
+                        backgroundColor: gold,
+                        borderColor: goldDark,
+                        borderWidth: 2,
+                        borderRadius: 6
+                    },
+                    {
+                        label: 'Sold Price',
+                        data: [172000, 196000, 220000],
+                        backgroundColor: charcoal,
+                        borderColor: charcoal,
+                        borderWidth: 2,
+                        borderRadius: 6
+                    }
+                ]
+            },
+            options: {
+                ...baseOptions,
+                plugins: {
+                    ...baseOptions.plugins,
+                    tooltip: {
+                        ...baseOptions.plugins.tooltip,
+                        callbacks: {
+                            label: ctx => ctx.dataset.label + ': $' + ctx.parsed.y.toLocaleString()
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: v => '$' + (v / 1000) + 'k',
+                            color: '#888',
+                            font: { size: 11 }
+                        },
+                        grid: { color: gray }
+                    },
+                    x: {
+                        ticks: { color: charcoal, font: { size: 12, weight: '600' } },
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+
+        // ---- 2. Days on Market (Horizontal Bar) ----
+        new Chart(document.getElementById('domChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Fastest Sale', 'Average', 'Slowest Sale'],
+                datasets: [{
+                    label: 'Days on Market',
+                    data: [6, 14, 22],
+                    backgroundColor: [gold, goldDark, charcoal],
+                    borderRadius: 6,
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                ...baseOptions,
+                indexAxis: 'y',
+                plugins: {
+                    ...baseOptions.plugins,
+                    legend: { display: false },
+                    tooltip: {
+                        ...baseOptions.plugins.tooltip,
+                        callbacks: {
+                            label: ctx => ctx.parsed.x + ' days'
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        ticks: { color: '#888', font: { size: 11 }, callback: v => v + 'd' },
+                        grid: { color: gray }
+                    },
+                    y: {
+                        ticks: { color: charcoal, font: { size: 12, weight: '600' } },
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+
+        // ---- 3. Price Per SqFt (Grouped Bar) ----
+        new Chart(document.getElementById('sqftChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Low', 'Average', 'High'],
+                datasets: [
+                    {
+                        label: 'List $/SqFt',
+                        data: [144.48, 165.45, 186.41],
+                        backgroundColor: gold,
+                        borderColor: goldDark,
+                        borderWidth: 2,
+                        borderRadius: 6
+                    },
+                    {
+                        label: 'Sold $/SqFt',
+                        data: [139.61, 160.94, 182.27],
+                        backgroundColor: charcoal,
+                        borderRadius: 6
+                    }
+                ]
+            },
+            options: {
+                ...baseOptions,
+                plugins: {
+                    ...baseOptions.plugins,
+                    tooltip: {
+                        ...baseOptions.plugins.tooltip,
+                        callbacks: {
+                            label: ctx => ctx.dataset.label + ': $' + ctx.parsed.y.toFixed(2)
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: v => '$' + v,
+                            color: '#888',
+                            font: { size: 11 }
+                        },
+                        grid: { color: gray }
+                    },
+                    x: {
+                        ticks: { color: charcoal, font: { size: 12, weight: '600' } },
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+
+        // ---- 4. Sale-to-List Ratio (Doughnut) ----
+        new Chart(document.getElementById('ratioChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Sold (97%)', 'Negotiated Off (3%)'],
+                datasets: [{
+                    data: [97, 3],
+                    backgroundColor: [gold, charcoal],
+                    borderColor: '#ffffff',
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                ...baseOptions,
+                cutout: '65%',
+                plugins: {
+                    ...baseOptions.plugins,
+                    tooltip: {
+                        ...baseOptions.plugins.tooltip,
+                        callbacks: {
+                            label: ctx => ctx.label + ': ' + ctx.parsed + '%'
+                        }
+                    }
+                }
+            }
+        });
+
+        // ---- Menu toggle ----
+        function toggleMenu() {
+            const overlay = document.querySelector('.menu-overlay');
+            if (overlay) overlay.classList.toggle('active');
+        }
+
+        document.addEventListener('click', (event) => {
+            const overlay = document.querySelector('.menu-overlay');
+            const content = document.querySelector('.menu-content');
+            const icon = document.querySelector('.menu-icon');
+            if (overlay && overlay.classList.contains('active') && content && icon &&
+                !content.contains(event.target) && !icon.contains(event.target)) {
+                overlay.classList.remove('active');
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                const overlay = document.querySelector('.menu-overlay');
+                if (overlay && overlay.classList.contains('active')) {
+                    overlay.classList.remove('active');
+                }
+            }
+        });
+
+        window.toggleMenu = toggleMenu;
+    </script>
+</body>
+</html>
